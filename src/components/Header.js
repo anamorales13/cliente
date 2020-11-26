@@ -201,18 +201,18 @@ class Header extends Component {
 
                             {JSON.parse(localStorage.getItem('user')) != null &&
                                 <div className="perfil-header">
-                                    <img src={this.url + '/get-image-user/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
+                                    <img src={this.url + 'get-image-user/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
                                     <h1>{JSON.parse(localStorage.getItem('user')).nombre}</h1>
                                     <DropdownButton id="dropdown-basic-button" style={{ left: "auto" }, { rigth: '85%' }} className="dropdown-menu.show"
                                         show={this.state.show}
                                         onMouseEnter={this.showDropdown}
                                         onMouseLeave={this.hideDropdown}
                                     >
-                                        <Dropdown.Item href="/user/profile">Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="/user/edit">Editar Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="/user/erasmus">Erasmus</Dropdown.Item>
-                                        <Dropdown.Item href="/user/seguridad">Constraseña</Dropdown.Item>
-                                        <Dropdown.Item href="/solicitar_baja">Solicitar baja</Dropdown.Item>
+                                        <Dropdown.Item href="./user/profile">Perfil</Dropdown.Item>
+                                        <Dropdown.Item href="./user/edit">Editar Perfil</Dropdown.Item>
+                                        <Dropdown.Item href="./user/erasmus">Erasmus</Dropdown.Item>
+                                        <Dropdown.Item href="./user/seguridad">Constraseña</Dropdown.Item>
+                                        <Dropdown.Item href="./solicitar_baja">Solicitar baja</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.setState({ navigate: true })}>Cerrar Sesion</Dropdown.Item>
                                     </DropdownButton>
                                 </div>
@@ -268,16 +268,16 @@ class Header extends Component {
                             {JSON.parse(localStorage.getItem('user')) != null &&
                                 <div className="perfil-header">
 
-                                    <img src={this.url + '/get-image-user/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
+                                    <img src={this.url + 'get-image-user/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
                                     <h1>{JSON.parse(localStorage.getItem('user')).nombre}</h1>
                                     <DropdownButton id="dropdown-basic-button" style={{ left: "auto" }, { rigth: '85%' }} className="dropdown-menu.show"
                                         show={this.state.show}
                                         onMouseEnter={this.showDropdown}
                                         onMouseLeave={this.hideDropdown}>
-                                        <Dropdown.Item href="/user/profile">Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="/user/edit">Editar Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="/user/seguridad">Constraseña</Dropdown.Item>
-                                        <Dropdown.Item href="/profesor/erasmus">Erasmus</Dropdown.Item>
+                                        <Dropdown.Item href="./user/profile">Perfil</Dropdown.Item>
+                                        <Dropdown.Item href="./user/edit">Editar Perfil</Dropdown.Item>
+                                        <Dropdown.Item href="./user/seguridad">Constraseña</Dropdown.Item>
+                                        <Dropdown.Item href="./profesor/erasmus">Erasmus</Dropdown.Item>
 
                                         <Dropdown.Item onClick={() => this.setState({ navigate: true })}>Cerrar Sesion</Dropdown.Item>
                                     </DropdownButton>
@@ -342,15 +342,15 @@ class Header extends Component {
                             {JSON.parse(localStorage.getItem('user')) != null &&
                                 <div className="perfil-header">
 
-                                    <img src={this.url + '/get-image-user/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
+                                    <img src={this.url + 'get-image-user/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
                                     <h1>{JSON.parse(localStorage.getItem('user')).nombre}</h1>
                                     <DropdownButton id="dropdown-basic-button" style={{ left: "auto" }, { rigth: '85%' }} className="dropdown-menu.show"
                                         show={this.state.show}
                                         onMouseEnter={this.showDropdown}
                                         onMouseLeave={this.hideDropdown}>
-                                        <Dropdown.Item href="/user/profile">Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="/user/edit">Editar Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="/user/seguridad">Constraseña</Dropdown.Item>
+                                        <Dropdown.Item href="./user/profile">Perfil</Dropdown.Item>
+                                        <Dropdown.Item href="./user/edit">Editar Perfil</Dropdown.Item>
+                                        <Dropdown.Item href="./user/seguridad">Constraseña</Dropdown.Item>
                                         <Dropdown.Item href="#">Ayuda</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.setState({ navigate: true })}>Cerrar Sesion</Dropdown.Item>
                                     </DropdownButton>
