@@ -1,0 +1,138 @@
+
+.grid-row{
+    display:grid;
+
+    grid-template-rows: 65px auto;
+}
+
+.grid-col{
+    display: grid;
+    grid-template-columns: 300px 1000px 185px;
+}
+
+.grid-row-docgeneral{
+    display:grid;
+    grid-template-rows: 60px 280px 60px 280px;
+}
+
+.grid-row-docgeneral h1{
+  margin-top: 0.8em;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 28px;
+  background-color: rgba(230,228,228,0.664);
+  border-radius: 10px;
+  
+}
+
+.grid-documentosofi{
+    display:grid;
+    grid-template-columns: 500px 500px
+    
+}
+
+.grid-documentos-dos{
+    display: grid;
+    grid-template-columns: 110px auto;
+}
+
+.grid-col-doc{
+    display:grid;
+    grid-template-rows: 150px 150px 150px;
+}
+
+#edit-style{
+    background-color:transparent;
+    font-size: 18px;
+    margin-left: 15px;
+    border:none;
+}
+
+#edit-style :hover{
+   transform: scale(1.100032);
+}
+
+.modal-title {
+    font-size: 19px;
+  
+    text-align: center;
+    margin-left: auto;
+}
+
+.subtitulo{
+    font-family: 'Google Sans', Rotobot, arial, sans-serif;
+    margin-left: 50px;
+    margin-bottom: 15px;
+    font-size: 30px;
+    color: rgb(83, 83, 83);
+}
+
+.subdoc{
+    letter-spacing: .0927272727em;
+    font-family: Roboto,Arial,sans-serif;
+    font-size: 1.15rem;
+    
+    line-height: 1.8rem;
+    text-transform: uppercase; 
+    word-break: break-word;
+    color: rgb(54, 54, 54);
+    font-weight: bold;
+    text-align: center;
+    padding:0;
+    width: 100%;
+    
+}
+
+
+.imagen-doc{
+
+    border-style: dashed;
+    border-color: rgb(187, 187, 187);
+    width: 150px;
+    height: 150px;
+}
+
+.doc-default{
+    margin-bottom: 15px;
+}
+.doc-default img{
+    margin-top: 2em;
+    width: 110px;
+    height: 150px;
+    
+}
+
+#title-doc{
+    margin-top: 1em;
+    margin-left: 0.8em;;
+    font-size:27px;
+    color: #850e0e;
+}
+
+#estado-doc{
+    margin-top:30px;
+    margin-left: 1.5em;
+    font-size: 18px;
+}
+
+#link-doc{
+    margin-top:10px;
+    margin-left: 1.789em;
+    font-size:15px;
+}
+
+.nuevo-doc{
+    width: 560px;
+}
+
+.nuevo-doc label{
+    font-weight: 600;
+}
+
+.modal-body{
+    padding: 2rem 2rem 2rem 2rem;
+}
+
+.btn-docOficial{
+    margin-left: 50px;
+    margin-top: 35px;
+}

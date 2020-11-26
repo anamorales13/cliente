@@ -33,7 +33,7 @@ class primera extends Component {
         return (
             <div >
                <label>Nombre: {this.state.usuario.nombre}</label>
-               <label>Correo: {this.state.usuario.correo}</label>
+               <label>Correo: {this.state.usuario.email}</label>
 
             </div>
 

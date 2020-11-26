@@ -1,0 +1,366 @@
+
+
+.grid-mensajeria-col{
+    display:grid;
+    grid-template-columns:250px auto;
+    grid-template-rows:500px 75px;
+}
+
+.form-mensajeria{
+
+    
+    font-family: "AtlasGrotesk","Open Sans",sans-serif;
+    font-weight: bold;
+    
+}
+
+.destinatario{
+    display:inline-flex;
+    background: rgb(241, 239, 239);
+}
+
+.autocomplete{
+    
+  
+    background-color: white;
+    margin-bottom: 10px;
+    
+    
+}
+.autocomplete .MuiInputBase-input{
+    height: 2.01876em;
+    font-size:14px;
+    font-weight: lighter;
+    
+}
+
+#asunto{
+    height:3.0em;
+    width: 750px;
+    border-bottom: 1px solid rgb(158, 158, 158);
+    font-size:14px;
+    font-weight: lighter;
+}
+
+#remitente{
+    height:2.11876em;
+    width: 750px;
+    border-bottom: 1px solid rgb(158, 158, 158);
+    margin-left:0;
+    background-color:white;
+    color: rgb(88, 88, 88);
+    font-weight:normal;
+}
+
+
+
+#asunto:hover{
+    border-bottom: 2px solid black;
+}
+
+#asunto:focus{
+    outline:none;
+   border-bottom: 2px solid darkblue;
+}
+
+.textarea-mensaje{
+    margin-left: 40px;
+    margin-top:10px;
+    width:110%;
+    height: 310px;
+    resize:none;
+    border: 1px solid rgb(179, 179, 179);
+    font-weight: lighter;
+    padding: 3px 3px 3px 3px;
+}
+
+
+
+.textarea-mostrarmensaje{
+    width:110%;
+    height: 310px;
+    resize:none;
+    border: 1px solid rgb(179, 179, 179);
+    padding: 3px 3px 3px 3px;
+    font-weight: lighter;
+}
+
+
+.textarea-mensaje::placeholder{
+    font-weight: lighter;
+    padding: 3px 3px 3px 3px;
+   
+    
+}
+
+
+.pruebaresponder{
+    display:flex;
+}
+.responder{
+    margin-left: auto;
+}
+
+.textarea-mensaje:focus{
+    outline:none;
+    border:1px solid grey;
+}
+
+.mensaje-estilo-uno{
+
+    background-color:rgb(241, 239, 239);
+    padding:1.5em 0em;
+    
+    
+    padding-bottom: 0.3em;
+   
+}
+.input-correo{
+    border-color: transparent;
+}
+
+.mensaje-estilo-dos {
+    
+    margin-right: 300px;
+    width: auto;
+    border-color: grey;
+}
+
+.title-pantalla-mensaje{
+    margin-bottom: 1.5em;
+    font-size:25px;
+    font-weight: 500;
+    margin-left: 20px;
+    border-bottom: 1px solid grey;
+    
+}
+
+.mensaje-estilo-uno label{
+    width: 85px;
+    margin-left: 2.8em;
+    margin-right: 1.5em;
+}
+
+.mensaje-estilo-uno input,select{
+    display:inline;
+ background-color: rgba(255, 255, 255, 0.877);
+ border-bottom: none;
+ border-top:none;
+ border-right: none;
+ border-left: none;
+ width: 700px;
+ 
+ 
+}
+
+.btn-default{
+   /* background-color: transparent;*/
+    border:none;
+    float: right;
+    margin-right: 10em;
+    color:black;
+}
+
+.btn-enviar{
+    display:block;
+    margin-left: 40px;
+    margin-right: auto;
+     letter-spacing: .01727272727em;
+     font-family: Roboto,Arial,sans-serif;
+     font-size:1.1rem;
+     font-weight: 500;
+     border: none;
+     color: white;
+     padding: 8px 15px;
+     text-align: center;
+     text-decoration: none;
+     /*text-transform: uppercase;*/
+     background-color:rgb(11, 151, 151);
+     border-radius: 2px;
+}
+
+.btn-enviar:hover{
+    background-color:rgb(14, 23, 105);
+}
+
+
+.btn-default:hover{
+    
+    transform: scale(1.2);
+}
+
+ .image-user{
+    width: 65px;
+    height: 65px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-top: 1.5em;
+    margin-left: 7px;
+    
+   
+    
+   
+}
+
+
+#mensaje-nombre{
+    font-size: 18px;
+}
+
+.mensaje-header .fecha{
+    
+    margin-left: auto;
+    color:rgb(129, 129, 129);
+  
+    font-size: 13px;
+    
+}
+
+.card{
+    flex-direction: row;
+}
+
+#cardbody{
+    margin-left: 10px;
+}
+
+.card-mensajes:hover{
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.2);
+    transform: scale(1.006);
+}
+.card-mensaje-novisto:hover{
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.2);
+    transform: scale(1.006);
+}
+
+
+
+.card-mensajes{
+   height: 6.8em;
+   margin-left: 3em;
+   
+   background-color: rgb(233, 232, 232);
+    
+}
+
+.card-mensajes-individual{
+    height: auto;
+   margin-left: 3em;
+   border-color: transparent;
+   background-color:transparent
+
+}
+
+.card-mensaje-novisto{
+    height: 6.8em;
+    margin-left: 3em;
+    
+
+}
+
+.mensaje-header{
+    display: flex;
+  
+    
+}
+
+.mensaje-texto{
+    position: absolute;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    width:60%;
+    
+    
+}
+.mensaje-asunto{
+    font-size:12px;
+}
+
+
+.mensaje-texto-individual{
+    position: absolute;
+}
+
+.mensaje-header .fecha{
+    
+    margin-left: auto;
+    color:rgb(129, 129, 129);
+   
+    font-size: 13px;
+    
+}
+
+.mensaje-header-novisto{
+    display:flex;
+    font-weight: bold;
+}
+
+
+.mensaje-header-novisto .fecha{
+    
+    margin-left: auto;
+    color:rgb(129, 129, 129);
+   
+    font-size: 13px;
+    font-weight: bold;
+    
+}
+
+#mensaje-nombre-novisto{
+    font-weight:bold;
+    font-size: 20px;
+}
+
+.mensaje-texto-novisto{
+    position: absolute;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    width:60%;
+   
+}
+
+.mensaje-enlace{
+    float: right;
+    margin-top: 25px;
+    
+}
+
+.menu-mensaje{
+    border-radius: 0 0px 15px 0;
+    
+}
+
+
+.header-pantalla{
+    display: inline-flex; 
+}
+
+
+.boton-sin-estilo{
+    border:none;
+    background-color: transparent;
+}
+
+
+
+/* PAGINATION */
+
+.pagination{
+    margin-top:10px;
+}
+
+.page-link{
+    color:black;
+    padding: 0.3rem 0.75rem;
+}
+
+ a{
+    color:black;
+}
+
+.page-item.active .page-link{
+    background-color: grey;
+    border-color: grey;
+}

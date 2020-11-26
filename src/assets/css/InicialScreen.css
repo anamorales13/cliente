@@ -1,0 +1,31 @@
+
+
+.logo_inicialScreen{
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    color:rgb(1, 1, 102);
+ 
+}
+
+.imagen-InicialScreen{
+    margin-left: 100px;
+}
+
+.imagen-inicio{
+    display: inline-block;
+    
+    
+}
+
+.contenido-iniciosesion{
+    display: inline;
+}
+
+
+.cajabox{
+    margin-top: 30px;
+border-radius: 25px;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+transition: 0.3s;
+}

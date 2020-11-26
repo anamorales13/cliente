@@ -1,0 +1,326 @@
+.registro-nuevoUsuario{
+    display: block;
+}
+
+.card-nuevoUser{
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 70%;
+    margin-top:10px;
+    padding: 2em 2em 2em 2em;
+    
+}
+
+.card{
+  border-color: grey;
+}
+
+.form-login-nuevo{
+  display: flex;
+  margin-bottom: 13px;
+}
+
+
+
+
+.form-login-apellidos{
+    margin-left: 10px;
+}
+.form-newUser-input{
+    width: 400px;
+    padding: 5px 5px;
+    margin: 8px 0;
+    background-color:transparent;
+    outline: none;
+    color:black;
+   
+    border: solid 1px grey;
+}
+
+.form-newUser-input-label{
+    width: 100px;
+    padding:5px 5px;
+    margin: 8px 0;
+    background-color: rgb(231, 231, 231);
+    outline:none;
+    color:rgb(94, 94, 94);
+    border:solid 1px rgb(153, 153, 153);
+    font-weight: lighter;
+    
+}
+
+.form-newUser-input-email{
+    width: 300px;
+}
+
+.form-newUser-input-apellidos{
+   
+   margin-left: 3em;
+    
+}  
+  .form-newUser-input:focus{
+    border-bottom:solid 2px rgb(14,23,105);
+  }
+  
+  .form-newUser-input::placeholder{
+   
+      color:grey;
+      font-size:1em;
+    
+  }
+
+  .form-group{
+    margin-bottom: 2em;
+  }
+
+  .form-control{
+    width: 380px;
+    height: 37px;
+    border:solid 1px rgb(153, 153, 153);
+    font-size: 14px;
+  }
+
+  .form-control-textarea{
+    border:solid 1px rgb(153, 153, 153);
+    font-size: 14px;
+  }
+  
+  .form-control::placeholder{
+    color:grey;
+      font-size:1.023em;
+  }
+
+  .form-control:focus{
+    border:solid 2px rgb(14,23,105);
+    box-shadow:none;
+  }
+
+
+  .titulo-registro{
+      margin-top:5px;
+      font-size: 30px
+  }
+  
+  .titulo-registro-secundario{
+      margin-top:13px;
+      font-size: 22px;
+      
+  }
+
+  .mensaje-error{
+    position: absolute;
+    margin-top:43px;
+  }
+
+  .mensaje-error-doble{
+    margin-left: 37em;
+  }
+
+.btn-continue{
+    background-color:rgba(165, 165, 165, 0.308);
+    float:right;
+     letter-spacing: .0727272727em;
+     font-family: Roboto,Arial,sans-serif;
+     font-size:13px;
+     font-weight: 300;
+     border: none;
+     color: black;
+     padding: 4px 8px;
+     text-align: center;
+     text-decoration: none;
+     border-radius: 4px;
+    height: 35px;;
+
+}
+
+.btn-continue:hover{
+  background-color:rgba(165, 165, 165, 0.651);
+}
+
+.btn-seleccionar{
+  background-color: transparent;
+  color: darkblue;
+  border:1px solid darkblue;
+  
+}
+
+.btn-seleccionar:hover{
+  background-color: white;
+}
+.btn-back{
+  background-color:rgba(165, 165, 165, 0.308);
+    float:left;
+     letter-spacing: .0727272727em;
+     font-family: Roboto,Arial,sans-serif;
+     font-size:13px;
+     font-weight: 300;
+     border:none;
+     color: black;
+     padding: 4px 8px;
+     text-align: center;
+     text-decoration: none;
+     border-radius: 4px;
+     height: 35px;;
+}
+
+.btn-back:hover{
+  background-color:rgba(165, 165, 165, 0.651);
+}
+
+.link-cancelar{
+  float: right;
+  margin-right: 20em;
+  color: red;
+  
+}
+
+.link-cancelar:hover{
+  text-decoration: none;
+  color:rgb(150, 21, 21);
+  
+}
+
+.link-continue{
+  color:black;
+}
+
+.link-continue:hover{
+  text-decoration: none;
+  color:white;
+}
+
+.alert-sucess-middle{
+align-items: center;
+}
+
+.card-mensajes-sucess{
+  
+  display:block;
+  width: 1000px;
+  margin:auto;
+  background-color: rgba(124, 219, 124, 0.637);
+}
+
+
+.mensaje-sucess{
+  
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  
+  
+}
+
+/* TABLA */
+
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 70%;
+    table-layout: fixed;
+    margin-left: auto;
+    margin-right: auto;
+  }
+ 
+  
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+  }
+  
+  table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+  
+    
+  }
+
+  
+  
+  table th,
+  table td {
+    padding: .625em;
+    text-align: center;
+    width: 30%;
+    border:none;
+  }
+
+  table tr:hover{
+      background-color:#dfdfdf; ;
+  }
+
+ 
+  .th-pequeño{
+      width: 13%;
+  }
+  
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 900px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.6em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size:1.1em;
+      text-align: right;
+      width:100%;
+      text-align: center;
+    }
+    
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+
+    table td{
+      font-size: .8em;
+    }
+  }

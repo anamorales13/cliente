@@ -1,0 +1,108 @@
+.form-añadir-destino{
+  padding: 2rem 20rem;
+}
+
+.form-borrar-profesor{
+  padding: 2rem 20rem;
+}
+
+
+.grid-admin{
+
+  display:grid;
+  grid-template-columns: 250px auto;
+}
+
+.table-admin th{
+  
+  width: 20%;
+  font-size: 15px;
+
+  
+}
+
+.table-admin{
+  background-color: white;
+}
+
+
+.card-bajas{
+
+  display:block;
+  margin:auto;
+  width: 1000px;
+  margin-bottom: 25px;
+  
+
+}
+
+
+.bajas{
+ 
+  text-align: center;
+  padding: 17px 35px;
+
+}
+
+.textarea :focus{
+  border:1px solid green;
+}
+
+.btn-style{
+  background-color:rgb(14, 23, 105);
+   letter-spacing: .0727272727em;
+   font-family: Roboto,Arial,sans-serif;
+   font-size:15px;
+   font-weight: 300;
+   border: none;
+   color: white;
+   padding: 4px 8px;
+   text-align: center;
+   text-decoration: none;
+   height:35px;
+   border-radius: 4px;
+}
+
+#btn-baja{
+  background-color: rgb(197, 5, 5);
+}
+
+.btn-style:hover{
+  background-color:rgb(11, 151, 151);
+}
+
+
+
+/* RESPONSIVE */
+
+@media (max-width: 376px){
+
+  .titulo-doc{ 
+    font-size:28px; 
+  }
+  .card-bajas{
+    width: 300px;
+  }
+  .bajas h5 {
+    font-size: 20px !important;
+  }
+  .bajas label{
+    font-size: 20px !important;
+  }
+
+ .form-control{
+   width: 200px;
+ }
+
+ .form-borrar-profesor{
+ 
+     padding: 0;
+   
+ }
+}
+
+@media (max-width: 281px){
+  .card-bajas{
+    width:280px;
+  }
+}
