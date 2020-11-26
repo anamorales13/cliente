@@ -201,7 +201,7 @@ class Header extends Component {
 
                             {JSON.parse(localStorage.getItem('user')) != null &&
                                 <div className="perfil-header">
-                                    <img src={this.url + 'get-image-user/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
+                                    <img src={'htt://localhost:3900/get-image-user/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
                                     <h1>{JSON.parse(localStorage.getItem('user')).nombre}</h1>
                                     <DropdownButton id="dropdown-basic-button" style={{ left: "auto" }, { rigth: '85%' }} className="dropdown-menu.show"
                                         show={this.state.show}
