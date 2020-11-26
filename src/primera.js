@@ -11,6 +11,9 @@ class primera extends Component {
        usuario:{},
     }
 
+    componentWillMount(){
+        this.getUser();
+    }
 
     getUser = (e) => {
 
