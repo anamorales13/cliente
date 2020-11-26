@@ -26,7 +26,7 @@ class Rutas extends Component {
                         <Route exact path='/inicioAdministrador' component={InicioAdministrador} />
 
                        {/* * <Route exact path="/chat" component={Chat} />
-                        <Route exact path="/join" component={Join} />/}
+                        <Route exact path="/join" component={Join} />*/}
                         <RutasWeb />
 
 
