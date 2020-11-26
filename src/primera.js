@@ -12,22 +12,16 @@ class primera extends Component {
     }
 
 
-
-
     getUser = (e) => {
 
        
-        axios.get('http://localhost:3900/apiProfesor/profesor/5f91925147ec0529ec70dbb9')
+        axios.get('https://plataforma-erasmus.herokuapp.com/apiProfesor/profesor/5f91925147ec0529ec70dbb9')
             .then(res => {
                 this.setState({
                     usuario: res.data.userget
                 })
             
             })
-
-
-
-     
 
     }
 
