@@ -72,7 +72,7 @@ class MiPerfil extends Component {
                     }
 
                     <div className="avatar" id="avatar-big">
-                        <img src={this.url + '/get-image-user/' + this.state.identity.image} classname="avatar"></img>
+                        <img src={'https://plataforma-erasmus.herokuapp.com/public/' + this.state.identity.image} classname="avatar"></img>
                     </div>
 
                     <div >
@@ -81,7 +81,7 @@ class MiPerfil extends Component {
                         <div className="subtitulo">Es posible que otros usuarios puedan ver parte de la infomación al usar la plataforma. </div>
 
                         <div className="avatar" id="avatar-responsive">
-                            <img src={this.url + '/get-image-user/' + this.state.identity.image} classname="avatar"></img>
+                            <img src={'https://plataforma-erasmus.herokuapp.com/public/' + this.state.identity.image} classname="avatar"></img>
                         </div>
                         <article className="elemt-one">
 

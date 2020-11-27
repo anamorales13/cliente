@@ -154,10 +154,10 @@ class recibidos extends Component {
 
                             <Card style={{ width: '70em' }} className="card-mensajes row no-gutters ">
                                 {mensajes.emisor.profesor != null &&
-                                    <Card.Img variant="left" src={this.urlperfil + '/get-image-user/' + mensajes.emisor.profesor.image} className="image-user" />
+                                    <Card.Img variant="left" src={'https://plataforma-erasmus.herokuapp.com/public/' + mensajes.emisor.profesor.image} className="image-user" />
                                 }
                                 {mensajes.emisor.alumno != null &&
-                                    <Card.Img variant="left" src={this.urlperfil + '/get-image-user/' + mensajes.emisor.alumno.image} className="image-user" />
+                                    <Card.Img variant="left" src={'https://plataforma-erasmus.herokuapp.com/public/' + mensajes.emisor.alumno.image} className="image-user" />
                                 }
 
                                 <Card.Body id="cardbody">
@@ -197,10 +197,10 @@ class recibidos extends Component {
                            
                                 <Card style={{ width: '70em' }} className="card-mensaje-novisto row no-gutters ">
                                     {mensajes.emisor.profesor != null &&
-                                        <Card.Img variant="left" src={this.urlperfil + '/get-image-user/' + mensajes.emisor.profesor.image} className="image-user" />
+                                        <Card.Img variant="left" src={'https://plataforma-erasmus.herokuapp.com/public/' + mensajes.emisor.profesor.image} className="image-user" />
                                     }
                                     {mensajes.emisor.alumno != null &&
-                                        <Card.Img variant="left" src={this.urlperfil + '/get-image-user/' + mensajes.emisor.alumno.image} className="image-user" />
+                                        <Card.Img variant="left" src={'https://plataforma-erasmus.herokuapp.com/public/' + mensajes.emisor.alumno.image} className="image-user" />
                                     }
                                     <Card.Body id="cardbody">
                                     <Link to={'/mensajes/' + mensajes._id}>

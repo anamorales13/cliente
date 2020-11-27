@@ -78,10 +78,10 @@ class mensaje extends Component {
                     <Card style={{ width: '70em' }} className="card-mensajes-individual row no-gutters " >
 
                         {mensajes.emisor.profesor != null &&
-                            <Card.Img variant="left" src={'https://plataforma-erasmus.herokuapp.com/apiErasmus/get-image-user/' + mensajes.emisor.profesor.image} className="image-user" />
+                            <Card.Img variant="left" src={'https://plataforma-erasmus.herokuapp.com/public/' + mensajes.emisor.profesor.image} className="image-user" />
                         }
                         {mensajes.emisor.alumno != null &&
-                            <Card.Img variant="left" src={'https://plataforma-erasmus.herokuapp.com/apiErasmus/get-image-user/' + mensajes.emisor.alumno.image} className="image-user" />
+                            <Card.Img variant="left" src={'https://plataforma-erasmus.herokuapp.com/public/' + mensajes.emisor.alumno.image} className="image-user" />
                         }
 
 

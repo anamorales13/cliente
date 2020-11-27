@@ -166,7 +166,7 @@ class Alumnos extends Component {
                         <CardActionArea>
                             <CardMedia
                                 className="card-media"
-                                image={this.urlalumnos + '/get-image-user/' + alumno.image}
+                                image={'https://plataforma-erasmus.herokuapp.com/public/' + alumno.image}
                                 title="Contemplative Reptile"
                             />
                             <hr />
@@ -219,7 +219,7 @@ class Alumnos extends Component {
                         <CardActionArea>
                             <CardMedia
                                 className="card-media"
-                                image={this.urlalumnos + '/get-image-user/' + alumno.image}
+                                image={'https://plataforma-erasmus.herokuapp.com/public/' + alumno.image}
                                 title="Contemplative Reptile"
                             />
                             <hr />

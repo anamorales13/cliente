@@ -191,7 +191,7 @@ class Dropbox extends Component {
                                                 ) : documentos.tipoDocumento == "powerpoint.jpg" ? (
                                                     <img src={btn3} alt="prueba" className="image-wrap" />
                                                 ) : documentos.tipoDocumento == "imagen" ? (
-                                                    <img src={this.url + 'get-image/' + documentos.url} alt={documentos.title} className="image-wrap" />
+                                                    <img src={'https://plataforma-erasmus.herokuapp.com/docdropbox/' + documentos.url} alt={documentos.title} className="image-wrap" />
                                                 ) :
                                                                 (
                                                                     <img src={btn4} alt="prueba" className="image-wrap" />
@@ -200,7 +200,7 @@ class Dropbox extends Component {
 
                                         </div>
                                         <div>
-                                            <a target="_blank" href={this.url + '/get-image/' + documentos.url}>{documentos.title}</a>
+                                            <a target="_blank" href={'https://plataforma-erasmus.herokuapp.com/docdropbox/' + documentos.url}>{documentos.title}</a>
                                         </div>
                                     </td>
                                     <td style={{ overflow: 'auto', maxHeight: '200px' }}>
