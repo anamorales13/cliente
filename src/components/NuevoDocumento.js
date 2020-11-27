@@ -210,7 +210,7 @@ class NuevoDocumento extends Component {
 
         // VENTANA ALUMNO
         if (this.props.type === "nuevo") {
-           
+           console.log("file:"+ formDatadoc);
             axios.put(this.urldocoficial + 'upload-image/' + this.state.identity._id + '/' + this.state.nombre, formDatadoc)
                 .then(res => {
                     if (res.data.userUpdate) {

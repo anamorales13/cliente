@@ -58,10 +58,7 @@ class Dropbox extends Component {
     }
 
 
-    componentDidUpdate() {
-        this.getDocumentos();
-    }
-
+  
 
 
     getDocumentos = (e) => {
