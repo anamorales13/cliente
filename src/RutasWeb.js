@@ -38,7 +38,7 @@ class Rutas extends Component {
 
         var user;
         return (
-            <HashRouter>
+            <BrowserRouter>
                <div className="grid-general" >
                     <Header />
                     <div /*className="container"*/>
@@ -85,7 +85,7 @@ class Rutas extends Component {
 
                 </div>
 
-            </HashRouter>
+            </BrowserRouter>
 
         );
     }

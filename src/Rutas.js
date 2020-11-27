@@ -16,7 +16,7 @@ class Rutas extends Component {
         return (
            
 
-                <HashRouter basename='/'>
+                <BrowserRouter>
 
                     <Switch>
                         <Route exact path="/" component={pantallaInicial} />
@@ -32,7 +32,7 @@ class Rutas extends Component {
 
                     </Switch>
                     <div className="clearfix"></div>
-                </HashRouter>
+                </BrowserRouter>
            
         );
     }
