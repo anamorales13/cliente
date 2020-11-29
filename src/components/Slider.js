@@ -97,7 +97,7 @@ class Slider extends Component {
 
                     <div className="grid-inicio-botones">
                         <div>
-                            <Card className="inicio-botones" >
+                            <Card className="inicio-botones" style={{backgroundColor:'#EEEEEE'}} >
                                 <Card.Body>
                                     <Card.Title>¿Quienes somos?</Card.Title>
                                     <Card.Text>
@@ -112,7 +112,7 @@ class Slider extends Component {
                             </Card>
                         </div>
                         <div>
-                            <Card className="inicio-botones" style={{backgroundColor:'rgb(213, 213, 213)'}}>
+                            <Card className="inicio-botones" style={{backgroundColor:'#CCD5CD'}}>
                                 <Card.Body>
                                     <Card.Title>¿Dónde estamos?</Card.Title>
                                     <Card.Text>
@@ -128,7 +128,7 @@ class Slider extends Component {
                             </Card>
                         </div>
                         <div>
-                            <Card className="inicio-botones" style={{backgroundColor:'rgb(195, 195, 195)'}}>
+                            <Card className="inicio-botones" style={{backgroundColor:'#B3B9B3'}}>
                                 <Card.Body>
                                     <Card.Title>Horario</Card.Title>
                                     <Card.Text>

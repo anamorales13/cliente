@@ -203,17 +203,17 @@ class Header extends Component {
                                 <div className="perfil-header">
                                     <img src={'https://plataforma-erasmus.herokuapp.com/public/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
                                     <h1>{JSON.parse(localStorage.getItem('user')).nombre}</h1>
-                                    <DropdownButton id="dropdown-basic-button" style={{ left: "auto" }, { rigth: '85%' }} className="dropdown-menu.show"
+                                    <DropdownButton id="dropdown-basic-button" style={{ left: "auto" }, { rigth: '85%' }} className="dropdown-menu.show drop-menu-peril"
                                         show={this.state.show}
                                         onMouseEnter={this.showDropdown}
                                         onMouseLeave={this.hideDropdown}
                                     >
-                                        <Dropdown.Item href="./user/profile">Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="./user/edit">Editar Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="./user/erasmus">Erasmus</Dropdown.Item>
-                                        <Dropdown.Item href="./user/seguridad">Constraseña</Dropdown.Item>
-                                        <Dropdown.Item href="./solicitar_baja">Solicitar baja</Dropdown.Item>
-                                        <Dropdown.Item onClick={() => this.setState({ navigate: true })}>Cerrar Sesion</Dropdown.Item>
+                                        <Link to="/user/profile" className="drop-link">Perfil</Link>
+                                        <Link to="/user/edit" className="drop-link">Editar Perfil</Link>
+                                        <Link to="/user/erasmus" className="drop-link">Erasmus</Link>
+                                        <Link to="/user/seguridad" className="drop-link">Constraseña</Link>
+                                        <Link to="/solicitar_baja" className="drop-link">Solicitar baja</Link>
+                                        <Link onClick={() => this.setState({ navigate: true })} className="drop-link">Cerrar Sesion</Link>
                                     </DropdownButton>
                                 </div>
                             }
@@ -274,10 +274,10 @@ class Header extends Component {
                                         show={this.state.show}
                                         onMouseEnter={this.showDropdown}
                                         onMouseLeave={this.hideDropdown}>
-                                        <Dropdown.Item href="./user/profile">Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="./user/edit">Editar Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="./user/seguridad">Constraseña</Dropdown.Item>
-                                        <Dropdown.Item href="./profesor/erasmus">Erasmus</Dropdown.Item>
+                                        <Dropdown.Item href="/user/profile">Perfil</Dropdown.Item>
+                                        <Dropdown.Item href="/user/edit">Editar Perfil</Dropdown.Item>
+                                        <Dropdown.Item href="/user/seguridad">Constraseña</Dropdown.Item>
+                                        <Dropdown.Item href="/profesor/erasmus">Erasmus</Dropdown.Item>
 
                                         <Dropdown.Item onClick={() => this.setState({ navigate: true })}>Cerrar Sesion</Dropdown.Item>
                                     </DropdownButton>
@@ -348,9 +348,9 @@ class Header extends Component {
                                         show={this.state.show}
                                         onMouseEnter={this.showDropdown}
                                         onMouseLeave={this.hideDropdown}>
-                                        <Dropdown.Item href="./user/profile">Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="./user/edit">Editar Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="./user/seguridad">Constraseña</Dropdown.Item>
+                                        <Dropdown.Item href="/user/profile">Perfil</Dropdown.Item>
+                                        <Dropdown.Item href="/user/edit">Editar Perfil</Dropdown.Item>
+                                        <Dropdown.Item href="/user/seguridad">Constraseña</Dropdown.Item>
                                         <Dropdown.Item href="#">Ayuda</Dropdown.Item>
                                         <Dropdown.Item onClick={() => this.setState({ navigate: true })}>Cerrar Sesion</Dropdown.Item>
                                     </DropdownButton>

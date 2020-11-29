@@ -154,8 +154,6 @@ class NuevoDocumento extends Component {
 
 
                     var docId = this.state.documento._id;
-
-
                   
                     axios.post(this.url + 'upload-image/' + docId, formData)
                         .then(res => {

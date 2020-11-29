@@ -198,22 +198,24 @@ class EditPerfil extends Component {
 
 
         console.log(this.state.selectedFile.name);
+       
         const formData = new FormData();
         formData.append(  //le vamos a vincular un fichero
             'file0',
             this.state.selectedFile,
             this.state.selectedFile.name
         );
+        console.log("state.selected" + this.state.selectedFile.name);
 
         //1º eliminamos la imagen anterior
         console.log("eliminar");
-        axios.delete(this.url + '/delete-image/' + this.state.identity._id)
+        axios.delete(this.url + 'delete-image/' + this.state.identity._id)
             .then(res => {
                 console.log("sucess");
 
             });
 
-        axios.post(this.url + '/upload-image-user/' + this.state.identity._id, formData)
+        axios.post(this.url + 'upload-image-user/' + this.state.identity._id, formData)
             .then(res => {
                 console.log("actualizacion realizada")
                 this.setState({
