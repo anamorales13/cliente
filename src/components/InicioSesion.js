@@ -111,13 +111,11 @@ class InicioSesion extends Component {
                     alumno: {},
                     status: 'failed'
                 });
-
                 swal(
                     '¡Error!',
                     'Nombre de usuario o contraseña incorrectos',
                     'error'
                 )
-
             });
         this.forceUpdate();
 

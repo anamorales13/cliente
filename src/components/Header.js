@@ -135,8 +135,9 @@ class Header extends Component {
 
 
         if (navigate) {
+            console.log("navigate");
             localStorage.clear();
-            return <Redirect to="#" push={true} />
+            return <Redirect to="/" push={true} />
         }
 
         return (
