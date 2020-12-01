@@ -127,6 +127,11 @@ class Header extends Component {
             });
     }
 
+    cerrarSesion(){
+        console.log("modificar sesion");
+        this.setState({ navigate: true })
+    }
+
 
 
     render() {
@@ -221,7 +226,7 @@ class Header extends Component {
                                         <Link to="/user/erasmus" className="drop-link">Erasmus</Link>
                                         <Link to="/user/seguridad" className="drop-link">Constraseña</Link>
                                         <Link to="/solicitar_baja" className="drop-link">Solicitar baja</Link>
-                                        <Link onClick={() => this.setState({ navigate: true })} className="drop-link">Cerrar Sesion</Link>
+                                        <Link onClick={this.cerrarSesion} className="drop-link">Cerrar Sesion</Link>
                                     </DropdownButton>
                                 </div>
                             }
