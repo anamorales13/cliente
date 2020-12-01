@@ -26,7 +26,8 @@ class destinos extends Component {
         ciudad: "",
         carrera: "",
         profesor: "",
-        coordinador:{},
+        coordinador: {},
+        error:""
 
     }
     constructor(props) {
@@ -77,19 +78,16 @@ class destinos extends Component {
                 this.setState({
                     coordinador: res.data.profesor
                 })
-                console.log("h"+ this.state.coordinador.nombre);
-                console.log("h"+ this.state.coordinador._id);
+                console.log("h" + this.state.coordinador.nombre);
+                console.log("h" + this.state.coordinador._id);
 
             });
 
-            this.forceUpdate();
+        this.forceUpdate();
     }
 
 
     añadirDestino = (e) => {
-
-    
-    
 
         var body = {
             pais: this.state.pais,
@@ -97,21 +95,23 @@ class destinos extends Component {
             carrera: this.state.carrera,
             profesor: this.state.profesor,
             coordinador: this.state.coordinador._id
-        };
-
-
-
-
-
-        console.log(body);
+        };        
 
         axios.post('https://plataforma-erasmus.herokuapp.com/apiDestino/' + 'save', body)
             .then(res => {
-
+                
                 this.setState({
                     destino: res.data.destino,
 
+                })
+            })
+            .catch(err => {
+                this.setState({
+                    destino: {},
+                    status: 'failed',
+                    error: 'El destino ya esta registrado'
                 });
+
             });
     }
 
@@ -120,14 +120,16 @@ class destinos extends Component {
     render() {
         return (
             <div >
-                <div id="content" className="grid-mensajeria-col">
+                <div  className="grid-mensajeria-col">
 
                     <Menu></Menu>
                     <div>
-                       
-                            <h1 className="titulo-doc"> NUEVO DESTINO </h1>
+
+                        <h1 className="titulo-doc"> NUEVO DESTINO </h1>
                         <div className="form-destino" >
-                            
+                        {this.state.error !="" &&
+                        <label style={{color:'red', textAlign:'center', display:'block', fontWeight:'bold', marginTop:'20px'}}>{this.state.error}</label>
+                        }
                             <Form className="form-añadir-destino" onSubmit={this.añadirDestino}>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>Pais</Form.Label>
@@ -142,6 +144,7 @@ class destinos extends Component {
                                 <Form.Group controlId="exampleForm.ControlSelect1">
                                     <Form.Label>Grado universitario</Form.Label>
                                     <Form.Control as="select" onChange={this.handleChange('carrera')} type="carrera">
+                                        <option></option>
                                         <option>Grado en Ingeniería Informática</option>
                                         <option>Grado en Ingeniería Agrícola</option>
                                         <option>Grado en Ingeniería Química industrial</option>
@@ -173,7 +176,7 @@ class destinos extends Component {
                                     CREAR
                             </Button>
                             </Form>
-                            
+
                         </div>
 
                     </div>

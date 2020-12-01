@@ -595,6 +595,12 @@ input[type="submit"]:hover{
     grid-template-columns: 1fr 1fr;
   }
 
+  .grid-logo-inicioSesion{
+    display:grid;
+    grid-template-rows: 450px 40px;
+    grid-template-columns: 1fr 1fr;
+  }
+
   .logo-titulo {
     display:inline-flex;
     align-items: center;
@@ -643,10 +649,17 @@ input[type="submit"]:hover{
  }
 
 
-.inicio-logo{
+.inicio-logo-alumno{
   margin-top:50px;
   margin-left:auto;
   margin-right: 20px;
+}
+
+.inicio-logo-profesor{
+  margin-top:50px;
+  margin-left: 50px;
+  margin-right: auto;
+  color:darkblue;
 }
 
 .boton-alumno{
@@ -1220,6 +1233,8 @@ width:60%;
     }
   }
 
+ 
+
   @media(max-width:900px){
     #menu  {
       width:30%;
@@ -1257,4 +1272,68 @@ width:60%;
       font-size:40px;
     }
     
+  }
+
+
+  @media (max-width:769px){
+    .card-root{
+      width: 307px;
+    }
+  }
+
+
+
+  @media(max-width: 415px){
+
+
+    .grid-informacion{
+      grid-template-columns: none;
+      grid-template-rows: 380px 200px 400px;
+    }
+    
+    .boton-alumno img{
+      width:120px;
+      height: 170px;
+    }
+
+    .boton-profesor img{
+      width:120px;
+      height: 170px;
+    }
+
+    .inicio-logo-profesor{
+      display:none;
+    }
+
+    .grid-logo-inicio{
+      grid-template-columns: 200px 100px;
+      grid-template-rows: 250px 40px;
+    }
+
+    .grid-logo-inicioSesion{
+      display: auto;
+      grid-template-rows: 440px 10px;
+    }
+
+    .inicio-logo-alumno{
+      display: none;
+    }
+
+
+    .formulario-inicioSesion{
+      margin-top:0;
+    }
+
+
+    .formulario-inicioAdministrador{
+      margin-left:0;
+    }
+  }
+
+
+  @media(max-width: 361px){
+    .grid-logo-inicio{
+      grid-template-columns: 160px 100px;
+      grid-template-rows: 250px 40px;
+    }
   }

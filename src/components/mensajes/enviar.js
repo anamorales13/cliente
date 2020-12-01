@@ -230,7 +230,7 @@ class enviar extends Component {
 
                                     </div>
 
-                                    <p>
+                                    <p className="mensaje-asunto">
                                         <label>Asunto</label>
                                         <input type="text" onChange={this.handleChange('asunto')} ref={this.asuntoRef} id="asunto" value={this.state.asunto}></input>
                                     </p>

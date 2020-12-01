@@ -66,6 +66,12 @@ header nav{
     font-size:16px;
 }
 
+#menuvar-responsive{
+    display:inline-flex;
+    float: right;
+    font-size:16px;
+}
+
 #logo {
     width: 25%;
     font-size: 25px;
@@ -236,31 +242,48 @@ header nav{
     display:none;
 }
 
+#menuvar-responsive{
+    display:none;
+}
+
 @media(max-width: 1334px){
 
-   /* #menuvar{
+    #menuvar{
+        display:none;
+    }
+
+    #menuvar-responsive{
+        z-index:299;
+        display:block;
         width: 70%;
         height: 100%;
-        left:-100%;
+      /*  left:-100%;*/
         margin:0;
         position:fixed;
-    }*/
+    }
 
-   /* header nav ul li{
+    
+#menuvar-responsive ul li{
+    display:block;
+    float:none;
+
+   border-bottom: 1px solid rgb(255,255,255, .3);
+}
+   header nav ul li{
         display:block;
         float:none;
         border-bottom: 1px solid rgb(255,255,255, .3);
 
-    }*/
+    }
 
-  /*  .menu_bar{
+    .menu_bar{
         display: block;
         width: 100%;
         background: transparent;
         height: 60px;
-    }*/
+    }
 
-   /*.menu_bar #btn-menu{
+   .menu_bar #btn-menu{
         display: block;
         padding: 20px;
       
@@ -272,16 +295,16 @@ header nav{
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-    }*/
+    }
 
-  /*  .menu_bar span{
+    .menu_bar span{
         float: left;
         font-size: 40px;
-    }*/
-
-    .menu{
-        display: none;
     }
+
+   /* .menu{
+        display: none;
+    }*/
 
     #logo img{
         margin:auto;

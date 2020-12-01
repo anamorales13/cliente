@@ -1,0 +1,97 @@
+html, body {
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #root {
+    height: 100vh;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .joinOuterContainer {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 60vh;
+    align-items: center;
+    
+  }
+  
+  .joinInnerContainer {
+    width: 20%;
+  }
+  
+  .joinInput {
+    border-radius: 0;
+    padding: .400rem .90rem;
+    font-weight: 400;
+    line-height:1.5;
+    color: #495057;
+    background-clip: padding-box;
+    width: 100%;
+    border:1px solid rgb(161, 161, 161);
+    border-radius: .25rem;
+    
+  }
+
+  .joinInput .focus{
+    border:solid 2px rgb(14,23,105);
+  }
+  
+  .heading {
+    color: black;
+    font-size: 1.8em;
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
+  }
+  
+  .button-join {
+      color: #fff !important;
+      text-transform: uppercase;
+      text-decoration: none;
+      background: rgb(14, 23, 105);
+      padding: 10px;
+      border-radius: 5px;
+      display: inline-block;
+      border: none;
+      width: 100%;
+  }
+
+  .button-join:hover{
+    background-color: black ;
+    
+  }
+
+  
+  .mt-20 {
+    margin-top: 20px;
+  }
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+    .joinOuterContainer {
+      height: 100%;
+    }
+  
+    .joinInnerContainer {
+      width: 90%;
+    }
+  
+    .profesor-erasmus h4{
+      font-size: 20px;
+      text-align: center;
+    }
+    .profesor-erasmus h5{
+      font-size: 16px;
+      text-align:center;
+    }
+
+  
+  }
+  
+  button-join:focus {
+    outline: 0;
+  }

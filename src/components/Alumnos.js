@@ -225,7 +225,7 @@ class Alumnos extends Component {
                             <hr />
                             <CardContent>
                                 <div className="group-nombre">
-                                    <h3 className="card-nombre">{alumno.nombre + " " + alumno.apellido1 + " " + alumno.apellido2}</h3>
+                                    <h3 className="card-nombre">{alumno.apellido1 + " " + alumno.apellido2 +", "+ alumno.nombre  }</h3>
 
                                     <Link size="small" color="primary" style={{ color: 'grey' }} className="card-link-perfil" to={"/user/profile/" + alumno._id}>ver perfil</Link>
                                 </div>

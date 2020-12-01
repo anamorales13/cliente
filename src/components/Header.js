@@ -11,6 +11,7 @@ import InicioSesion from './InicioSesion';
 import Global from '../Global';
 import GlobalMensaje from '../GlobalMensaje';
 import Badge from 'react-bootstrap/Badge';
+import { FaBars, FaTimes } from "react-icons/fa";
 
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -30,7 +31,8 @@ class Header extends Component {
         identity: JSON.parse(localStorage.getItem('user')),
         noleidos: 0,
         show: false,
-        showadmin: false
+        showadmin: false,
+        open: 'cerrar',
 
     }
 
@@ -57,6 +59,8 @@ class Header extends Component {
         })
     }
 
+
+
     constructor(props) {
 
         super(props);
@@ -70,20 +74,34 @@ class Header extends Component {
     }
 
     botonmenu = () => {
-
+        console.log(this.contador);
         if (this.contador == '1') {
-            var elem = document.getElementById('menuvar');
+            console.log("entro");
+
+            var elem = document.getElementById('menuvar-responsive');
             elem.style.left = '0';
             this.contador = '0';
 
         } else {
+            console.log("entro2");
             this.contador = '1';
-            var elem = document.getElementById('menuvar');
+            var elem = document.getElementById('menuvar-responsive');
             elem.style.left = '-100%';
         }
 
     }
 
+    handleClickAbrir() {
+        this.setState({
+            open: 'abrir'
+        });
+    }
+
+    handleClickCerrar() {
+        this.setState({
+            open: 'cerrar'
+        });
+    }
 
 
 
@@ -113,7 +131,7 @@ class Header extends Component {
 
     render() {
 
-        const { navigate } = this.state
+        const { navigate } = this.state.navigate
 
 
         if (navigate) {
@@ -127,9 +145,11 @@ class Header extends Component {
 
                 {/***** LOGO  ****  */}
                 <div className="logo-responsive" >
-                    <a href="/inicio" id="logo">
-                        <img src={logo} id="logo-img"></img>
-                    </a>
+                    <div className="menu_bar">
+                        <a id="btn-menu" onClick={this.botonmenu}>
+                            <FaBars></FaBars>
+                        </a>
+                    </div>
                     <Link
                         label="Mensajes"
                         id="icono-mensajes"
@@ -149,45 +169,32 @@ class Header extends Component {
                     </Link>
                 </div>
 
-                <div className="menu_bar">
-                    <a href="#" id="btn-menu" onClick={this.botonmenu}>
-                        <span>A</span>
-                    </a>
-                </div>
-                {this.state.identity.tipo == 'Alumno' &&
+
+                {this.state.identity.tipo === 'Alumno' &&
                     <div className="menu">
                         <nav /*id="menu"*/ id="menuvar">
-
                             <ul >
-
                                 <li >
                                     <NavLink exact to="/inicio" activeClassName="active"> HOME </NavLink>
                                 </li>
                                 <li>
-
                                     <NavLink to="/informacion" activeClassName="active">    INFORMACIÓN </NavLink >
                                 </li>
-
                                 <li>
                                     <NavLink to="/documentos" activeClassName="active"> DOCUMENTOS </NavLink >
                                 </li>
                                 <li>
                                     <NavLink to="/nube" activeClassName="active">  NUBE COMPARTIDA </NavLink >
                                 </li>
-                                {/*<li>
-                                    <NavLink to="/mensaje" activeClassName="active"> <span className="glyphicon glyphicon-envelope" > </span>   </NavLink >
-                                </li>*/}
                                 <li>
                                     <NavLink to="/mi_nube" activeClassName="active">
                                         MI NUBE </NavLink >
                                 </li>
                             </ul>
-
                             <Link
                                 label="Mensajes"
                                 variant="primary"
                                 className="notificacion-mensajes"
-
                                 to={
                                     '/mensajes'
                                 }
@@ -218,11 +225,47 @@ class Header extends Component {
                                 </div>
                             }
 
+                        </nav>
+
+                        <nav /*id="menu"*/ id="menuvar-responsive">
+                            <ul >
+                            <li >
+                                    <NavLink exact to="/inicio" activeClassName="active" onClick={this.botonmenu}> HOME </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/informacion" activeClassName="active" onClick={this.botonmenu}>    INFORMACIÓN </NavLink >
+                                </li>
+                                <li>
+                                    <NavLink to="/documentos" activeClassName="active" onClick={this.botonmenu}> DOCUMENTOS </NavLink >
+                                </li>
+                                <li>
+                                    <NavLink to="/nube" activeClassName="active" onClick={this.botonmenu}>  NUBE COMPARTIDA </NavLink >
+                                </li>
+                                <li>
+                                    <div className="dropdown">
+                                        <button className="dropbtn">PERFIL</button>
+                                        <div class="dropdown-content">
+                                            <Link to="/user/profile" className="drop-link" onClick={this.botonmenu}>Perfil</Link>
+                                            <Link to="/user/edit" className="drop-link" onClick={this.botonmenu}>Editar Perfil</Link>
+                                            <Link to="/user/erasmus" className="drop-link" onClick={this.botonmenu}>Erasmus</Link>
+                                            <Link to="/user/seguridad" className="drop-link" onClick={this.botonmenu}>Constraseña</Link>
+                                            <Link to="/solicitar_baja" className="drop-link" onClick={this.botonmenu}>Solicitar baja</Link>
+
+
+                                        </div>
+                                    </div>
+                                </li>
+
+
+                            </ul>
 
 
                         </nav>
+
+                       
                     </div>
-                }{this.state.identity.tipo == 'profesor' &&
+
+                }{this.state.identity.tipo === 'profesor' &&
 
                     <div className="menu">
                         <nav /*id="menu"*/ id="menuvar">
@@ -268,22 +311,58 @@ class Header extends Component {
                             {JSON.parse(localStorage.getItem('user')) != null &&
                                 <div className="perfil-header">
 
-                                    <img src={'https://plataforma-erasmus.herokuapp.com/public/'+ JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
+                                    <img src={'https://plataforma-erasmus.herokuapp.com/public/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
                                     <h1>{JSON.parse(localStorage.getItem('user')).nombre}</h1>
                                     <DropdownButton id="dropdown-basic-button" style={{ left: "auto" }, { rigth: '85%' }} className="dropdown-menu.show"
                                         show={this.state.show}
                                         onMouseEnter={this.showDropdown}
                                         onMouseLeave={this.hideDropdown}>
-                                        <Dropdown.Item href="/user/profile">Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="/user/edit">Editar Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="/user/seguridad">Constraseña</Dropdown.Item>
-                                        <Dropdown.Item href="/profesor/erasmus">Erasmus</Dropdown.Item>
-
-                                        <Dropdown.Item onClick={() => this.setState({ navigate: true })}>Cerrar Sesion</Dropdown.Item>
+                                        <Link to="/user/profile" className="drop-link">Perfil</Link>
+                                        <Link to="/user/edit" className="drop-link">Editar Perfil</Link>
+                                        <Link to="/user/erasmus" className="drop-link">Erasmus</Link>
+                                        <Link to="/user/seguridad" className="drop-link">Constraseña</Link>
+                                        <Link to="/solicitar_baja" className="drop-link">Solicitar baja</Link>
+                                        <Link onClick={() => this.setState({ navigate: true })} className="drop-link">Cerrar Sesion</Link>
                                     </DropdownButton>
                                 </div>
                             }
 
+
+
+                        </nav>
+
+                        <nav /*id="menu"*/ id="menuvar-responsive">
+                            <ul >
+                                <li >
+                                    <NavLink exact to="/inicio" activeClassName="active" onClick={this.botonmenu}> HOME </NavLink>
+                                </li>
+                                <li>
+
+                                    <NavLink to="/informacion" activeClassName="active" onClick={this.botonmenu}>    INFORMACIÓN </NavLink >
+                                </li>
+                                <li>
+                                    <NavLink to="/Alumnos" activeClassName="active" onClick={this.botonmenu}> ALUMNOS </NavLink >
+                                </li>
+                                <li>
+                                    <NavLink to="/mi_nube" activeClassName="active" onClick={this.botonmenu}>   MI NUBE </NavLink >
+                                </li>
+                                <li>
+                                    <div className="dropdown">
+                                        <button className="dropbtn">PERFIL</button>
+                                        <div class="dropdown-content">
+                                            <Link to="/user/profile" className="drop-link" onClick={this.botonmenu}>Perfil</Link>
+                                            <Link to="/user/edit" className="drop-link" onClick={this.botonmenu}>Editar Perfil</Link>
+                                            <Link to="/user/erasmus" className="drop-link" onClick={this.botonmenu}>Erasmus</Link>
+                                            <Link to="/user/seguridad" className="drop-link" onClick={this.botonmenu}>Constraseña</Link>
+                                            <Link to="/solicitar_baja" className="drop-link" onClick={this.botonmenu}>Solicitar baja</Link>
+
+
+                                        </div>
+                                    </div>
+                                </li>
+
+
+                            </ul>
 
 
                         </nav>
@@ -298,32 +377,29 @@ class Header extends Component {
                                 <li >
                                     <NavLink exact to="/inicio" activeClassName="active">{/*<span className="glyphicon glyphicon-home"></span> */}  HOME  </NavLink>
                                 </li>
-
-
                             </ul>
 
                             <div class="dropdown">
                                 <button class="dropbtn">DESTINOS</button>
                                 <div class="dropdown-content">
-                                    <a href="/destinos">Nuevo destino</a>
-                                    <a href="/editar-destinos">Editar destinos</a>
-                                    <a href="/borrar-destinos">Borrar destinos</a>
+                                    <Link to="/destinos" className="drop-link">Nuevo destino</Link>
+                                    <Link to="/editar-destinos" className="drop-link">Editar destinos</Link>
+                                    <Link to="/borrar-destinos" className="drop-link">Borrar destinos</Link>
                                 </div>
                             </div>
 
                             <div class="dropdown">
                                 <button class="dropbtn">GESTIÓN PROFESORES</button>
                                 <div class="dropdown-content">
-                                    <a href="/agregar-profesor">Agregar profesor</a>
-                                    <a href="/dar_de_baja">Eliminar profesor</a>
-                                    <a href="/cambiar-coordinador">Cambiar coordinador de centro</a>
+                                    <Link to="/dar_de_baja" className="drop-link">Eliminar profesor</Link>
+                                    <Link to="/cambiar-coordinador" className="drop-link"> Cambiar coordinador de centro</Link>
 
                                 </div>
                             </div>
 
                             <Link
                                 label="Mensajes"
-                                
+
                                 variant="primary"
                                 className="notificacion-mensajes"
                                 to={
@@ -348,15 +424,62 @@ class Header extends Component {
                                         show={this.state.show}
                                         onMouseEnter={this.showDropdown}
                                         onMouseLeave={this.hideDropdown}>
-                                        <Dropdown.Item href="/user/profile">Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="/user/edit">Editar Perfil</Dropdown.Item>
-                                        <Dropdown.Item href="/user/seguridad">Constraseña</Dropdown.Item>
-                                        <Dropdown.Item href="#">Ayuda</Dropdown.Item>
-                                        <Dropdown.Item onClick={() => this.setState({ navigate: true })}>Cerrar Sesion</Dropdown.Item>
+                                        <Link to="/user/profile" className="drop-link">Perfil</Link>
+                                        <Link to="/user/edit" className="drop-link">Editar Perfil</Link>
+                                        <Link to="/user/erasmus" className="drop-link">Erasmus</Link>
+                                        <Link to="/user/seguridad" className="drop-link">Constraseña</Link>
+                                        <Link to="/solicitar_baja" className="drop-link">Solicitar baja</Link>
+                                        <Link onClick={() => this.setState({ navigate: true })} className="drop-link">Cerrar Sesion</Link>
                                     </DropdownButton>
                                 </div>
                             }
 
+
+
+                        </nav>
+
+                        <nav /*id="menu"*/ id="menuvar-responsive">
+                            <ul >
+                                <li >
+                                    <NavLink exact to="/inicio" activeClassName="active"> HOME </NavLink>
+                                </li>
+                                <li>
+                                    <div class="dropdown">
+                                        <button class="dropbtn">DESTINOS</button>
+                                        <div class="dropdown-content">
+                                            <Link to="/destinos" className="drop-link" onClick={this.botonmenu}>Nuevo destino</Link>
+                                            <Link to="/editar-destinos" className="drop-link" onClick={this.botonmenu}>Editar destinos</Link>
+                                            <Link to="/borrar-destinos" className="drop-link" onClick={this.botonmenu}> Borrar destinos</Link>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="dropdown">
+                                        <button class="dropbtn">GESTIÓN PROFESORES</button>
+                                        <div class="dropdown-content">
+                                            <Link to="/dar_de_baja" className="drop-link" onClick={this.botonmenu}>Eliminar profesor</Link>
+                                            <Link to="/cambiar-coordinador" className="drop-link" onClick={this.botonmenu}> Cambiar coordinador de centro</Link>
+
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className="dropdown">
+                                        <button className="dropbtn">PERFIL</button>
+                                        <div class="dropdown-content">
+                                            <Link to="/user/profile" className="drop-link" onClick={this.botonmenu}>Perfil</Link>
+                                            <Link to="/user/edit" className="drop-link" onClick={this.botonmenu}>Editar Perfil</Link>
+                                            <Link to="/user/erasmus" className="drop-link" onClick={this.botonmenu}>Erasmus</Link>
+                                            <Link to="/user/seguridad" className="drop-link" onClick={this.botonmenu}>Constraseña</Link>
+                                            <Link to="/solicitar_baja" className="drop-link" onClick={this.botonmenu}>Solicitar baja</Link>
+
+
+                                        </div>
+                                    </div>
+                                </li>
+
+
+                            </ul>
 
 
                         </nav>

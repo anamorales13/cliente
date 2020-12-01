@@ -91,13 +91,17 @@
   }
 
  .form-control{
-   width: 200px;
+   width: 100%;
  }
 
  .form-borrar-profesor{
  
      padding: 0;
    
+ }
+
+ .form-añadir-destino{
+   padding: 1rem 1rem ;
  }
 }
 

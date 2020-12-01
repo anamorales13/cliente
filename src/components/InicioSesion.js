@@ -112,6 +112,11 @@ class InicioSesion extends Component {
                     status: 'failed'
                 });
 
+                swal(
+                    '¡Error!',
+                    'Nombre de usuario o contraseña incorrectos',
+                    'error'
+                )
 
             });
         this.forceUpdate();
@@ -147,8 +152,8 @@ class InicioSesion extends Component {
                         </div>
                         <hr className="linea"></hr>
 
-                        <div className="grid-logo-inicio">
-                            <div className="inicio-logo">
+                        <div className="grid-logo-inicioSesion">
+                            <div className="inicio-logo-alumno">
 
                                 <h3 id="header-boton"> ALUMNOS </h3>
                                 <Link to={{
@@ -223,7 +228,7 @@ class InicioSesion extends Component {
                         </div>
                         <hr className="linea"></hr>
 
-                        <div className="grid-logo-inicio">
+                        <div className="grid-logo-inicioSesion">
 
                             <article className="formulario-inicioSesion form-alumno">
                                 <div className="cabecera-login">
@@ -266,7 +271,7 @@ class InicioSesion extends Component {
                                 </form>
                             </article>
 
-                            <div className="boton-profesor">
+                            <div className="inicio-logo-profesor">
 
                                 <h3 id="header-boton-prof"> PROFESOR </h3>
                                 <Link to={{

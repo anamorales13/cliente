@@ -155,7 +155,7 @@ class mydropbox extends Component {
                             <tbody>
                                 <tr>
                                     <td style={{ width: '30%' }}>
-                                        <div style={{ marginLeft: '20px', display: 'flex' }}>
+                                        
                                             <div>
 
                                                 {
@@ -177,10 +177,10 @@ class mydropbox extends Component {
                                             <div>
                                                 <a target="_blank" href={'https://plataforma-erasmus.herokuapp.com/docdropbox/' + documentos.url}>{documentos.title}</a>
                                             </div>
-                                        </div>
+                                        
                                     </td >
                                    
-                                    <td style={{ width: '30%' }}>
+                                    <td style={{ overflow: 'auto', width: '30%' }}>
                                         {documentos.descripcion}
                                     </td>
 

@@ -173,10 +173,11 @@ class recibidos extends Component {
                                         <h6 className="fecha"> <Moment format="DD-MM-YYYY">{mensajes.fecha}</Moment></h6>
                                     </div>
                                     
-                                        <Card.Text className="mensaje-texto">
+                                        <Card.Text className="mensaje-texto" id="mensaje-texto-grande">
                                             <strong>{mensajes.asunto}        </strong>
                                             {mensajes.texto}
                                         </Card.Text>
+                                       
                                     </Link>
                                     <button href={"#"} className="mensaje-enlace boton-sin-estilo" onClick={() => { if (window.confirm('\n' + '¿Estas seguro de eliminar el mensaje ?')) this.deleteMessage(mensajes._id); }} >
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

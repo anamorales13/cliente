@@ -10,12 +10,22 @@
     grid-template-columns: 300px 1000px 185px;
 }
 
+.grid-doc-oficial{
+    display:grid;
+    grid-template-columns: 1000px auto;
+}
+
 .grid-row-docgeneral{
     display:grid;
     grid-template-rows: 60px 280px 60px 280px;
 }
 
-.grid-row-docgeneral h1{
+.grid-documentos-oficiales{
+    display:grid;
+    grid-template-rows: 50px auto;
+}
+
+.titulo-seccion-doc{
   margin-top: 0.8em;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 28px;
@@ -23,6 +33,27 @@
   border-radius: 10px;
   
 }
+
+.card-doc-ofi{
+    height: 250px;
+    max-width: 500px;
+    width: 500px;
+    margin-bottom: 30px;
+}
+
+.card-doc-ofi:hover{
+    box-shadow: 0 5px 7px 0 rgba(0,0,0,0.2);
+    transform: scale(1.006);
+}
+
+.bloque-uno-docOfi{
+    display:flex;
+}
+
+.bloque-uno-docOfi Card {
+    margin-right: 30px;
+}
+
 
 .grid-documentosofi{
     display:grid;
@@ -91,11 +122,11 @@
     height: 150px;
 }
 
-.doc-default{
+
+.doc-default {
     margin-bottom: 15px;
-}
-.doc-default img{
     margin-top: 2em;
+    margin-left: 15px;
     width: 110px;
     height: 150px;
     
@@ -135,4 +166,24 @@
 .btn-docOficial{
     margin-left: 50px;
     margin-top: 35px;
+}
+
+@media(max-width: 1367px){
+    .titulo-seccion-doc{
+        margin-top: 1.8em;
+    }
+}
+
+@media(max-width:769px){
+    .grid-doc-oficial{
+        grid-template-columns: 600px auto;
+    }
+
+    .titulo-seccion-doc{
+        margin-top: 1.8em;
+    }
+
+    .bloque-uno-docOfi{
+        display:block;
+    }
 }

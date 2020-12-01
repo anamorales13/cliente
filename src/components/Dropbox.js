@@ -248,7 +248,7 @@ class Dropbox extends Component {
                         }
 
                     </div>
-                    <div className=" grid-documentos-col">
+                    <div className=" grid-documentos-col-compartida">
                         <div>
                             <div >
 

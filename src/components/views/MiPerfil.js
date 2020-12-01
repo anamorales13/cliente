@@ -66,7 +66,7 @@ class MiPerfil extends Component {
                             <Breadcrumb.Item href="/inicio" > Home</Breadcrumb.Item>
                             <Breadcrumb.Item href="/Alumnos" >
                                 Alumnos
-               </Breadcrumb.Item>
+                    </Breadcrumb.Item>
                             <Breadcrumb.Item active >{this.state.identity.nombre + " " + this.state.identity.apellido1 + " " + this.state.identity.apellido2}</Breadcrumb.Item>
                         </Breadcrumb>
                     }

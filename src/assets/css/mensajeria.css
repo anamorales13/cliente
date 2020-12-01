@@ -273,9 +273,6 @@
     
     
 }
-.mensaje-asunto{
-    font-size:12px;
-}
 
 
 .mensaje-texto-individual{
@@ -363,4 +360,137 @@
 .page-item.active .page-link{
     background-color: grey;
     border-color: grey;
+}
+
+
+@media(max-width: 415px){
+    .card-mensaje-novisto{
+        margin-left:5px;
+        width: 25em !important;
+    }
+
+    .card-mensajes{
+        margin-left:5px;
+        width: 25em !important;
+    }
+
+    
+    .card-mensajes-individual{
+        margin-left:5px;
+        width: 25em !important;
+    }
+
+    .image-user{
+        display:none;
+    }
+
+
+    
+    #mensaje-nombre{
+        font-size:13px;
+        overflow: auto;
+    }
+
+    .mensaje-texto{
+        font-size:14px;
+        
+    }
+    
+    .mensaje-estilo-uno{
+        width:100%
+    }
+    #remitente{
+        display:block;
+        width:100%;
+    }
+
+    .destinatario{
+        display:block;
+    }
+
+    .autocomplete{
+        width: 400px !important;
+    }
+
+    .mensaje-asunto{
+        display:block;
+    }
+
+    #asunto{
+        width:400px !important;
+    }
+
+    .mensaje-estilo-dos{
+        margin-right: 0;;
+    }
+
+    .title-pantalla-mensaje{
+        margin-bottom: 15px;
+    }
+}
+
+@media(max-width:361px){
+    
+    .title-pantalla-mensaje{
+        margin-bottom: 15px;
+    }
+    .card-mensaje-novisto{
+        margin-left:5px;
+        width: 22em !important;
+    }
+
+    .card-mensajes-individual{
+        margin-left:5px;
+        width: 22em !important;
+    }
+
+    .card-mensajes{
+        margin-left:5px;
+        width: 22em !important;
+    }
+
+    .image-user{
+        display:none;
+    }
+
+
+    #mensaje-nombre{
+        font-size:13px;
+        overflow: auto;
+    }
+
+    .mensaje-texto{
+        font-size:14px;
+        
+    }
+    
+
+
+    .mensaje-estilo-uno{
+        width:100%
+    }
+    #remitente{
+        display:block;
+        width:100%;
+    }
+
+    .destinatario{
+        display:block;
+    }
+
+    .autocomplete{
+        width: 350px !important;
+    }
+
+    .mensaje-asunto{
+        display:block;
+    }
+
+    #asunto{
+        width:350px !important;
+    }
+
+    .mensaje-estilo-dos{
+        margin-right: 0;;
+    }
 }
