@@ -13,15 +13,15 @@ import ButtonIcon from "@material-ui/core/Button";
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ReactPaginate from "react-paginate";
-
+import Card from 'react-bootstrap/Card';
 import swal from 'sweetalert';
 
 /*IMAGENES - BOTONES */
-import btn1 from '../assets/images/word.png';
-import btn2 from '../assets/images/pdf.png';
-import btn3 from '../assets/images/powerpoint.jpg';
-import btn4 from '../assets/images/default.png';
-import SelectInput from '@material-ui/core/Select/SelectInput';
+
+import btn1 from '../assets/images/pdf.png';
+import btn2 from '../assets/images/zip.png';
+import btn3 from '../assets/images/default.png';
+
 
 
 class Dropbox extends Component {
@@ -32,12 +32,13 @@ class Dropbox extends Component {
     state = {
         documentos: [],
         docprofesor: [],
+        doccordinador:[],
         status: null,
         identity: null,
         eliminado: {},
-        value:false,
-        pages:"",
-        currentPage:0,
+        value: false,
+        pages: "",
+        currentPage: 0,
         mensajesPerPage: 5,
         offset: 0,
 
@@ -58,14 +59,14 @@ class Dropbox extends Component {
     }
 
 
-  
+
 
 
     getDocumentos = (e) => {
-      /*  e.preventDefault();*/
+        /*  e.preventDefault();*/
 
         var id = this.props.match.params.id;
-        var pages= this.state.currentPage+1;
+        var pages = this.state.currentPage + 1;
         if (this.state.identity.tipo === 'Alumno') { //view: alumno
 
             /*axios.get(this.url + "documentosAlumnos/" + this.state.identity._id + '/' + this.state.identity.profesor)
@@ -76,24 +77,35 @@ class Dropbox extends Component {
                     });
                 });*/
 
-            axios.get(this.url + "documentosProfesor/" + this.state.identity.profesor + '/' + this.state.identity._id +"/" + pages)
+            axios.get(this.url + "documentosProfesor/" + this.state.identity.profesor + '/' + this.state.identity._id + "/" + pages)
                 .then(res => {
                     this.setState({
                         docprofesor: res.data.documento,
                         status: 'sucess',
-                        pages:res.data.pages,
+                        pages: res.data.pages,
+                    });
+                    
+                    axios.get(this.url + "documentosProfesor/" + this.state.identity.coordinador + '/' + this.state.identity._id + "/" + pages)
+                .then(ress => {
+                    var lista= res.data.documento.concat(ress.data.documento)
+                    this.setState({
+                        docprofesor: lista,
+                        status: 'sucess',
+                        pages: res.data.pages,
                     });
                 });
+                });
+                
 
 
         }
-        else { 
-            axios.get(this.url + "documentosProfesor/" + this.state.identity._id + '/' + id + '/'+ pages)
+        else {
+            axios.get(this.url + "documentosProfesor/" + this.state.identity._id + '/' + id + '/' + pages)
                 .then(res => {
                     this.setState({
                         docprofesor: res.data.documento,
                         status: 'sucess',
-                        pages:res.data.pages,
+                        pages: res.data.pages,
                     });
                 });
 
@@ -102,37 +114,27 @@ class Dropbox extends Component {
 
 
     handlePageClick = mensajes => {
-       
+
         const selectedPage = mensajes.selected;
         const offset = selectedPage * this.state.mensajesPerPage;
         this.setState({
             currentPage: selectedPage,
             offset: offset
-      
-       }, () => 
+
+        }, () =>
             this.getDocumentos());
-        
+
     }
 
     delete(title) {
         axios.delete(this.url + "delete/" + title)
             .then(res => {
                 this.setState({
-                  
+
                     status: 'sucess',
-                    value:true
+                    value: true
                 });
-                swal({
-                    title: 'Documento eliminado con exito',
-                    text: "El documento ha sido eliminado correctamente",
-                    icon: "sucess",
-                    buttons: true,
-                })
-                    .then((value) => {
-                        if (value) {
-                            window.location.reload(true);
-                        }
-                    });
+                window.location.reload(true);
 
             })
 
@@ -167,7 +169,7 @@ class Dropbox extends Component {
                     activeLinkClassName={"page-link"}
                 />
             )
-}
+        }
 
         if (this.state.docprofesor != undefined) {
             var listardocumentos = this.state.docprofesor.map((documentos) => {
@@ -181,23 +183,18 @@ class Dropbox extends Component {
                                         <div>
 
                                             {
-                                                documentos.tipoDocumento == "word.png" ? (
+                                                 documentos.formato == "pdf" ? (
                                                     <img src={btn1} alt="prueba" className="image-wrap" />
-                                                ) : documentos.tipoDocumento == "pdf.png" ? (
+                                                ) : documentos.formato === "zip"|| documentos.formato ==='rar' ? (
                                                     <img src={btn2} alt="prueba" className="image-wrap" />
-                                                ) : documentos.tipoDocumento == "powerpoint.jpg" ? (
-                                                    <img src={btn3} alt="prueba" className="image-wrap" />
-                                                ) : documentos.tipoDocumento == "imagen" ? (
-                                                    <img src={'https://plataforma-erasmus.herokuapp.com/docdropbox/' + documentos.url} alt={documentos.title} className="image-wrap" />
-                                                ) :
-                                                                (
-                                                                    <img src={btn4} alt="prueba" className="image-wrap" />
+                                                ) :  (                                        
+                                                                    <img src={documentos.image} alt="prueba" className="image-wrap" />
                                                                 )
                                             }
 
                                         </div>
                                         <div>
-                                            <a target="_blank" href={'https://plataforma-erasmus.herokuapp.com/docdropbox/' + documentos.url}>{documentos.title}</a>
+                                        <a target="_blank" href={ documentos.image} title="descargar">{documentos.title}</a>
                                         </div>
                                     </td>
                                     <td style={{ overflow: 'auto', maxHeight: '200px' }}>
@@ -251,6 +248,17 @@ class Dropbox extends Component {
                     <div className=" grid-documentos-col-compartida">
                         <div>
                             <div >
+
+                                <Card className="card-bajas" style={{ border: 'none', background:'transparent'}}>
+                                    <div className="bajas">
+                                        <h3 style={{ fontSize: '24px', color: '#BB0909' }}>¡Recuerda!!</h3>
+                                        <h5 style={{ fontSize: '16px' }}> Sólo se pueden subir imagenes o archivos en formato .pdf .jpg ó .png </h5>
+                                        <h5 style={{ fontSize: '16px' }}> Otros usuarios pueden ver el contenido de esta nube.</h5>
+
+                               
+
+                                    </div>
+                                </Card>
 
                                 <table className="table-dropbox dropbox-cabecera">
                                     <thead >

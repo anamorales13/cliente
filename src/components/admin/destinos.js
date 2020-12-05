@@ -12,6 +12,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import '../../assets/css/admin.css';
 import { ColorizeRounded } from '@material-ui/icons';
+import SimpleReactValidator from 'simple-react-validator';
 
 class destinos extends Component {
 
@@ -37,6 +38,12 @@ class destinos extends Component {
         this.getcoordinador();
         this.handleChangeProf = this.handleChange.bind(this);
 
+        this.validator = new SimpleReactValidator({
+            messages: {
+                required: 'Este campo es obligatorio',
+            }
+        });
+
     }
 
     handleChange = input => e => {
@@ -53,9 +60,11 @@ class destinos extends Component {
 
     formularioEnBlanco = () => {
         this.setState({
-            texto: "",
-            asunto: "",
-            tags: ""
+            pais: "",
+            ciudad: "",
+            carrera: "",
+            profesor: "",
+            coordinador: "",
 
         });
     }
@@ -97,13 +106,18 @@ class destinos extends Component {
             coordinador: this.state.coordinador._id
         };        
 
+        console.log("hola añadiendo");
+        if (this.validator.allValid()) {
         axios.post('https://plataforma-erasmus.herokuapp.com/apiDestino/' + 'save', body)
             .then(res => {
-                
+                console.log("añadido")
                 this.setState({
                     destino: res.data.destino,
+                    status:'sucess',
+                    error:"",
 
                 })
+                this.formularioEnBlanco();
             })
             .catch(err => {
                 this.setState({
@@ -113,6 +127,12 @@ class destinos extends Component {
                 });
 
             });
+        }
+            else {
+                this.validator.showMessages();
+               // this.forceUpdate();
+            }
+            
     }
 
 
@@ -128,22 +148,27 @@ class destinos extends Component {
                         <h1 className="titulo-doc"> NUEVO DESTINO </h1>
                         <div className="form-destino" >
                         {this.state.error !="" &&
-                        <label style={{color:'red', textAlign:'center', display:'block', fontWeight:'bold', marginTop:'20px'}}>{this.state.error}</label>
+                        <label style={{color:'#A6250E', backgroundColor:'#F7A99C', width:'60%', textAlign:'center',margin:'auto', display:'block', fontWeight:'bold', marginTop:'20px'}}>
+                            {this.state.error}</label>
+                        }
+                        {this.state.status === 'sucess' &&
+                          <label style={{color:'#1D4C14', backgroundColor:'#DAF7A6', width:'60%', textAlign:'center',margin:'auto', display:'block', fontWeight:'bold', marginTop:'20px'}}>
+                              El destino ha sido añadido correctamente.</label>
                         }
                             <Form className="form-añadir-destino" onSubmit={this.añadirDestino}>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>Pais</Form.Label>
-                                    <Form.Control type="pais" placeholder="Introduce el pais" onChange={this.handleChange('pais')} />
-
+                                    <Form.Control type="pais" placeholder="Introduce el pais" onChange={this.handleChange('pais')} name="pais" />
+                                    {this.validator.message('pais', this.state.pais, 'required')}
                                 </Form.Group>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>Ciudad</Form.Label>
-                                    <Form.Control type="ciudad" placeholder="Introduce la ciudad" onChange={this.handleChange('ciudad')} />
-
+                                    <Form.Control name="ciudad" type="ciudad" placeholder="Introduce la ciudad" onChange={this.handleChange('ciudad')} />
+                                    {this.validator.message('ciudad', this.state.ciudad, 'required')}
                                 </Form.Group>
                                 <Form.Group controlId="exampleForm.ControlSelect1">
                                     <Form.Label>Grado universitario</Form.Label>
-                                    <Form.Control as="select" onChange={this.handleChange('carrera')} type="carrera">
+                                    <Form.Control as="select" onChange={this.handleChange('carrera')} type="carrera" name="carrera">
                                         <option></option>
                                         <option>Grado en Ingeniería Informática</option>
                                         <option>Grado en Ingeniería Agrícola</option>
@@ -155,11 +180,12 @@ class destinos extends Component {
                                         <option>Grado en Ingeniería Energética</option>
                                         <option>Grado de Ingeniería en Exp. Minas y Rec. Energéticos</option>
                                     </Form.Control>
+                                    {this.validator.message('carrera', this.state.carrera, 'required')}
                                 </Form.Group>
 
                                 <Form.Group>
                                     <Form.Label> Coordinador de destino</Form.Label>
-                                    <Form.Control as="select" onChange={this.handleChange('profesor')} type="profesor" >
+                                    <Form.Control as="select" onChange={this.handleChange('profesor')} type="profesor" name="profesor">
                                         <option> </option>
                                         {this.state.profesores.map((prof) => (
                                             <option key={prof._id} value={prof._id} >
@@ -170,13 +196,12 @@ class destinos extends Component {
                                         }
 
                                     </Form.Control>
+                                    {this.validator.message('profesor', this.state.profesor, 'required')}
                                 </Form.Group>
 
-                                <Button className="button-join " type="submit" >
-                                    CREAR
-                            </Button>
+                                <input type="submit" value="CREAR" className="  button-join " style={{width:'60%'}}></input>
                             </Form>
-
+                            
                         </div>
 
                     </div>

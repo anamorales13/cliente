@@ -166,7 +166,7 @@ class Alumnos extends Component {
                         <CardActionArea>
                             <CardMedia
                                 className="card-media"
-                                image={'https://plataforma-erasmus.herokuapp.com/public/' + alumno.image}
+                                image={alumno.image}
                                 title="Contemplative Reptile"
                             />
                             <hr />
@@ -174,7 +174,7 @@ class Alumnos extends Component {
                                 <div className="group-nombre">
                                     <h3 className="card-nombre">{alumno.nombre + " " + alumno.apellido1 + " " + alumno.apellido2}</h3>
 
-                                    <Link size="small" color="primary" style={{ color: 'grey' }} className="card-link-perfil" to={"/user/profile/" + alumno._id}>ver perfil</Link>
+                                    <Link size="small" color="primary" style={{ color: '#A6250E' }} className="card-link-perfil" to={"/user/profile/" + alumno._id}>ver perfil</Link>
                                 </div>
                                 <div className="card-nombre-uni" >
                                     <h4 className="card-nombre-uni">{alumno.destino.ciudad + " (" + alumno.destino.pais + ")  -" + alumno.destino.carrera}</h4>
@@ -219,7 +219,7 @@ class Alumnos extends Component {
                         <CardActionArea>
                             <CardMedia
                                 className="card-media"
-                                image={'https://plataforma-erasmus.herokuapp.com/public/' + alumno.image}
+                                image={ alumno.image}
                                 title="Contemplative Reptile"
                             />
                             <hr />
@@ -227,7 +227,7 @@ class Alumnos extends Component {
                                 <div className="group-nombre">
                                     <h3 className="card-nombre">{alumno.apellido1 + " " + alumno.apellido2 +", "+ alumno.nombre  }</h3>
 
-                                    <Link size="small" color="primary" style={{ color: 'grey' }} className="card-link-perfil" to={"/user/profile/" + alumno._id}>ver perfil</Link>
+                                    <Link size="small" color="primary" style={{ color: '#A6250E' }} className="card-link-perfil" to={"/user/profile/" + alumno._id}>ver perfil</Link>
                                 </div>
                                 <div className="card-nombre-uni" >
                                     <h4 className="card-nombre-uni">{alumno.destino.ciudad + " (" + alumno.destino.pais + ")  -" + alumno.destino.carrera}</h4>

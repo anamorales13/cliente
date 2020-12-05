@@ -63,16 +63,16 @@ class MiPerfil extends Component {
                     }
                     {this.props.match.params.id != null &&
                         < Breadcrumb >
-                            <Breadcrumb.Item href="/inicio" > Home</Breadcrumb.Item>
-                            <Breadcrumb.Item href="/Alumnos" >
-                                Alumnos
+                            <Breadcrumb.Item ><NavLink exact to="/inicio">Home</NavLink></Breadcrumb.Item>
+                            <Breadcrumb.Item ><NavLink exact to="/Alumnos">Alumnos</NavLink>
+                              
                     </Breadcrumb.Item>
                             <Breadcrumb.Item active >{this.state.identity.nombre + " " + this.state.identity.apellido1 + " " + this.state.identity.apellido2}</Breadcrumb.Item>
                         </Breadcrumb>
                     }
 
                     <div className="avatar" id="avatar-big">
-                        <img src={'https://plataforma-erasmus.herokuapp.com/public/' + this.state.identity.image} classname="avatar"></img>
+                        <img src={ this.state.identity.image} classname="avatar"></img>
                     </div>
 
                     <div >
@@ -81,7 +81,7 @@ class MiPerfil extends Component {
                         <div className="subtitulo">Es posible que otros usuarios puedan ver parte de la infomación al usar la plataforma. </div>
 
                         <div className="avatar" id="avatar-responsive">
-                            <img src={'https://plataforma-erasmus.herokuapp.com/public/' + this.state.identity.image} classname="avatar"></img>
+                            <img src={ this.state.identity.image} classname="avatar"></img>
                         </div>
                         <article className="elemt-one">
 

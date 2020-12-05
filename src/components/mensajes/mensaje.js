@@ -3,6 +3,7 @@ import { Router } from 'react-router-dom';
 import Global from '../../GlobalMensaje';
 import GlobalPerfil from '../../Global';
 
+import { NavLink } from 'react-router-dom';
 import Menu from './menu-mensajes';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
@@ -67,9 +68,9 @@ class mensaje extends Component {
             return (
                 <div >
                     <Breadcrumb >
-                        <Breadcrumb.Item href="/inicio">Home</Breadcrumb.Item>
-                        <Breadcrumb.Item href="/mensajes">
-                            Bandeja de entrada
+                        <Breadcrumb.Item> <NavLink exact to="/inicio">Home</NavLink></Breadcrumb.Item>
+                        <Breadcrumb.Item><NavLink exact to="/mensajes"> Bandeja de entrada</NavLink>
+                           
                         </Breadcrumb.Item>
                         <Breadcrumb.Item active>ver mensaje</Breadcrumb.Item>
                     </Breadcrumb>

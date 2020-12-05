@@ -3,10 +3,11 @@ import React, { Component } from 'react';
 import Menu from './menu-mensajes';
 import Global from '../../GlobalMensaje';
 import axios from 'axios';
-import swal from 'sweetalert';
-import Alert from 'bootstrap';
+
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
+import Spinner from 'react-bootstrap/Spinner';
+
 
 class enviar extends Component {
 
@@ -19,7 +20,7 @@ class enviar extends Component {
         tags: "",
         texto: "",
         asunto: "",
-       
+
     }
 
 
@@ -35,14 +36,14 @@ class enviar extends Component {
 
         this.listarProfesores();
         this.listarAlumnos();
-       
+
     }
 
     componentWillMount() {
 
         this.listarProfesores();
         this.listarAlumnos();
-       
+
 
     }
 
@@ -115,11 +116,14 @@ class enviar extends Component {
             }
         }
 
+        var elem = document.getElementById('fp-container');
+        elem.style.display='block'
 
 
         axios.post(this.url + 'mensaje', mensaje)
             .then(res => {
 
+                elem.style.display='none'
                 this.setState({
                     nuevoMensaje: res.data.mensaje,
                     status: 'sucess',
@@ -161,12 +165,12 @@ class enviar extends Component {
 
 
     render() {
-       
-        if(this.props.location.state!=null){
-            const{mensajeId, emisor, texto}=this.props.location.state;
+
+        if (this.props.location.state != null) {
+            const { mensajeId, emisor, texto } = this.props.location.state;
             console.log(this.texto)
         }
-       
+
 
         return (
 
@@ -208,7 +212,7 @@ class enviar extends Component {
                                             <Autocomplete
                                                 className="autocomplete"
                                                 value={this.state.profesor._id}
-                                                options={this.state.profesor}
+                                                options={this.state.usuarios.concat(this.state.profesor)}
                                                 onChange={this.onTagsChange}
                                                 getOptionLabel={(option) => option.nombre + " " + option.apellido1 + " " + option.apellido2 + "  <" + option.email + "> "}
                                                 style={{ width: 750 }}
@@ -219,7 +223,19 @@ class enviar extends Component {
                                             <Autocomplete
                                                 className="autocomplete"
                                                 value={this.state.usuarios._id}
-                                                options={this.state.usuarios}
+                                                options={this.state.usuarios.concat(this.state.profesor)}
+                                                onChange={this.onTagsChange}
+                                                getOptionLabel={(option) => option.nombre + " " + option.apellido1 + " " + option.apellido2 + "  <" + option.email + "> "}
+                                                style={{ width: 750 }}
+                                                renderInput={(params) => <TextField {...params} />}
+                                            />
+
+                                        }
+                                        {this.state.identity.tipo == "administrador" &&
+                                            <Autocomplete
+                                                className="autocomplete"
+                                                value={this.state.usuarios._id}
+                                                options={this.state.usuarios.concat(this.state.profesor)}
                                                 onChange={this.onTagsChange}
                                                 getOptionLabel={(option) => option.nombre + " " + option.apellido1 + " " + option.apellido2 + "  <" + option.email + "> "}
                                                 style={{ width: 750 }}
@@ -236,10 +252,10 @@ class enviar extends Component {
                                     </p>
                                 </div>
                                 <div className="mensaje-estilo-dos">
-                                        {this.props.location.state!=null 
-                                           ?  <textarea type="text" name="text" onChange={this.handleChange('texto')} ref={this.mensajeRef} value={this.state.texto} placeholder="Escribe tu mensaje" className="textarea-mensaje">     {this.texto}</textarea>
-                                            : <textarea type="text" name="text" onChange={this.handleChange('texto')} ref={this.mensajeRef} value={this.state.texto} placeholder="Escribe tu mensaje" className="textarea-mensaje"> </textarea>
-                                        }
+                                    {this.props.location.state != null
+                                        ? <textarea type="text" name="text" onChange={this.handleChange('texto')} ref={this.mensajeRef} value={this.state.texto} placeholder="Escribe tu mensaje" className="textarea-mensaje">     {this.texto}</textarea>
+                                        : <textarea type="text" name="text" onChange={this.handleChange('texto')} ref={this.mensajeRef} value={this.state.texto} placeholder="Escribe tu mensaje" className="textarea-mensaje"> </textarea>
+                                    }
                                 </div>
                                 <input type="submit" value="ENVIAR" className="btn-enviar" ></input>
                             </form>
@@ -247,6 +263,11 @@ class enviar extends Component {
 
                     </div>
                 </div>
+
+                <div className="fp-container" id="fp-container">
+                    <Spinner animation="border" role="status" className="fp-loader"></Spinner>
+                </div>
+
             </div>
 
         );

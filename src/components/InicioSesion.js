@@ -11,7 +11,8 @@ import imagenalumno from '../assets/images/boton-alumno.png';
 import imagenprof from '../assets/images/boton-profesor.png';
 import '../assets/css/InicialScreen.css';
 import Form from 'react-bootstrap/Form';
-
+import { NavLink } from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner';
 
 class InicioSesion extends Component {
 
@@ -48,9 +49,12 @@ class InicioSesion extends Component {
     getProfesor = (e) => {
         e.preventDefault();
         this.change();
+        var elem = document.getElementById('fp-container');
+        elem.style.display='block'
 
         axios.post(this.urlProfesor + 'login', this.state.nuevoAlumno)
             .then(res => {
+                elem.style.display='none'
                 this.setState({
                     // alumno: res.data.users,
                     sucess: 'sucess',
@@ -61,11 +65,12 @@ class InicioSesion extends Component {
                 });
 
                 //persistir los datos del usuario
-                console.log(JSON.stringify(this.state.alumno));
+              
                 localStorage.setItem('user', JSON.stringify(this.state.alumno));
-                localStorage.setItem('token', this.state.token);
-
-                //  this.get_token();
+              //  localStorage.setItem('token', this.state.token);
+              //  window.location.assign('/inicio')
+                elem.style.display='none'
+                return <Redirect to="/inicio" push={true} />
             })
             .catch(err => {
                 this.setState({
@@ -85,9 +90,12 @@ class InicioSesion extends Component {
         e.preventDefault();
         this.change();
 
+        var elem = document.getElementById('fp-container');
+        elem.style.display='block'
 
         axios.post('https://plataforma-erasmus.herokuapp.com/apiErasmus/login', this.state.nuevoAlumno)
             .then(res => {
+                elem.style.display='none'
                 this.setState({
                     // alumno: res.data.users,
                     sucess: 'sucess',
@@ -102,8 +110,9 @@ class InicioSesion extends Component {
                 localStorage.setItem('user', JSON.stringify(this.state.alumno));
                 //  localStorage.setItem('token', this.state.token);
                 //  localStorage.setItem('tipo', 'alumno');
-                this.router.navigateByUrl('/');
-
+               // window.location.assign('/inicio')
+                elem.style.display='none'
+                return <Redirect to="/inicio" push={true} />
                 //  this.get_token();
             })
             .catch(err => {
@@ -111,7 +120,7 @@ class InicioSesion extends Component {
                     alumno: {},
                     status: 'failed'
                 });
-                
+
             });
         this.forceUpdate();
 
@@ -150,14 +159,14 @@ class InicioSesion extends Component {
                             <div className="inicio-logo-alumno">
 
                                 <h3 id="header-boton"> ALUMNOS </h3>
-                                <Link to={{
+                                <NavLink exact to={{
                                     pathname: '/inicioSesion',
                                     state: {
                                         tipo: 'alumno'
                                     }
-                                }}>
+                                }} replace>
                                     <img src={imagenalumno} width="200px" height="280px"></img>
-                                </Link>
+                                </NavLink>
                             </div>
 
                             <article className="formulario-inicioSesion">
@@ -268,14 +277,14 @@ class InicioSesion extends Component {
                             <div className="inicio-logo-profesor">
 
                                 <h3 id="header-boton-prof"> PROFESOR </h3>
-                                <Link to={{
+                                <NavLink exact to={{
                                     pathname: '/inicioSesion',
                                     state: {
                                         tipo: 'profesor'
                                     }
-                                }}>
+                                }} replace>
                                     <img src={imagenprof} width="200px" height="280px"></img>
-                                </Link>
+                                </NavLink>
 
 
 
@@ -286,6 +295,11 @@ class InicioSesion extends Component {
                         </div>
                     </div>
                 }
+
+
+                <div className="fp-container" id="fp-container">
+                    <Spinner animation="border" role="status" className="fp-loader"></Spinner>
+                </div>
 
             </div>
 

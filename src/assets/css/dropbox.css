@@ -6,6 +6,7 @@
 
   .grid-documentos-col{
     display:grid;
+    margin-top: 3.8rem;
     grid-template-columns:1300px auto;
   }
 

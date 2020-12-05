@@ -10,9 +10,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import swal from 'sweetalert';
 
 /*IMAGENES - BOTONES */
-import btn1 from '../assets/images/word.png';
+
 import btn2 from '../assets/images/pdf.png';
-import btn3 from '../assets/images/powerpoint.jpg';
+
 import btn4 from '../assets/images/default.png';
 
 
@@ -95,18 +95,7 @@ class Documentos extends Component {
                                     <div>
 
                                         {
-                                            documentos.tipoDocumento == "word.png" ? (
-                                                <img src={btn1} alt="prueba" className="image-wrap" />
-                                            ) : documentos.tipoDocumento == "pdf.png" ? (
-                                                <img src={btn2} alt="prueba" className="image-wrap" />
-                                            ) : documentos.tipoDocumento == "powerpoint.jpg" ? (
-                                                <img src={btn3} alt="prueba" className="image-wrap" />
-                                            ) : documentos.tipoDocumento == "imagen" ? (
-                                                <img src={'https://plataforma-erasmus.herokuapp.com/docdropbox/' + documentos.url} alt={documentos.title} className="image-wrap" />
-                                            ) :
-                                                            (
-                                                                <img src={btn4} alt="prueba" className="image-wrap" />
-                                                            )
+                                            
                                         }
 
                                     </div>

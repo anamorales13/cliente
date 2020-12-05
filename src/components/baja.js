@@ -70,7 +70,7 @@ class baja extends Component {
                         <h3 style={{ fontSize: '24px', color: '#BB0909' }}>¿Estás seguro de que quieres dar de baja a la cuenta?</h3>
                         <h5 style={{ fontSize: '16px' }}>Al efectuar la baja de tu perfil todos tus datos desaparecerán de nuestro servidor,
                         por lo que si quieres volver a acceder a la web deberás registrate de nuevo.
-                </h5>
+                        </h5>
                         <h5 style={{ fontSize: '14px' }}><strong>Recuerda</strong> que si te encuentras de Erasmus+ no debes de eliminar la cuenta</h5>
                         <h5 style={{ fontSize: '14px' }}>ya que puedes necesitar información o documentos durante tu movilidad.</h5>
 

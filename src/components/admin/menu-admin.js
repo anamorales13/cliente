@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 import "../../assets/css/mensajeria.css";
 
+
+
 class MenuMensajes extends Component {
     render() {
 

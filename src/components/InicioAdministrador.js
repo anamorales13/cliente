@@ -18,8 +18,8 @@ class InicioSesion extends Component {
     
     gettoken = true;
 
-    url = Global.url;
-    urlProfesor = GlobalProfesor.url;
+    url = Global.urlprofesor;
+    
 
     state = {
         alumno: {},
@@ -46,7 +46,7 @@ class InicioSesion extends Component {
             password: this.state.password
         }
 
-        axios.post(this.urlProfesor + 'login-admin', admin)
+        axios.post(this.url + 'login-admin', admin)
             .then(res => {
                 this.setState({
                     // alumno: res.data.users,

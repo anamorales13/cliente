@@ -205,11 +205,9 @@ class EditPerfil extends Component {
             this.state.selectedFile,
             this.state.selectedFile.name
         );
-        console.log("state.selected" + this.state.selectedFile.name);
+       
 
-        //1º eliminamos la imagen anterior
-        console.log("eliminar");
-        axios.delete(this.url + 'delete-image/' + this.state.identity._id)
+      /*  axios.delete(this.url + 'delete-image/' + this.state.identity._id)
             .then(res => {
                 console.log("sucess");
 
@@ -225,8 +223,24 @@ class EditPerfil extends Component {
                 })
                 localStorage.setItem('user', JSON.stringify(this.state.alumnoNuevo));
             })
+*/
 
-    }
+        axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formData)
+            .then(res=>{
+               console.log("en proceso")
+
+           
+            axios.put(this.url+ 'add-files/' + this.state.identity._id, res.data.image)  
+                .then(res=>{
+                    this.setState({
+                        alumnoNuevo: res.data.alumno,
+                        status: 'sucess',
+                        navigate:true
+                    })
+                    localStorage.setItem('user', JSON.stringify(this.state.alumnoNuevo));
+                });
+            })
+}
 
     updateImageProfesor = (e) => {
         e.preventDefault();
@@ -273,13 +287,13 @@ class EditPerfil extends Component {
                     <div id="content" className="grid">
                         <MenuPerfil />
                         <div className="avatar-edit" id="avatar-big">
-                            <img src={'https://plataforma-erasmus.herokuapp.com/public/' + this.state.identity.image} classname=" avatar-edit"></img>
+                            <img src={ this.state.identity.image} classname=" avatar-edit"></img>
 
                         </div>
                         <div>
                             <h1 className="titulo"> Editar Perfil </h1>
                             <div className="avatar-edit" id="avatar-responsive">
-                                <img src={'https://plataforma-erasmus.herokuapp.com/public/' + this.state.identity.image} classname=" avatar-edit"></img>
+                                <img src={this.state.identity.image} classname=" avatar-edit"></img>
 
                             </div>
                             <article className=" elemt-one-edit">

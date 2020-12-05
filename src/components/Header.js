@@ -11,7 +11,7 @@ import InicioSesion from './InicioSesion';
 import Global from '../Global';
 import GlobalMensaje from '../GlobalMensaje';
 import Badge from 'react-bootstrap/Badge';
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaSignOutAlt } from "react-icons/fa";
 
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
@@ -21,7 +21,7 @@ import axios from 'axios';
 
 class Header extends Component {
 
-    contador = '1';
+    
     url = Global.url;
     urlmensaje = GlobalMensaje.url;
     urlprofesor = Global.urlprofesor;
@@ -33,6 +33,7 @@ class Header extends Component {
         show: false,
         showadmin: false,
         open: 'cerrar',
+        contador:1,
 
     }
 
@@ -64,6 +65,7 @@ class Header extends Component {
     constructor(props) {
 
         super(props);
+      
     }
 
 
@@ -73,23 +75,30 @@ class Header extends Component {
         this.getNotificaciones();
     }
 
-    botonmenu = () => {
-        console.log(this.contador);
-        if (this.contador == '1') {
+    botonmenu  =()=>  {
+        console.log(this.state.contador);
+        if (this.state.contador == 1) {
             console.log("entro");
 
             var elem = document.getElementById('menuvar-responsive');
             elem.style.left = '0';
-            this.contador = '0';
+            this.setState({
+                contador:0
+            })
 
-        } else {
+        } 
+        if(this.state.contador=== 0){
             console.log("entro2");
-            this.contador = '1';
+            this.setState({
+                contador:1
+            })
             var elem = document.getElementById('menuvar-responsive');
             elem.style.left = '-100%';
         }
 
     }
+
+    
 
     handleClickAbrir() {
         this.setState({
@@ -136,13 +145,11 @@ class Header extends Component {
 
     render() {
 
-        const { navigate } = this.state.navigate
-
-
-        if (navigate) {
+       
+        if (this.state.navigate===true) {
             console.log("navigate");
             localStorage.clear();
-            return <Redirect to="/" push={true} />
+            return <Redirect exact to="/" push={true} replace />
         }
 
         return (
@@ -150,6 +157,12 @@ class Header extends Component {
             <header /*id="header"*/ className="background">
 
                 {/***** LOGO  ****  */}
+                <div >  
+                    <NavLink exact to="/inicio" id="logo">
+                        <img src={logo} id="logo-img"></img>
+                     </NavLink>
+                </div>
+
                 <div className="logo-responsive" >
                     <div className="menu_bar">
                         <a id="btn-menu" onClick={this.botonmenu}>
@@ -214,7 +227,7 @@ class Header extends Component {
 
                             {JSON.parse(localStorage.getItem('user')) != null &&
                                 <div className="perfil-header">
-                                    <img src={'https://plataforma-erasmus.herokuapp.com/public/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
+                                    <img src={ JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
                                     <h1>{JSON.parse(localStorage.getItem('user')).nombre}</h1>
                                     <DropdownButton id="dropdown-basic-button" style={{ left: "auto" }, { rigth: '85%' }} className="dropdown-menu.show drop-menu-peril"
                                         show={this.state.show}
@@ -226,7 +239,7 @@ class Header extends Component {
                                         <Link to="/user/erasmus" className="drop-link">Erasmus</Link>
                                         <Link to="/user/seguridad" className="drop-link">Constraseña</Link>
                                         <Link to="/solicitar_baja" className="drop-link">Solicitar baja</Link>
-                                        <Link onClick={this.cerrarSesion} className="drop-link">Cerrar Sesion</Link>
+                                        <Link onClick={() => this.setState({ navigate: true })} className="drop-link">Cerrar Sesion</Link>
                                     </DropdownButton>
                                 </div>
                             }
@@ -236,7 +249,7 @@ class Header extends Component {
                         <nav /*id="menu"*/ id="menuvar-responsive">
                             <ul >
                             <li >
-                                    <NavLink exact to="/inicio" activeClassName="active" onClick={this.botonmenu}> HOME </NavLink>
+                                    <NavLink exact to="/inicio" activeClassName="active" > HOME </NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/informacion" activeClassName="active" onClick={this.botonmenu}>    INFORMACIÓN </NavLink >
@@ -251,15 +264,19 @@ class Header extends Component {
                                     <div className="dropdown">
                                         <button className="dropbtn">PERFIL</button>
                                         <div class="dropdown-content">
-                                            <Link to="/user/profile" className="drop-link" onClick={this.botonmenu}>Perfil</Link>
-                                            <Link to="/user/edit" className="drop-link" onClick={this.botonmenu}>Editar Perfil</Link>
-                                            <Link to="/user/erasmus" className="drop-link" onClick={this.botonmenu}>Erasmus</Link>
-                                            <Link to="/user/seguridad" className="drop-link" onClick={this.botonmenu}>Constraseña</Link>
-                                            <Link to="/solicitar_baja" className="drop-link" onClick={this.botonmenu}>Solicitar baja</Link>
+                                            <Link to="/user/profile" className="drop-link" onClick={this.closemenu}>Perfil</Link>
+                                            <Link to="/user/edit" className="drop-link" onClick={this.closemenu}>Editar Perfil</Link>
+                                            <Link to="/user/erasmus" className="drop-link" onClick={this.closemenu}>Erasmus</Link>
+                                            <Link to="/user/seguridad" className="drop-link" onClick={this.closemenu}>Constraseña</Link>
+                                            <Link to="/solicitar_baja" className="drop-link" onClick={this.closemenu}>Solicitar baja</Link>
 
 
                                         </div>
                                     </div>
+                                </li>
+                                <br/><br/><br/><br/>
+                                <li>
+                                    <Link onClick={() => this.setState({ navigate: true })} className="drop-link"> <FaSignOutAlt/>  Cerrar Sesion</Link>
                                 </li>
 
 
@@ -317,7 +334,7 @@ class Header extends Component {
                             {JSON.parse(localStorage.getItem('user')) != null &&
                                 <div className="perfil-header">
 
-                                    <img src={'https://plataforma-erasmus.herokuapp.com/public/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
+                                    <img src={ JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
                                     <h1>{JSON.parse(localStorage.getItem('user')).nombre}</h1>
                                     <DropdownButton id="dropdown-basic-button" style={{ left: "auto" }, { rigth: '85%' }} className="dropdown-menu.show"
                                         show={this.state.show}
@@ -365,6 +382,10 @@ class Header extends Component {
 
                                         </div>
                                     </div>
+                                </li>
+                                <br/><br/><br/><br/>
+                                <li>
+                                    <Link onClick={() => this.setState({ navigate: true })} className="drop-link"> <FaSignOutAlt/>  Cerrar Sesion</Link>
                                 </li>
 
 
@@ -424,17 +445,17 @@ class Header extends Component {
                             {JSON.parse(localStorage.getItem('user')) != null &&
                                 <div className="perfil-header">
 
-                                    <img src={'https://plataforma-erasmus.herokuapp.com/public/' + JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
+                                    <img src={ JSON.parse(localStorage.getItem('user')).image} className="mini-avatar" ></img>
                                     <h1>{JSON.parse(localStorage.getItem('user')).nombre}</h1>
                                     <DropdownButton id="dropdown-basic-button" style={{ left: "auto" }, { rigth: '85%' }} className="dropdown-menu.show"
                                         show={this.state.show}
                                         onMouseEnter={this.showDropdown}
                                         onMouseLeave={this.hideDropdown}>
                                         <Link to="/user/profile" className="drop-link">Perfil</Link>
-                                        <Link to="/user/edit" className="drop-link">Editar Perfil</Link>
-                                        <Link to="/user/erasmus" className="drop-link">Erasmus</Link>
+                                       {/*  <Link to="/user/edit" className="drop-link">Editar Perfil</Link>*/}
+                                        {/*   <Link to="/user/erasmus" className="drop-link">Erasmus</Link>*/}
                                         <Link to="/user/seguridad" className="drop-link">Constraseña</Link>
-                                        <Link to="/solicitar_baja" className="drop-link">Solicitar baja</Link>
+                                        {/*   <Link to="/solicitar_baja" className="drop-link">Solicitar baja</Link>*/}
                                         <Link onClick={() => this.setState({ navigate: true })} className="drop-link">Cerrar Sesion</Link>
                                     </DropdownButton>
                                 </div>
@@ -474,16 +495,19 @@ class Header extends Component {
                                         <button className="dropbtn">PERFIL</button>
                                         <div class="dropdown-content">
                                             <Link to="/user/profile" className="drop-link" onClick={this.botonmenu}>Perfil</Link>
-                                            <Link to="/user/edit" className="drop-link" onClick={this.botonmenu}>Editar Perfil</Link>
-                                            <Link to="/user/erasmus" className="drop-link" onClick={this.botonmenu}>Erasmus</Link>
+                                          {/*   <Link to="/user/edit" className="drop-link" onClick={this.botonmenu}>Editar Perfil</Link>*/}
+                                           {/*   <Link to="/user/erasmus" className="drop-link" onClick={this.botonmenu}>Erasmus</Link>*/}
                                             <Link to="/user/seguridad" className="drop-link" onClick={this.botonmenu}>Constraseña</Link>
-                                            <Link to="/solicitar_baja" className="drop-link" onClick={this.botonmenu}>Solicitar baja</Link>
+                                            <Link to="/solicitar_baja" className="drop-link" onClick={this.botonmenu}>Solicitar baja</Link>*/}
 
 
                                         </div>
                                     </div>
                                 </li>
-
+                                <br/><br/><br/><br/>
+                                <li>
+                                    <Link onClick={() => this.setState({ navigate: true })} className="drop-link"> <FaSignOutAlt/>  Cerrar Sesion</Link>
+                                </li>
 
                             </ul>
 

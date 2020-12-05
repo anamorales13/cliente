@@ -10,7 +10,7 @@ import doc from '../assets/images/default-document.png';
 import Modal from 'react-bootstrap/Modal';
 import Moment from 'react-moment';
 import Card from 'react-bootstrap/Card';
-
+import {FaFileDownload} from 'react-icons/fa';
 
 class DocumentoOficial extends Component {
 
@@ -159,7 +159,7 @@ class DocumentoOficial extends Component {
                         this.state.identity.tipo === "profesor" &&
                         <div>
                             <h1 className="titulo-secundario">DOCUMENTOS OFICIALES</h1>
-                            <h4 className="subtitulo-doc">{this.state.alumno[0].nombre + " " + this.state.alumno[0].apellido1 + "  " + this.state.alumno[0].apellido2}</h4>
+                            <h4 className="subtitulo-doc" style={{marginBottom: '25px'}}>{this.state.alumno[0].nombre + " " + this.state.alumno[0].apellido1 + "  " + this.state.alumno[0].apellido2}</h4>
                         </div>
                     }
                     {
@@ -213,10 +213,8 @@ class DocumentoOficial extends Component {
                                             }
                                             {this.state.alumno[0].documentos[0].estado != 'No Presentado' &&
                                                 <div>
-                                                    <a id="link-doc" target="_blank" href={'https://plataforma-erasmus.herokuapp.com/publicdoc/' + this.state.alumno[0].documentos[1].url}>
-                                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cloud-arrow-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style={{ color: 'black', fontSize: '20px' }} title="descargar">
-                                                            <path fill-rule="evenodd" d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 6.854l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708z" />
-                                                        </svg>
+                                                    <a id="link-doc" target="_blank" href={this.state.alumno[0].documentos[0].image}>
+                                                        <FaFileDownload/>
                                                     </a>
                                                     <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[1].fecha}</Moment></h5>
                                                 </div>
@@ -267,10 +265,8 @@ class DocumentoOficial extends Component {
                                             }
                                             {this.state.alumno[0].documentos[1].estado != 'No Presentado' &&
                                                 <div>
-                                                    <a id="link-doc" target="_blank" href={'https://plataforma-erasmus.herokuapp.com/publicdoc/' + this.state.alumno[0].documentos[1].url}>
-                                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cloud-arrow-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style={{ color: 'black', fontSize: '20px' }} title="descargar">
-                                                            <path fill-rule="evenodd" d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 6.854l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708z" />
-                                                        </svg>
+                                                    <a id="link-doc" target="_blank" href={ this.state.alumno[0].documentos[1].image}>
+                                                    <FaFileDownload/>
                                                     </a>
                                                     <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[1].fecha}</Moment></h5>
                                                 </div>
@@ -324,10 +320,8 @@ class DocumentoOficial extends Component {
                                             }
                                             {this.state.alumno[0].documentos[2].estado != 'No Presentado' &&
                                                 <div>
-                                                    <a id="link-doc" target="_blank" href={'https://plataforma-erasmus.herokuapp.com/publicdoc/' + this.state.alumno[0].documentos[1].url}>
-                                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cloud-arrow-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style={{ color: 'black', fontSize: '20px' }} title="descargar">
-                                                            <path fill-rule="evenodd" d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 6.854l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708z" />
-                                                        </svg>
+                                                    <a id="link-doc" target="_blank" href={this.state.alumno[0].documentos[2].image}>
+                                                    <FaFileDownload/>
                                                     </a>
                                                     <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[1].fecha}</Moment></h5>
                                                 </div>
@@ -377,10 +371,8 @@ class DocumentoOficial extends Component {
                                             }
                                             {this.state.alumno[0].documentos[3].estado != 'No Presentado' &&
                                                 <div>
-                                                    <a id="link-doc" target="_blank" href={'https://plataforma-erasmus.herokuapp.com/publicdoc/' + this.state.alumno[0].documentos[1].url}>
-                                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cloud-arrow-down-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style={{ color: 'black', fontSize: '20px' }} title="descargar">
-                                                            <path fill-rule="evenodd" d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2zm2.354 6.854l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 9.293V5.5a.5.5 0 0 1 1 0v3.793l1.146-1.147a.5.5 0 0 1 .708.708z" />
-                                                        </svg>
+                                                    <a id="link-doc" target="_blank" href={ this.state.alumno[0].documentos[3].image}>
+                                                    <FaFileDownload/>
                                                     </a>
                                                     <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[1].fecha}</Moment></h5>
                                                 </div>

@@ -12,8 +12,8 @@ import ButtonIcon from '@material-ui/core/Button';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import Modal from 'react-bootstrap/Modal';
 import "../assets/css/dropbox.css";
-
 import SimpleReactValidator from 'simple-react-validator';
+
 
 class NuevoDocumento extends Component {
 
@@ -38,7 +38,7 @@ class NuevoDocumento extends Component {
             selectedFile: null,
             open: false,
             identity: JSON.parse(localStorage.getItem('user')),
-            
+
 
 
         };
@@ -59,7 +59,7 @@ class NuevoDocumento extends Component {
             this.setState({
                 documento: {
                     title: this.titleRef.current.value,
-                    url: this.fileRef.current.value,
+                    //  url: this.fileRef.current.value,
                     nombre: this.state.identity._id,
                     tipoDocumento: null,
                     tipousuario: this.state.identity.tipo,
@@ -69,14 +69,14 @@ class NuevoDocumento extends Component {
             });
         }
         else {
-            if(this.state.identity.tipo==="profesor"){
-                var alumnoid ={ alumno:this.props.alumno}
-                console.log("change - profesor"+ alumnoid.alumno)
+            if (this.state.identity.tipo === "profesor") {
+                var alumnoid = { alumno: this.props.alumno }
+                console.log("change - profesor" + alumnoid.alumno)
                 console.log("message:" + this.props.message);
                 this.setState({
                     documento: {
                         title: this.titleRef.current.value,
-                        url: this.fileRef.current.value,
+                        //    url: this.fileRef.current.value,
                         nombre: this.state.identity._id, //propietario
                         nombre2: alumnoid.alumno,
                         tipoDocumento: null,
@@ -85,11 +85,11 @@ class NuevoDocumento extends Component {
                         tipo_nube: "compartida"
                     }
                 });
-            }else{
+            } else {
                 this.setState({
                     documento: {
                         title: this.titleRef.current.value,
-                        url: this.fileRef.current.value,
+                        //   url: this.fileRef.current.value,
                         nombre: this.state.identity._id, //propietario
                         nombre2: this.state.identity.profesor,
                         tipoDocumento: null,
@@ -99,7 +99,7 @@ class NuevoDocumento extends Component {
                     }
                 });
             }
-          
+
         }
     }
 
@@ -135,13 +135,14 @@ class NuevoDocumento extends Component {
 
         const formData = new FormData();
 
-       
-
         formData.append(
             'file0',
             this.state.selectedFile,
             this.state.selectedFile.name
         );
+
+        var docId;
+       
 
         axios.post(this.url + 'saveDoc', this.state.documento)
             .then(res => {
@@ -153,15 +154,26 @@ class NuevoDocumento extends Component {
                     });
 
 
-                    var docId = this.state.documento._id;
-                  
-                    axios.post(this.url + 'upload-image/' + docId, formData)
-                        .then(res => {
-                            if (res.data.documento) {
+                    docId = this.state.documento._id;
+                    console.log("id del documento" + docId);
+                }
+
+
+                axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formData)
+                    .then(res => {
+                        console.log("en proceso")
+
+
+                        axios.put(this.url + 'add-files/' + docId, res.data.image)
+                       
+
+                            .then(res => {
                                 this.setState({
-                                    documento: res.data.documento,
-                                    status: 'sucess'
-                                });
+
+                                    status: 'sucess',
+
+                                })
+
                                 swal({
                                     title: 'Documento creado con exito',
                                     text: "El documento ha sido creado correctamente",
@@ -173,24 +185,13 @@ class NuevoDocumento extends Component {
                                             window.location.reload(true);
                                         }
                                     });
-                            } else {
-                                this.setState({
-                                    documento: res.data.documento,
-                                    status: 'failed'
-                                });
-                            }
-                        });
 
-                    //ERROR!
-                } else {
+                            });
 
-                    this.setState({
-                        status: 'failed'
+
                     });
-                }
-
-
             });
+
 
     }
 
@@ -200,83 +201,88 @@ class NuevoDocumento extends Component {
         e.preventDefault();
         const formDatadoc = new FormData();
 
+
+        console.log(this.state.selectedFile);
+
         formDatadoc.append(
             'file0',
             this.state.selectedFile,
             this.state.selectedFile.name
         );
 
+
         // VENTANA ALUMNO
         if (this.props.type === "nuevo") {
-           console.log("file:"+ formDatadoc);
-            axios.put(this.urldocoficial + 'upload-image/' + this.state.identity._id + '/' + this.state.nombre, formDatadoc)
+
+        
+
+            axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formDatadoc)
                 .then(res => {
-                    if (res.data.userUpdate) {
-                        this.setState({
-                            documentoOficial: res.data.userUpdate,
+                    console.log("en proceso")
+
+
+                    axios.put(this.urldocoficial + 'add-files-oficial/' + this.state.identity._id + '/' + this.state.nombre, res.data.image)
+                        
+                   
+
+                    .then(res => {
+                            this.setState({
+                                status: 'sucess',
+
+                            })
+
+
+                            swal({
+                                title: 'Documento creado con exito',
+                                text: "El documento ha sido creado correctamente",
+                                icon: "sucess",
+                                buttons: true,
+                            })
+                                .then((value) => {
+                                    if (value) {
+                                        window.location.reload(true);
+                                    }
+                                });
 
                         });
-                       
-
-                        swal({
-                            title: 'Documento creado con exito',
-                            text: "El documento ha sido creado correctamente",
-                            icon: "sucess",
-                            buttons: true,
-                        })
-                            .then((value) => {
-                                if (value) {
-                                    window.location.reload(true);
-                                }
-                            });
-
-                        //enviar notificación:
-                        this.notificarProfesor(this.state.documentoOficial.nombre);
-
-                    } else {
-                       
-                        this.setState({
-                            // documentoOficial: res.data.documento,
-                            statuss: 'failed'
-                        });
-                    }
 
 
                 });
+
+
             //VENTANA PROFESOR
         } else {
-           
-            axios.put(this.urldocoficial + 'upload-image/' + this.props.type + '/' + this.state.nombre, formDatadoc)
+
+            axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formDatadoc)
                 .then(res => {
-                    if (res.data.userUpdate) {
-                        this.setState({
-                            documentoOficial: res.data.userUpdate,
+                    console.log("en proceso")
+
+
+                    axios.put(this.urldocoficial + 'add-files-oficial/' + this.props.type + '/' + this.state.nombre, res.data.image)
+                        .then(res => {
+                            this.setState({
+                                status: 'sucess',
+
+                            })
+
+                            swal({
+                                title: 'Documento creado con exito',
+                                text: "El documento ha sido creado correctamente",
+                                icon: "sucess",
+                                buttons: true,
+                            })
+                                .then((value) => {
+                                    if (value) {
+                                        window.location.reload(true);
+                                    }
+                                });
 
                         });
-                        
-                        swal({
-                            title: 'Documento creado con exito',
-                            text: "El documento ha sido creado correctamente",
-                            icon: "sucess",
-                            buttons: true,
-                        })
-                            .then((value) => {
-                                if (value) {
-                                    window.location.reload(true);
-                                }
-                            });
-                        this.notificarAlumno();
-
-                    } else {
-                       
-                        this.setState({
-                            // documentoOficial: res.data.documento,
-                            statuss: 'failed'
-                        });
-                    }
 
 
                 });
+
+
         }
 
 
@@ -390,8 +396,11 @@ class NuevoDocumento extends Component {
                         <Modal.Header closeButton>
                             <Modal.Title>SUBIR ARCHIVO</Modal.Title>
                         </Modal.Header>
+                        <strong style={{ textAlign: 'center', fontSize: '16px' }}>¡Recuerda!</strong>
+                        <h5 style={{ textAlign: 'center', fontSize: '16px' }}>Sólo se pueden subir imagenes o archivos con formato .pdf .jpg ó .png</h5>
                         <Modal.Body>
-                            <form onSubmit={this.saveDocument} className="nuevo-doc">
+
+                            <form onSubmit={this.saveDocument} className="nuevo-doc" enctype="multipart/form-data">
                                 <div >
                                     {/*<label for="tittle">Titulo:</label>*/}
                                     <input type="text" id="tittle" name="tittle" ref={this.titleRef} placeholder="Titulo" className="form-input-nuevo" maxlength="35" />
@@ -399,7 +408,7 @@ class NuevoDocumento extends Component {
                                 </div>
                                 <div >
                                     {/*<label for="tittle">Titulo:</label>*/}
-                                    <textarea type="text" id="descripcion" name="descripcion" ref={this.descripcionRef} maxlength="80" placeholder="Comentario (opcional)" className="form-input-nuevo" style={{ resize:'none'}} />
+                                    <textarea type="text" id="descripcion" name="descripcion" ref={this.descripcionRef} maxlength="80" placeholder="Comentario (opcional)" className="form-input-nuevo" style={{ resize: 'none' }} />
 
                                 </div>
                                 <div id="div_file" >
@@ -417,6 +426,7 @@ class NuevoDocumento extends Component {
 
                         </Modal.Footer>
                     </Modal>
+
                 </div>
             );
         } else if (this.props.type === "documento-particular") {
@@ -430,17 +440,20 @@ class NuevoDocumento extends Component {
                     <Modal show={this.state.open} onHide={this.onCloseModal} animation={false}>
                         <Modal.Header closeButton>
                             <Modal.Title>SUBIR ARCHIVO</Modal.Title>
+
                         </Modal.Header>
+                        <strong style={{ textAlign: 'center', fontSize: '16px' }}>¡Recuerda!</strong>
+                        <h5 style={{ textAlign: 'center', fontSize: '16px' }}>Sólo se pueden subir imagenes o archivos con formato .pdf .jpg ó .png</h5>
                         <Modal.Body>
-                            <form onSubmit={this.saveDocument} className="nuevo-doc">
+                            <form onSubmit={this.saveDocument} className="nuevo-doc" encType="multipart/form-data">
                                 <div >
                                     {/*<label for="tittle">Titulo:</label>*/}
-                                    <input type="text" id="tittle" name="tittle" ref={this.titleRef} placeholder="Titulo"  maxlength="35" className="form-input-nuevo" />
+                                    <input type="text" id="tittle" name="tittle" ref={this.titleRef} placeholder="Titulo" maxlength="35" className="form-input-nuevo" />
                                     {this.validator.message('tittle', this.state.documento.title, 'required')}
                                 </div>
                                 <div >
                                     {/*<label for="tittle">Titulo:</label>*/}
-                                    <textarea type="text" id="descripcion" name="descripcion" ref={this.descripcionRef}  maxlength="80" placeholder="Comentario (opcional)" className="form-input-nuevo" style={{ resize:'none'}} />
+                                    <textarea type="text" id="descripcion" name="descripcion" ref={this.descripcionRef} maxlength="80" placeholder="Comentario (opcional)" className="form-input-nuevo" style={{ resize: 'none' }} />
 
                                 </div>
                                 <div id="div_file" >
@@ -458,6 +471,8 @@ class NuevoDocumento extends Component {
 
                         </Modal.Footer>
                     </Modal>
+
+                   
                 </div>
             );
         } else {
@@ -470,11 +485,13 @@ class NuevoDocumento extends Component {
 
                     <Modal show={this.state.open} onHide={this.onCloseModal} animation={false}>
                         <Modal.Header closeButton>
-                            <Modal.Title>SUBIR ARCHIVO</Modal.Title>
+                            <Modal.Title>SUBIR DOCUMENTO</Modal.Title>
                         </Modal.Header>
+                        <strong style={{ textAlign: 'center', fontSize: '16px' }}>¡Recuerda!</strong>
+                        <h5 style={{ textAlign: 'center', fontSize: '16px' }}>Sólo se pueden subir documentos con formato .pdf </h5>
                         <Modal.Body>
 
-                            <form onSubmit={this.saveDocOficial} className="nuevo-doc">
+                            <form onSubmit={this.saveDocOficial} className="nuevo-doc" enctype="multipart/form-data">
                                 <div className="form-subir">
                                     <label for="tittle">Seleccionar documento:</label>
                                     <select className="form-input-nuevo" ref={this.nombreRef} onChange={this.handleChange('nombre')}>
@@ -501,6 +518,8 @@ class NuevoDocumento extends Component {
 
                         </Modal.Footer>
                     </Modal>
+
+                    
                 </div>
 
             );

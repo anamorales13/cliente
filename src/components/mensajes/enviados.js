@@ -125,7 +125,7 @@ class enviados extends Component {
 
                             <Card style={{ width: '70em' }} className="card-mensajes row no-gutters ">
                           
-                                <Card.Img variant="left" src={'https://plataforma-erasmus.herokuapp.com/public/' + this.state.identity.image} className="image-user" />
+                                <Card.Img variant="left" src={ this.state.identity.image} className="image-user" />
                               
                                 <Card.Body id="cardbody">
                                 <Link to={'/mensajes/' + mensajes._id}>
