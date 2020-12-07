@@ -145,12 +145,12 @@ class Header extends Component {
 
     render() {
         //<Redirect exact to="/" push={true} replace />
-      
+       // window.location.href = '/';
 
         if (this.state.navigate === true) {
             console.log("navigate");
             localStorage.clear();
-            return window.location.href = '/';
+            return <Redirect exact to="/" push={true} replace />
         }
 
         return (
