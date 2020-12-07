@@ -28,7 +28,8 @@ class InicioSesion extends Component {
         status: 'waiting',
         nuevoAlumno: {},
         token: "",
-        navigate: false
+        navigate: false,
+        message: "",
     };
 
 
@@ -50,11 +51,11 @@ class InicioSesion extends Component {
         e.preventDefault();
         this.change();
         var elem = document.getElementById('fp-container');
-        elem.style.display='block'
+        elem.style.display = 'block'
 
         axios.post(this.urlProfesor + 'login', this.state.nuevoAlumno)
             .then(res => {
-                elem.style.display='none'
+
                 this.setState({
                     // alumno: res.data.users,
                     sucess: 'sucess',
@@ -65,23 +66,20 @@ class InicioSesion extends Component {
                 });
 
                 //persistir los datos del usuario
-              
+
                 localStorage.setItem('user', JSON.stringify(this.state.alumno));
-              //  localStorage.setItem('token', this.state.token);
-              //  window.location.assign('/inicio')
-                elem.style.display='none'
-                return <Redirect to="/inicio" push={true} />
+                //  localStorage.setItem('token', this.state.token);
+                //  window.location.assign('/inicio')
+                elem.style.display = 'none'
+               return <Redirect to="/inicio" push={true} />
             })
             .catch(err => {
                 this.setState({
                     alumno: {},
-                    status: 'failed'
+                    status: 'failed',
+                    message: "Nombre de usuario o contraseña incorrecto."
                 });
-                swal(
-                    '¡Error!',
-                    'Nombre de usuario o contraseña incorrectos',
-                    'error'
-                )
+                elem.style.display = 'none'
             });
         this.forceUpdate();
     }
@@ -91,11 +89,11 @@ class InicioSesion extends Component {
         this.change();
 
         var elem = document.getElementById('fp-container');
-        elem.style.display='block'
+        elem.style.display = 'block'
 
         axios.post('https://plataforma-erasmus.herokuapp.com/apiErasmus/login', this.state.nuevoAlumno)
             .then(res => {
-                elem.style.display='none'
+
                 this.setState({
                     // alumno: res.data.users,
                     sucess: 'sucess',
@@ -110,17 +108,19 @@ class InicioSesion extends Component {
                 localStorage.setItem('user', JSON.stringify(this.state.alumno));
                 //  localStorage.setItem('token', this.state.token);
                 //  localStorage.setItem('tipo', 'alumno');
-               // window.location.assign('/inicio')
-                elem.style.display='none'
-                return <Redirect to="/inicio" push={true} />
+                // window.location.assign('/inicio')
+                elem.style.display = 'none'
+                
+              return <Redirect to="/inicio" push={true} />
                 //  this.get_token();
             })
             .catch(err => {
                 this.setState({
                     alumno: {},
-                    status: 'failed'
+                    status: 'failed',
+                    message: "Nombre de usuario o contraseña incorrecto"
                 });
-
+                elem.style.display = 'none'
             });
         this.forceUpdate();
 
@@ -173,6 +173,11 @@ class InicioSesion extends Component {
                                 <div className="cabecera-login">
                                     <h3 className="title-login" style={{ fontSize: '25px' }}>INICIAR SESIÓN </h3>
                                     <h1 className="title-login" style={{ fontSize: '18px' }}><strong>PROFESOR</strong>   </h1>
+                                    {this.state.message !== "" &&
+
+                                        <label style={{ color: '#A6250E', backgroundColor: '#F7A99C', width: '60%', textAlign: 'center', margin: 'auto', display: 'block', fontWeight: 'bold', marginTop: '20px' }}>
+                                            {this.state.message}</label>
+                                    }
                                     <Link to={{
                                         pathname: '/nuevoProfesor',
                                         state: {
@@ -181,6 +186,8 @@ class InicioSesion extends Component {
                                     }} className="link-nuevoUsuario" > Registrarse</Link>
 
                                 </div>
+
+
                                 <Form onSubmit={this.getProfesor} >
                                     {/*<div className="form-login">*/}
 
@@ -237,7 +244,11 @@ class InicioSesion extends Component {
                                 <div className="cabecera-login">
                                     <h3 className="title-login" style={{ fontSize: '25px' }}>INICIAR SESIÓN </h3>
                                     <h1 className="title-login" style={{ fontSize: '18px' }}><strong>ALUMNOS</strong>   </h1>
+                                    {this.state.message !== "" &&
 
+                                        <label style={{ color: '#A6250E', backgroundColor: '#F7A99C', width: '60%', textAlign: 'center', margin: 'auto', display: 'block', fontWeight: 'bold', marginTop: '20px' }}>
+                                            {this.state.message}</label>
+                                    }
                                     <Link to={{
                                         pathname: '/nuevoUsuario',
                                         state: {
@@ -245,6 +256,7 @@ class InicioSesion extends Component {
                                         }
                                     }} className="link-nuevoUsuario" > Registrarse</Link>
                                 </div>
+
                                 <form onSubmit={this.getAlumno} >
                                     <div className="form-group ">
 
