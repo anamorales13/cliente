@@ -92,6 +92,7 @@ export class Useform extends Component {
 
         axios.post(this.url + 'save', body)
             .then(res => {
+                
                 this.setState({
                     alumno: res.data.alumno
                 })
@@ -100,7 +101,7 @@ export class Useform extends Component {
                 this.setState({
                     alumnos: {},
                     status: 'failed',
-                    message: res.data.message
+                   
                 });
             });
     }
