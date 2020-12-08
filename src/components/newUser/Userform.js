@@ -33,6 +33,7 @@ export class Useform extends Component {
         alumno: {},
         profesor: {},
         errors: {},
+        message:"",
 
     }
 
@@ -95,6 +96,13 @@ export class Useform extends Component {
                     alumno: res.data.alumno
                 })
             })
+            .catch(err => {
+                this.setState({
+                    alumnos: {},
+                    status: 'failed',
+                    message: res.data.message
+                });
+            });
     }
 
 
@@ -103,8 +111,8 @@ export class Useform extends Component {
         const { step } = this.state;
 
 
-        const { nombre, apellido1, apellido2, usuario, password1, password2, email1, email2, telefono, destino, alumno, profesor, despacho } = this.state;
-        const values = { nombre, apellido1, apellido2, usuario, password1, password2, email1, email2, telefono, destino, alumno, profesor, despacho }
+        const { nombre, apellido1, apellido2, usuario, password1, password2, email1, email2, telefono, destino, alumno, profesor, despacho, message } = this.state;
+        const values = { nombre, apellido1, apellido2, usuario, password1, password2, email1, email2, telefono, destino, alumno, profesor, despacho , message}
         const { tipo } = this.props.location.state
 
         switch (step) {

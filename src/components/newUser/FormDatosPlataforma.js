@@ -110,6 +110,10 @@ export class FormDatosPlataforma extends Component {
                     <div className="subtitulo">Es posible que otros usuarios puedan ver parte de la infomación al usar la plataforma. </div>
                     <Link to='/' className="link-cancelar">Cancelar registro de usuario</Link><br />
                     <Card className="card-nuevoUser">
+
+                        {values.message !== "" &&
+                        <label>{values.message}</label>
+                        }
                         <Form>
                             <Form.Group >
                                 <Form.Control

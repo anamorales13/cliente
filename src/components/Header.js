@@ -150,7 +150,7 @@ class Header extends Component {
         if (this.state.navigate === true) {
             console.log("navigate");
             localStorage.clear();
-            return <Redirect exact to="/" push={true} replace />
+            return window.location.href = 'https://anamorales13.github.io/cliente';
         }
 
         return (
