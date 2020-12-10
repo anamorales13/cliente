@@ -11,7 +11,7 @@ const Join = () => {
 
     const [room, setRoom] = useState('');
     const identity = JSON.parse(localStorage.getItem('user'));
-    const nombre = identity.nombre + "-" + identity.apellido1;
+    const nombre = identity.usuario;
    
     const name = nombre;
     return (
