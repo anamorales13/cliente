@@ -28,7 +28,7 @@ export class FormDatosPersonales extends Component {
 
     validate = e => {
         const errors = {};
-        let regex = new RegExp("^[a-z A-Z ]+$");
+        let regex = new RegExp("^[a-z A-Z À-ÿ\u00f1\u00d1 ]+$");
         let regexnumeros = new RegExp("[0-9]{9}");
 
         //NOMBRE 
@@ -145,7 +145,7 @@ export class FormDatosPersonales extends Component {
                         <Card className="card-nuevoUser">
                             <Form>
                                 <Form.Row>
-                                                                    <Form.Group as={Col} >
+                                    <Form.Group as={Col} >
                                         <Form.Control
                                             onChange={handleChange('nombre')}
                                             defaultValue={values.nombre}
@@ -158,7 +158,7 @@ export class FormDatosPersonales extends Component {
                                         />
                                         {this.state.errors.nombre && <Form.Label style={{ color: 'red', fontSize: '12px' }}>{this.state.errors.nombre}</Form.Label>}
                                     </Form.Group>
-                                   
+
                                 </Form.Row>
 
                                 <Form.Row>
@@ -194,11 +194,20 @@ export class FormDatosPersonales extends Component {
                                                 type="email"
                                                 placeholder="Correo electrónico *"
                                                 name="email1" />
+
                                             {tipo == "alumno" &&
                                                 < div className="input-group-append">
                                                     <span className="input-group-text" style={{ fontSize: '14px', border: 'solid 1px rgb(153, 153, 153)' }}>@alu.uhu.es</span>
                                                 </div>
                                             }
+                                            {tipo === 'profesor' &&
+                                                < div className="input-group-append">
+                                                    <span className="input-group-text" style={{ fontSize: '14px', border: 'solid 1px rgb(153, 153, 153)' }}>.uhu.es</span>
+                                                </div>
+                                            }
+
+
+
 
 
                                         </InputGroup>
@@ -217,6 +226,11 @@ export class FormDatosPersonales extends Component {
                                             {tipo == "alumno" &&
                                                 < div className="input-group-append">
                                                     <span className="input-group-text" style={{ fontSize: '14px', border: 'solid 1px rgb(153, 153, 153)' }}>@alu.uhu.es</span>
+                                                </div>
+                                            }
+                                              {tipo === 'profesor' &&
+                                                < div className="input-group-append">
+                                                    <span className="input-group-text" style={{ fontSize: '14px', border: 'solid 1px rgb(153, 153, 153)' }}>.uhu.es</span>
                                                 </div>
                                             }
 

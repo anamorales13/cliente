@@ -25,6 +25,7 @@ import destinos from './components/admin/destinos';
 import profesores from './components/admin/gestionProfesores';
 import editardestino from './components/admin/editDestinos';
 import borrardestino from './components/admin/borrardestino';
+import listarDestinos from './components/admin/listarDestinos';
 import baja from './components/baja';
 import coordinador from './components/admin/coordinador';
 import deleteProfesor from './components/admin/deleteProfesor';
@@ -65,6 +66,7 @@ class Rutas extends Component {
                             <Route exact path="/gestino-profesores" component={profesores}/>
                             <Route exact path="/editar-destinos" component={editardestino}/>
                             <Route exact path="/borrar-destinos" component={borrardestino}/>
+                            <Route exact path="/listar-destinos" component={listarDestinos}/>
                             <Route exact path="/solicitar_baja" component={baja}/>
                             <Route exact path="/cambiar-coordinador" component={coordinador} />
                             <Route exact path="/dar_de_baja" component={deleteProfesor}/>

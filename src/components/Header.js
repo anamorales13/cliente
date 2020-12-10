@@ -412,13 +412,14 @@ class Header extends Component {
                                     <Link to="/destinos" className="drop-link">Nuevo destino</Link>
                                     <Link to="/editar-destinos" className="drop-link">Editar destinos</Link>
                                     <Link to="/borrar-destinos" className="drop-link">Borrar destinos</Link>
+                                    <Link to="/listar-destinos" className="drop-link">Ver destinos</Link>
                                 </div>
                             </div>
 
                             <div class="dropdown">
                                 <button class="dropbtn">GESTIÓN PROFESORES</button>
                                 <div class="dropdown-content">
-                                    <Link to="/dar_de_baja" className="drop-link">Eliminar profesor</Link>
+                                    <Link to="/dar_de_baja" className="drop-link">Baja profesor</Link>
                                     <Link to="/cambiar-coordinador" className="drop-link"> Cambiar coordinador de centro</Link>
 
                                 </div>
@@ -452,7 +453,7 @@ class Header extends Component {
                                         onMouseEnter={this.showDropdown}
                                         onMouseLeave={this.hideDropdown}>
                                         <Link to="/user/profile" className="drop-link">Perfil</Link>
-                                        {/*  <Link to="/user/edit" className="drop-link">Editar Perfil</Link>*/}
+                                         <Link to="/user/edit" className="drop-link">Editar Perfil</Link>
                                         {/*   <Link to="/user/erasmus" className="drop-link">Erasmus</Link>*/}
                                         <Link to="/user/seguridad" className="drop-link">Constraseña</Link>
                                         {/*   <Link to="/solicitar_baja" className="drop-link">Solicitar baja</Link>*/}
@@ -477,6 +478,7 @@ class Header extends Component {
                                             <Link to="/destinos" className="drop-link" onClick={this.botonmenu}>Nuevo destino</Link>
                                             <Link to="/editar-destinos" className="drop-link" onClick={this.botonmenu}>Editar destinos</Link>
                                             <Link to="/borrar-destinos" className="drop-link" onClick={this.botonmenu}> Borrar destinos</Link>
+                                            <Link to="/listar-destinos" className="drop-link" onClick={this.botonmenu}>Ver destinos</Link>
                                         </div>
                                     </div>
                                 </li>
@@ -484,7 +486,7 @@ class Header extends Component {
                                     <div class="dropdown">
                                         <button class="dropbtn">GESTIÓN PROFESORES</button>
                                         <div class="dropdown-content">
-                                            <Link to="/dar_de_baja" className="drop-link" onClick={this.botonmenu}>Eliminar profesor</Link>
+                                            <Link to="/dar_de_baja" className="drop-link" onClick={this.botonmenu}>Baja profesor</Link>
                                             <Link to="/cambiar-coordinador" className="drop-link" onClick={this.botonmenu}> Cambiar coordinador de centro</Link>
 
                                         </div>
@@ -495,7 +497,7 @@ class Header extends Component {
                                         <button className="dropbtn">PERFIL</button>
                                         <div class="dropdown-content">
                                             <Link to="/user/profile" className="drop-link" onClick={this.botonmenu}>Perfil</Link>
-                                            {/*   <Link to="/user/edit" className="drop-link" onClick={this.botonmenu}>Editar Perfil</Link>*/}
+                                               <Link to="/user/edit" className="drop-link" onClick={this.botonmenu}>Editar Perfil</Link>
                                             {/*   <Link to="/user/erasmus" className="drop-link" onClick={this.botonmenu}>Erasmus</Link>*/}
                                             <Link to="/user/seguridad" className="drop-link" onClick={this.botonmenu}>Constraseña</Link>
 

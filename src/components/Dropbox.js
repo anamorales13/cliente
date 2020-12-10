@@ -287,11 +287,11 @@ class Dropbox extends Component {
                 </div>
 
             );
-        } else {
+        } else if (this.state.docprofesor === undefined) {
             return (
                 <div className="grid-documentos">
                     <div >
-                        <h1 className="titulo-secundario">DROPBOX</h1>
+                        <h1 className="titulo-secundario">NUBE COMPARTIDA</h1>
                         {this.props.match.params.nombre != null &&
                             <h4 className="subtitulo-doc">{this.props.match.params.nombre + " " + this.props.match.params.apellido1 + "  " + this.props.match.params.apellido2}</h4>
                         }
@@ -300,9 +300,10 @@ class Dropbox extends Component {
                     <div className=" grid-documentos-col">
                         <div>
                             <div style={{ textAlign: 'center' }}>
-                                <Spinner animation="border" role="status" >
-                                    <span className="sr-only">Loading...</span>
-                                </Spinner>
+                            
+                                 <h4 className="subheader">No hay documentos para mostrar</h4>
+                                 <p>Todavia no hay contenido en esta sección</p>
+                    
 
                             </div>
 
@@ -320,6 +321,36 @@ class Dropbox extends Component {
                 </div>
             );
 
+        }else{
+            <div className="grid-documentos">
+            <div >
+                <h1 className="titulo-secundario">NUBE COMPARTIDA</h1>
+                {this.props.match.params.nombre != null &&
+                    <h4 className="subtitulo-doc">{this.props.match.params.nombre + " " + this.props.match.params.apellido1 + "  " + this.props.match.params.apellido2}</h4>
+                }
+                <h1 className="titulo-doc"></h1>
+            </div>
+            <div className=" grid-documentos-col">
+                <div>
+                    <div style={{ textAlign: 'center' }}>
+                    
+                    <Spinner animation="border" role="status" style={{ textAlign: 'center' }}>
+                                    <span className="sr-only">Loading...</span>
+                                </Spinner>
+                    </div>
+
+                </div>
+                <div className="btn-docOficial">
+
+
+                    <NuevoDocumento type="documento" alumno={this.props.match.params.id} message="hola" />
+
+
+                </div>
+
+            </div>
+
+        </div>
         }
 
 

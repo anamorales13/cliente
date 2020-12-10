@@ -11,7 +11,7 @@ import imagenalumno from '../assets/images/boton-alumno.png';
 import imagenprof from '../assets/images/boton-profesor.png';
 import '../assets/css/InicialScreen.css';
 import Form from 'react-bootstrap/Form';
-
+import Spinner from 'react-bootstrap/Spinner';
 
 class InicioSesion extends Component {
 
@@ -45,6 +45,8 @@ class InicioSesion extends Component {
             usuario: this.state.usuario,
             password: this.state.password
         }
+        var elem = document.getElementById('fp-container');
+        elem.style.display = 'block'
 
         axios.post(this.url + 'login-admin', admin)
             .then(res => {
@@ -56,12 +58,12 @@ class InicioSesion extends Component {
                     navigate: true
 
                 });
-
+            
                 //persistir los datos del usuario
                 console.log(JSON.stringify(this.state.alumno));
                 localStorage.setItem('user', JSON.stringify(this.state.alumno));
                 localStorage.setItem('token', this.state.token);
-
+                elem.style.display = 'none'
                 //  this.get_token();
             })
             .catch(err => {
@@ -148,7 +150,9 @@ class InicioSesion extends Component {
                     <div id="administrador" style={{marginTop:'20px'}}>
                     <label>¿No eres administrador?</label> <Link to={"/"}>Inicia sesión aquí</Link>
                  </div>
-               
+                 <div className="fp-container" id="fp-container">
+                    <Spinner animation="border" role="status" className="fp-loader"></Spinner>
+                </div>
             </div>
 
 

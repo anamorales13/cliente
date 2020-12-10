@@ -135,41 +135,150 @@ class NuevoDocumento extends Component {
 
         const formData = new FormData();
 
-        formData.append(
-            'file0',
-            this.state.selectedFile,
-            this.state.selectedFile.name
-        );
+
 
         var docId;
-       
+        if (this.validator.allValid()) {
+            formData.append(
+                'file0',
+                this.state.selectedFile,
+                this.state.selectedFile.name
+            );
 
-        axios.post(this.url + 'saveDoc', this.state.documento)
-            .then(res => {
-                if (res.data.documento) {
+            axios.post(this.url + 'saveDoc', this.state.documento)
+                .then(res => {
+                    if (res.data.documento) {
 
-                    this.setState({
-                        documento: res.data.documento,
-                        status: 'waiting'
-                    });
-
-
-                    docId = this.state.documento._id;
-                    console.log("id del documento" + docId);
-                }
+                        this.setState({
+                            documento: res.data.documento,
+                            status: 'waiting'
+                        });
 
 
-                axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formData)
+                        docId = this.state.documento._id;
+                        console.log("id del documento" + docId);
+                    }
+
+
+                    axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formData)
+                        .then(res => {
+                            console.log("en proceso")
+
+                            if (res.data.image) {
+                                axios.put(this.url + 'add-files/' + docId, res.data.image)
+
+
+                                    .then(res => {
+                                        this.setState({
+
+                                            status: 'sucess',
+
+                                        })
+
+                                        swal({
+                                            title: 'Documento creado con exito',
+                                            text: "El documento ha sido creado correctamente",
+                                            icon: "sucess",
+                                            buttons: true,
+                                        })
+                                            .then((value) => {
+                                                if (value) {
+                                                    window.location.reload(true);
+                                                }
+                                            });
+
+                                    });
+
+                            }
+                        });
+                });
+        } else {
+            this.forceUpdate();
+            this.validator.showMessages();
+        }
+
+
+    }
+
+
+    saveDocOficial = (e) => {
+
+        e.preventDefault();
+        const formDatadoc = new FormData();
+
+
+        console.log(this.state.selectedFile);
+
+
+        // VENTANA ALUMNO
+        if (this.props.type === "nuevo") {
+
+            if (this.validator.allValid()) {
+
+                formDatadoc.append(
+                    'file0',
+                    this.state.selectedFile,
+                    this.state.selectedFile.name
+                );
+
+                axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formDatadoc)
                     .then(res => {
                         console.log("en proceso")
 
 
-                        axios.put(this.url + 'add-files/' + docId, res.data.image)
-                       
+                        axios.put(this.urldocoficial + 'add-files-oficial/' + this.state.identity._id + '/' + this.state.nombre, res.data.image)
+
+
 
                             .then(res => {
                                 this.setState({
+                                    status: 'sucess',
 
+                                })
+
+
+                                swal({
+                                    title: 'Documento creado con exito',
+                                    text: "El documento ha sido creado correctamente",
+                                    icon: "sucess",
+                                    buttons: true,
+                                })
+                                    .then((value) => {
+                                        if (value) {
+                                            window.location.reload(true);
+                                        }
+                                    });
+
+                            });
+
+
+                    });
+
+            } else {
+                this.forceUpdate();
+                this.validator.showMessages();
+            }
+
+            //VENTANA PROFESOR
+        } else {
+
+            if (this.validator.allValid()) {
+
+                formDatadoc.append(
+                    'file0',
+                    this.state.selectedFile,
+                    this.state.selectedFile.name
+                );
+
+
+                axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formDatadoc)
+                    .then(res => {
+                        console.log("en proceso")
+
+
+                        axios.put(this.urldocoficial + 'add-files-oficial/' + this.props.type + '/' + this.state.nombre, res.data.image)
+                            .then(res => {
+                                this.setState({
                                     status: 'sucess',
 
                                 })
@@ -190,97 +299,12 @@ class NuevoDocumento extends Component {
 
 
                     });
-            });
 
+            } else {
+                this.forceUpdate();
+                this.validator.showMessages();
+            }
 
-    }
-
-
-    saveDocOficial = (e) => {
-
-        e.preventDefault();
-        const formDatadoc = new FormData();
-
-
-        console.log(this.state.selectedFile);
-
-        formDatadoc.append(
-            'file0',
-            this.state.selectedFile,
-            this.state.selectedFile.name
-        );
-
-
-        // VENTANA ALUMNO
-        if (this.props.type === "nuevo") {
-
-        
-
-            axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formDatadoc)
-                .then(res => {
-                    console.log("en proceso")
-
-
-                    axios.put(this.urldocoficial + 'add-files-oficial/' + this.state.identity._id + '/' + this.state.nombre, res.data.image)
-                        
-                   
-
-                    .then(res => {
-                            this.setState({
-                                status: 'sucess',
-
-                            })
-
-
-                            swal({
-                                title: 'Documento creado con exito',
-                                text: "El documento ha sido creado correctamente",
-                                icon: "sucess",
-                                buttons: true,
-                            })
-                                .then((value) => {
-                                    if (value) {
-                                        window.location.reload(true);
-                                    }
-                                });
-
-                        });
-
-
-                });
-
-
-            //VENTANA PROFESOR
-        } else {
-
-            axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formDatadoc)
-                .then(res => {
-                    console.log("en proceso")
-
-
-                    axios.put(this.urldocoficial + 'add-files-oficial/' + this.props.type + '/' + this.state.nombre, res.data.image)
-                        .then(res => {
-                            this.setState({
-                                status: 'sucess',
-
-                            })
-
-                            swal({
-                                title: 'Documento creado con exito',
-                                text: "El documento ha sido creado correctamente",
-                                icon: "sucess",
-                                buttons: true,
-                            })
-                                .then((value) => {
-                                    if (value) {
-                                        window.location.reload(true);
-                                    }
-                                });
-
-                        });
-
-
-                });
 
 
         }
@@ -472,7 +496,7 @@ class NuevoDocumento extends Component {
                         </Modal.Footer>
                     </Modal>
 
-                   
+
                 </div>
             );
         } else {
@@ -501,7 +525,7 @@ class NuevoDocumento extends Component {
                                         <option value="Modificacion_CPRA">Modificacion CPRA</option>
                                         <option value="Modificacion_LA">Modificacion LA</option>
                                     </select>
-                                    {this.validator.message('tittle', this.state.documentoOficial.nombre, 'required')}
+                                    {this.validator.message('tittle', this.state.nombre, 'required')}
                                 </div>
                                 <div id="div_file" className="form-subir">
                                     {/*} <label htmlFor="file0"> URL: </label>*/}
@@ -519,7 +543,7 @@ class NuevoDocumento extends Component {
                         </Modal.Footer>
                     </Modal>
 
-                    
+
                 </div>
 
             );

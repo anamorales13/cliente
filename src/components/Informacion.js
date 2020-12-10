@@ -22,7 +22,7 @@ class Informacion extends Component {
                                 <a href="http://www.uhu.es/sric/uploads/2019/03/Modelo_renuncia_19-20.pdf" target="_blank"> Modelo de renuncia</a>
                             </li>
                             <li>
-                                <a href="http://www.uhu.es/sric/uploads/2019/03/Fechas-limites.pdf" target="_blank">Fechas limite</a>
+                                <a href="http://www.uhu.es/sric/uploads/2019/03/Fechas-limites.pdf" target="_blank">Fechas límites</a>
                             </li>
                             <li>
                                 <a href="http://www.uhu.es/sric/uploads/2019/03/CPRA_1920.doc" target="_blank">CPRA</a>
@@ -54,7 +54,7 @@ class Informacion extends Component {
                                 <a href="http://www.uhu.es/sric/uploads/2019/03/Certificado_estancia.pdf" target="_blank">Certificado de estancia</a>
                             </li>
                             <li>
-                                <a href="http://www.uhu.es/sric/uploads/2019/03/CPRA_Mod_1920.doc" target="_blank">Modificacioón CPRA</a>
+                                <a href="http://www.uhu.es/sric/uploads/2019/03/CPRA_Mod_1920.doc" target="_blank">Modificación CPRA</a>
                             </li>
                             <li>
                                 <a href="http://www.uhu.es/sric/uploads/2019/03/LA_Mod_1920.doc" target="_blank">Modificación Learning agreement</a>

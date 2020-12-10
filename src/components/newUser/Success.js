@@ -10,7 +10,7 @@ import Card from 'react-bootstrap/Card';
 
 export class Sucess extends Component {
     render() {
-
+        const {tipo } = this.props;
 
         return (
             <div className="grid-inicio">
@@ -24,7 +24,13 @@ export class Sucess extends Component {
                 <hr className="linea"></hr>
 
                 <div className="registro-nuevoUsuario">
-                    <h1 className="titulo titulo-registro "> ALTA DE ALUMNO/A</h1>
+                    {tipo==='alumno' &&
+                     <h1 className="titulo titulo-registro "> ALTA DE ALUMNO/A</h1>
+                    }
+                    {tipo==='profesor' &&
+                     <h1 className="titulo titulo-registro "> ALTA DE PROFESOR/A</h1>
+                     }
+                   
 
                     <Card className="card-nuevoUser card-mensajes-sucess card-bajas">
 

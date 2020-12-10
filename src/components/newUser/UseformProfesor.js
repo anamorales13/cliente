@@ -153,7 +153,8 @@ export class Useform extends Component {
             case 4:
                 return (
                     <div>
-                        <Sucess />
+                        <Sucess
+                        tipo={tipo} />
 
                     </div>
 

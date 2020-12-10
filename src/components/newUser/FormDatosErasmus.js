@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import ReactPaginate from "react-paginate";
-
+import Spinner from 'react-bootstrap/Spinner';
 
 export class FormDatosErasmus extends Component {
 
@@ -40,6 +40,8 @@ export class FormDatosErasmus extends Component {
 
     listarDestinos =(e) => {
         var pages= this.state.currentPage+1;
+     
+
         axios.get('https://plataforma-erasmus.herokuapp.com/apiDestino/destinos/' + pages)
             .then(res => {
                 this.setState({
@@ -47,6 +49,7 @@ export class FormDatosErasmus extends Component {
                     pages: res.data.pages
 
                 });
+              
             });
 
     }
@@ -280,10 +283,10 @@ export class FormDatosErasmus extends Component {
                     </tbody>
                     </table>
 
-                   
+                    
 
                 </div>
-
+              
 
             </div>
         );

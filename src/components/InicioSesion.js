@@ -3,7 +3,7 @@ import Global from '../Global';
 import GlobalProfesor from '../GlobalProfesor';
 import axios from 'axios';
 import swal from 'sweetalert';
-import imagenlogo from '../assets/images/logo-erasmus.png';
+import imagenlogo from '../assets/images/logoUni.png';
 import { Link, Redirect } from 'react-router-dom';
 
 import imagen from '../assets/images/InicialScreen.png';
@@ -147,7 +147,7 @@ class InicioSesion extends Component {
                 {tipo === 'profesor' &&
                     <div className="grid-inicio">
                         <div className="logo-titulo">
-                            <img src={imagenlogo} width="100px" height="80px"></img>
+                            <img src={imagenlogo} width="80px" height="80px"></img>
                             <div className="titulo-completo">
                                 <h3>Universidad de Huelva</h3>
                                 <h1> ERASMUS+ </h1>

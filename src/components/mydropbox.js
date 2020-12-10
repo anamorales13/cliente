@@ -41,10 +41,7 @@ class mydropbox extends Component {
 
     };
 
-    url = GlobalDocumentos.url;
-
-
-
+   
 
     constructor(props) {
         super(props);
@@ -104,17 +101,20 @@ class mydropbox extends Component {
     }
 
     delete(title) {
+
+        console.log("delete");
+        console.log("titulo" + title);
         axios.delete(this.url + "delete/" + title)
             .then(res => {
                 this.setState({
                     status: 'sucess'
                 })
             })
-           
-            window.location.reload(true);
-                   
-                      
-                  
+
+        window.location.reload(true);
+
+
+
 
         this.forceUpdate();
     }
@@ -160,19 +160,19 @@ class mydropbox extends Component {
                                         <div>
 
                                             {
-                                                  documentos.formato == "pdf" ? (
+                                                documentos.formato == "pdf" ? (
                                                     <img src={btn1} alt="prueba" className="image-wrap" />
-                                                ) : documentos.formato === "zip"|| documentos.formato ==='rar' ? (
+                                                ) : documentos.formato === "zip" || documentos.formato === 'rar' ? (
                                                     <img src={btn2} alt="prueba" className="image-wrap" />
-                                                ) :  (                                        
-                                                                    <img src={documentos.image} alt="prueba" className="image-wrap" />
-                                                                )
+                                                ) : (
+                                                            <img src={documentos.image} alt="prueba" className="image-wrap" />
+                                                        )
                                             }
 
                                         </div>
                                         <div>
-                                            
-                                            <a target="_blank" href={ documentos.image} >{documentos.title}</a>
+
+                                            <a target="_blank" href={documentos.image} >{documentos.title}</a>
                                         </div>
 
                                     </td >
@@ -209,12 +209,12 @@ class mydropbox extends Component {
                         <h1 className="titulo-doc">MI NUBE </h1>
 
 
-                        <Card className="card-bajas" style={{border:'none'}}>
+                        <Card className="card-bajas" style={{ border: 'none' }}>
                             <div className="bajas">
                                 <h3 style={{ fontSize: '24px', color: '#BB0909' }}>¡Recuerda!</h3>
                                 <h5 style={{ fontSize: '16px' }}> Sólo se pueden subir imagenes o archivos en formato .pdf .jpg ó .png    </h5>
                                 <h5 style={{ fontSize: '16px' }}> El contenido de esta nube solo puede ser visto por usted.</h5>
-                         
+
                             </div>
                         </Card>
 
@@ -226,7 +226,7 @@ class mydropbox extends Component {
                                 <table className="table-dropbox dropbox-cabecera">
                                     <thead >
                                         <tr >
-                                            <th style={{ width: '30%'}}>Nombre</th>
+                                            <th style={{ width: '30%' }}>Nombre</th>
 
                                             <th style={{ width: '30%' }}>Descripción</th>
                                             <th style={{ width: '30%' }}>Fecha de subida</th>
@@ -253,6 +253,32 @@ class mydropbox extends Component {
             )
 
 
+        } else if (this.state.documentos === undefined) {
+            return (
+                <div className="grid-documentos">
+                    <div >
+                        <h1 className="titulo-doc">MI NUBE</h1>
+
+                    </div>
+                    <div className=" grid-documentos-col">
+                        <div>
+                            <div style={{ textAlign: 'center' }}>
+
+                                <h4 className="subheader">No hay documentos para mostrar</h4>
+                                <p>Todavia no hay contenido en esta sección</p>
+
+
+                            </div>
+
+                        </div>
+                        <div className="btn-docOficial">
+                            <NuevoDocumento type="documento-particular" />
+                        </div>
+
+                    </div>
+
+                </div>
+            )
         } else {
             return (
                 <div className="grid-documentos">
@@ -262,7 +288,8 @@ class mydropbox extends Component {
                     </div>
                     <div className=" grid-documentos-col">
                         <div>
-                            <div >
+                            <div style={{ textAlign: 'center' }}>
+
                                 <Spinner animation="border" role="status" style={{ textAlign: 'center' }}>
                                     <span className="sr-only">Loading...</span>
                                 </Spinner>
