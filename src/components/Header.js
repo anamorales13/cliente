@@ -148,7 +148,7 @@ class Header extends Component {
        // window.location.href = '/';
 
         if (this.state.navigate === true) {
-            console.log("navigate");
+            
             localStorage.clear();
             return window.location.href = 'https://anamorales13.github.io/cliente';
         }

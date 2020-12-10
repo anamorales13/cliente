@@ -122,7 +122,7 @@ export class FormDatosPlataforma extends Component {
                                     defaultValue={values.usuario} />
                                 {this.state.errors.usuario && <Form.Label style={{ color: 'red', fontSize: '12px' }}>{this.state.errors.usuario}</Form.Label>}
                             </Form.Group>
-                            <label style={{ colore: 'grey', fontSize: '12px' }}>La contraseña debe de contener entre 8-12 carácteres. No incluir espacios, carácteres especiales o iconos</label>
+                            <label style={{ colore: 'grey', fontSize: '12px' }}>La contraseña debe de contener entre 8-12 caracteres. No incluir espacios, caracteres especiales o iconos</label>
                             <Form.Row>
 
                                 <Form.Group as={Col} >

@@ -277,7 +277,7 @@ class PasswordEdit extends Component {
                                 }
 
                             </div>
-                            <label style={{ colore: 'grey', fontSize: '12px' }}>Las contraseñas deben de contener entre 8-12 carácteres. No incluir espacios, carácteres especiales o iconos</label>
+                            <label style={{ colore: 'grey', fontSize: '12px' }}>Las contraseñas deben de contener entre 8-12 caracteres. No incluir espacios, caracteres especiales o iconos</label>
                             <div className="form-edit">
                                 <label className="form-editpassw-value-title">Nueva contraseña</label>
                                 <input id="input-error2" className="form-editpassw-value" name="nueva" value={this.state.passwordNueva}  onChange={this.handleChange('passwordNueva')} type="password" ref={this.passwordNueva} required></input>

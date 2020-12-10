@@ -251,7 +251,7 @@ class Dropbox extends Component {
 
                                 <Card className="card-bajas" style={{ border: 'none', background:'transparent'}}>
                                     <div className="bajas">
-                                        <h3 style={{ fontSize: '24px', color: '#BB0909' }}>¡Recuerda!!</h3>
+                                        <h3 style={{ fontSize: '24px', color: '#BB0909' }}>¡Recuerda!</h3>
                                         <h5 style={{ fontSize: '16px' }}> Sólo se pueden subir imagenes o archivos en formato .pdf .jpg ó .png </h5>
                                         <h5 style={{ fontSize: '16px' }}> Otros usuarios pueden ver el contenido de esta nube.</h5>
 
