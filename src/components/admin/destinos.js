@@ -28,7 +28,7 @@ class destinos extends Component {
         carrera: "",
         profesor: "",
         coordinador: {},
-        error:""
+        error: ""
 
     }
     constructor(props) {
@@ -104,35 +104,36 @@ class destinos extends Component {
             carrera: this.state.carrera,
             profesor: this.state.profesor,
             coordinador: this.state.coordinador._id
-        };        
+        };
 
         console.log("hola añadiendo");
         if (this.validator.allValid()) {
-        axios.post('https://plataforma-erasmus.herokuapp.com/apiDestino/' + 'save', body)
-            .then(res => {
-                console.log("añadido")
-                this.setState({
-                    destino: res.data.destino,
-                    status:'sucess',
-                    error:"",
+            axios.post('https://plataforma-erasmus.herokuapp.com/apiDestino/' + 'save', body)
+                .then(res => {
+                    console.log("añadido")
+                    this.setState({
+                        destino: res.data.destino,
+                        status: 'sucess',
+                        error: "",
 
+                    })
+                    this.formularioEnBlanco();
                 })
-                this.formularioEnBlanco();
-            })
-            .catch(err => {
-                this.setState({
-                    destino: {},
-                    status: 'failed',
-                    error: 'El destino ya esta registrado'
-                });
+                .catch(err => {
+                    this.setState({
+                        destino: {},
+                        status: 'failed',
+                        error: 'El destino ya esta registrado'
+                    });
 
-            });
+                });
         }
-            else {
-                this.validator.showMessages();
-               // this.forceUpdate();
-            }
-            
+        else {
+            console.log("no son validos");
+            this.validator.showMessages();
+            // this.forceUpdate();
+        }
+
     }
 
 
@@ -140,21 +141,21 @@ class destinos extends Component {
     render() {
         return (
             <div >
-                <div  className="grid-mensajeria-col">
+                <div className="grid-mensajeria-col">
 
                     <Menu></Menu>
                     <div>
 
                         <h1 className="titulo-doc"> NUEVO DESTINO </h1>
                         <div className="form-destino" >
-                        {this.state.error !="" &&
-                        <label style={{color:'#A6250E', backgroundColor:'#F7A99C', width:'60%', textAlign:'center',margin:'auto', display:'block', fontWeight:'bold', marginTop:'20px'}}>
-                            {this.state.error}</label>
-                        }
-                        {this.state.status === 'sucess' &&
-                          <label style={{color:'#1D4C14', backgroundColor:'#DAF7A6', width:'60%', textAlign:'center',margin:'auto', display:'block', fontWeight:'bold', marginTop:'20px'}}>
-                              El destino ha sido añadido correctamente.</label>
-                        }
+                            {this.state.error != "" &&
+                                <label style={{ color: '#A6250E', backgroundColor: '#F7A99C', width: '60%', textAlign: 'center', margin: 'auto', display: 'block', fontWeight: 'bold', marginTop: '20px' }}>
+                                    {this.state.error}</label>
+                            }
+                            {this.state.status === 'sucess' &&
+                                <label style={{ color: '#1D4C14', backgroundColor: '#DAF7A6', width: '60%', textAlign: 'center', margin: 'auto', display: 'block', fontWeight: 'bold', marginTop: '20px' }}>
+                                    El destino ha sido añadido correctamente.</label>
+                            }
                             <Form className="form-añadir-destino" onSubmit={this.añadirDestino}>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>Pais</Form.Label>
@@ -199,9 +200,9 @@ class destinos extends Component {
                                     {this.validator.message('profesor', this.state.profesor, 'required')}
                                 </Form.Group>
 
-                                <input type="submit" value="CREAR" className="  button-join " style={{width:'60%'}}></input>
+                                <input type="submit" value="CREAR" className="  button-join " style={{ width: '60%' }}></input>
                             </Form>
-                            
+
                         </div>
 
                     </div>

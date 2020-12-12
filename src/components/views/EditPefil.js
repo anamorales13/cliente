@@ -53,15 +53,17 @@ class EditPerfil extends Component {
         this.validator = new SimpleReactValidator({
             messages: {
                 required: 'Este campo es obligatorio',
-                alpha_space: 'No puede contener carácteres numéricos',
-                phone: 'Debe de ser un número de teléfono válido'
+                regex: 'No puede contener carácteres numéricos',
+                email: 'Debe de ser un correo electrónico',
+
             },
             email: {
                 messages: 'Correo invalido. Ej: usuario.usuario@alu.uhu.es',
                 rule: (val, params, validator) => {
                     return validator.helpers.testRegex(val, /([a-zA-Z]+.[a-zA-Z]+(@alu.uhu.es)$)/i) && params.indexOf(val) === -1
                 }
-            }
+            },
+           
         });
     }
 
@@ -91,6 +93,21 @@ class EditPerfil extends Component {
     }
 
     changeStateProfesor = () => {
+        if(this.state.identity.tipo==='administrador'){
+            this.setState({
+                profesor: {
+                    nombre: this.nombreRef.current.value,
+                    usuario: this.usuarioRef.current.value,
+                    email: this.emailRef.current.value,
+                    telefono: this.telefonoRef.current.value,
+                    edificio: this.edificioRef.current.value,
+                    despacho: this.despachoRef.current.value,
+                    datos: this.datosRef.current.value,
+                    tutoria: this.tutoriasRef.current.value,
+    
+                }
+            });
+        }else{
         this.setState({
             profesor: {
                 nombre: this.nombreRef.current.value,
@@ -108,6 +125,7 @@ class EditPerfil extends Component {
 
             }
         });
+    }
     }
 
     fileChange = (event) => {
@@ -307,7 +325,7 @@ class EditPerfil extends Component {
                                             type="text"
                                             defaultValue={this.state.identity.nombre}
                                             ref={this.nombreRef} />
-                                        {this.validator.message('nombre', this.state.alumno.nombre, 'required|alpha_space', { className: 'text-danger' })}
+                                        {this.validator.message('nombre', this.state.alumno.nombre, 'required|regex:^[a-z A-Z À-ÿ\u00f1\u00d1 ]+$', { className: 'text-danger' })}
                                     </Form.Group>
                                     <Form.Group className="form-edit">
                                         <label className="form-edit-value-title">Primer apellido</label>
@@ -317,7 +335,7 @@ class EditPerfil extends Component {
                                             type="text"
                                             defaultValue={this.state.identity.apellido1}
                                             ref={this.apellido1Ref} />
-                                        {this.validator.message('apellido1', this.state.alumno.apellido1, 'required|alpha_space', { className: 'text-danger' })}
+                                        {this.validator.message('apellido1', this.state.alumno.apellido1, 'required|regex:^[a-z A-Z À-ÿ\u00f1\u00d1 ]+$', { className: 'text-danger' })}
                                     </Form.Group>
                                     <Form.Group className="form-edit">
                                         <label className="form-edit-value-title">Segundo apellido</label>
@@ -327,7 +345,7 @@ class EditPerfil extends Component {
                                             type="text"
                                             defaultValue={this.state.identity.apellido2}
                                             ref={this.apellido2Ref} />
-                                        {this.validator.message('apellido2', this.state.alumno.apellido2, 'required|alpha_space', { className: 'text-danger' })}
+                                        {this.validator.message('apellido2', this.state.alumno.apellido2, 'required|regex:^[a-z A-Z À-ÿ\u00f1\u00d1 ]+$', { className: 'text-danger' })}
                                     </Form.Group>
                                     <Form.Group className="form-edit">
                                         <label className="form-edit-value-title">Usuario</label>
@@ -347,7 +365,7 @@ class EditPerfil extends Component {
                                             type="text"
                                             defaultValue={this.state.identity.email}
                                             ref={this.emailRef} />
-                                        {this.validator.message('email', this.state.alumno.email, 'required', { className: 'text-danger' })}
+                                        {this.validator.message('email', this.state.alumno.email, 'required|email', { className: 'text-danger' })}
                                     </Form.Group>
                                     <Form.Group className="form-edit">
                                         <label className="form-edit-value-title">Teléfono</label>
@@ -383,7 +401,7 @@ class EditPerfil extends Component {
                         </div>
                     </div>
                 }
-                {this.state.identity.tipo === 'profesor' || this.state.identity.tipo === 'administrador' &&
+                {this.state.identity.tipo === 'profesor' &&
                     <div id="content" className="grid">
                         <MenuPerfil />
                         <div className="avatar" id="avatar-big">
@@ -408,7 +426,7 @@ class EditPerfil extends Component {
                                             defaultValue={this.state.identity.nombre}
                                             ref={this.nombreRef} />
 
-                                        {this.validator.message('nombre', this.state.profesor.nombre, 'required|alpha_space', { className: 'text-danger' })}
+                                        {this.validator.message('nombre', this.state.profesor.nombre, 'required|regex:^[a-z A-Z À-ÿ\u00f1\u00d1 ]+$', { className: 'text-danger' })}
                                     </Form.Group>
                                     <Form.Group className="form-edit" style={{ marginBottom: '0.8em' }}>
                                         <label className="form-edit-value-title">Primer apellido</label>
@@ -418,7 +436,7 @@ class EditPerfil extends Component {
                                             type="text"
                                             defaultValue={this.state.identity.apellido1}
                                             ref={this.apellido1Ref} />
-                                        {this.validator.message('apellido1', this.state.profesor.apellido1, 'required|alpha_space', { className: 'text-danger' })}
+                                        {this.validator.message('apellido1', this.state.profesor.apellido1, 'required|regex:^[a-z A-Z À-ÿ\u00f1\u00d1 ]+$', { className: 'text-danger' })}
                                     </Form.Group>
                                     <Form.Group className="form-edit" style={{ marginBottom: '0.8em' }}>
                                         <label className="form-edit-value-title">Segundo apellido</label>
@@ -428,7 +446,7 @@ class EditPerfil extends Component {
                                             type="text"
                                             defaultValue={this.state.identity.apellido2}
                                             ref={this.apellido2Ref} />
-                                        {this.validator.message('apellido2', this.state.profesor.apellido2, 'required|alpha_space', { className: 'text-danger' })}
+                                        {this.validator.message('apellido2', this.state.profesor.apellido2, 'required|regex:^[a-z A-Z À-ÿ\u00f1\u00d1 ]+$', { className: 'text-danger' })}
                                     </Form.Group>
                                     <Form.Group className="form-edit" style={{ marginBottom: '0.8em' }}>
                                         <label className="form-edit-value-title">Usuario</label>
@@ -448,7 +466,134 @@ class EditPerfil extends Component {
                                             type="text"
                                             defaultValue={this.state.identity.email}
                                             ref={this.emailRef} />
-                                        {this.validator.message('email', this.state.profesor.email, 'required', { className: 'text-danger' })}
+                                        {this.validator.message('email', this.state.profesor.email, 'required|email', { className: 'text-danger' })}
+                                    </Form.Group>
+                                    <Form.Group className="form-edit" style={{ marginBottom: '0.8em' }}>
+                                        <label className="form-edit-value-title">Teléfono</label>
+                                        <Form.Control
+                                            className="form-edit-value"
+                                            onChange={this.changeStateProfesor}
+                                            type="text"
+                                            defaultValue={this.state.identity.telefono}
+                                            ref={this.telefonoRef} />
+                                    
+                                    </Form.Group>
+
+                                    <Form.Group className="form-edit" style={{ marginBottom: '0.8em' }}>
+                                        <label className="form-edit-value-title">Edificio</label>
+                                        <Form.Control
+                                            className="form-edit-value"
+                                            onChange={this.changeStateProfesor}
+                                            type="text"
+                                            defaultValue={this.state.identity.edificio}
+                                            ref={this.edificioRef}
+                                            maxLength="50" />
+                                        {this.validator.message('edificio', this.state.profesor.edificio, 'required', { className: 'text-danger' })}
+                                    </Form.Group>
+
+                                    <Form.Group className="form-edit" style={{ marginBottom: '0.8em' }}>
+                                        <label className="form-edit-value-title">Numero despacho</label>
+                                        <Form.Control
+                                            className="form-edit-value"
+                                            onChange={this.changeStateProfesor}
+                                            type="number"
+                                            defaultValue={this.state.identity.despacho}
+                                            ref={this.despachoRef} />
+                                        {this.validator.message('despacho', this.state.profesor.despacho, 'required', { className: 'text-danger' })}
+                                    </Form.Group>
+
+                                    <Form.Group className="form-edit" style={{ marginBottom: '1.2em' }}>
+                                        <label className="form-edit-value-title ">Datos de interes</label>
+                                        <textarea
+                                            className=" form-control form-edit-value form-edit-value-textarea"
+                                            style={{ resize: 'none' }}
+                                            onChange={this.changeStateProfesor}
+                                            type="textarea"
+                                            defaultValue={this.state.identity.datos}
+                                            ref={this.datosRef}
+                                            maxLength="80" />
+
+                                    </Form.Group>
+                                    <Form.Group className="form-edit" style={{ marginBottom: '1.5em' }}>
+                                        <label className="form-edit-value-title">Tutorías</label>
+                                        <textarea
+                                            className=" form-control form-edit-value form-edit-value-textarea"
+                                            style={{ resize: 'none' }}
+                                            onChange={this.changeStateProfesor}
+                                            type="textarea"
+                                            defaultValue={this.state.identity.tutoria}
+                                            ref={this.tutoriasRef}
+                                            maxLength="80"
+                                        />
+
+                                    </Form.Group>
+
+                                    <input type="submit" value="ACTUALIZAR" className="btn-update" style={{ float: 'right' }}></input>
+                                </Form>
+
+
+                            </article>
+
+                            <article className="elemt-one-edit">
+                                <form className="elemt-formImage" onSubmit={this.updateImageProfesor}>
+                                    <div className="form-editImage">
+                                        <label className="form-editImage-value-title">Imagen de perfil</label>
+                                        <br />
+                                        <input className="form-editImage-value" type="file" name="file0" onChange={this.fileChange} required />
+
+                                    </div>
+                                    <input type="submit" value="ACTUALIZAR" className="btn-update" ></input>
+                                </form>
+                            </article>
+                        </div>
+                    </div>
+                }
+                {this.state.identity.tipo === 'administrador' &&
+                    <div id="content" className="grid">
+                        <MenuPerfil />
+                        <div className="avatar" id="avatar-big">
+                            <img src={ this.state.identity.image} classname=" avatar-edit"></img>
+
+                        </div>
+                        <div>
+                            <h1 className="titulo"> Editar Perfil </h1>
+                            <div className="avatar" id="avatar-responsive">
+                                <img src={ this.state.identity.image} classname=" avatar-edit"></img>
+
+                            </div>
+                            <article className="elemt-one-edit">
+
+                                <Form className="elemt-form" onSubmit={this.updateUserProfesor}>
+                                    <Form.Group className="form-edit" style={{ marginBottom: '0.8em' }}>
+                                        <label className="form-edit-value-title">Nombre </label>
+                                        <Form.Control
+                                            className="form-edit-value"
+                                            onChange={this.changeStateProfesor}
+                                            type="text"
+                                            defaultValue={this.state.identity.nombre}
+                                            ref={this.nombreRef} />
+
+                                        {this.validator.message('nombre', this.state.profesor.nombre, 'required|regex:^[a-z A-Z À-ÿ\u00f1\u00d1 ]+$', { className: 'text-danger' })}
+                                    </Form.Group>
+                                    <Form.Group className="form-edit" style={{ marginBottom: '0.8em' }}>
+                                        <label className="form-edit-value-title">Usuario</label>
+                                        <Form.Control
+                                            className="form-edit-value"
+                                            onChange={this.changeStateProfesor}
+                                            type="text"
+                                            defaultValue={this.state.identity.usuario}
+                                            ref={this.usuarioRef} />
+                                        {this.validator.message('usuario', this.state.profesor.usuario, 'required', { className: 'text-danger' })}
+                                    </Form.Group>
+                                    <Form.Group className="form-edit" style={{ marginBottom: '0.8em' }}>
+                                        <label className="form-edit-value-title">Correo electrónico</label>
+                                        <Form.Control
+                                            className="form-edit-value"
+                                            onChange={this.changeStateProfesor}
+                                            type="text"
+                                            defaultValue={this.state.identity.email}
+                                            ref={this.emailRef} />
+                                        {this.validator.message('email', this.state.profesor.email, 'required|email', { className: 'text-danger' })}
                                     </Form.Group>
                                     <Form.Group className="form-edit" style={{ marginBottom: '0.8em' }}>
                                         <label className="form-edit-value-title">Teléfono</label>
@@ -530,6 +675,8 @@ class EditPerfil extends Component {
                         </div>
                     </div>
                 }
+
+
             </div>
         );
     }

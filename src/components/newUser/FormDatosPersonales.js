@@ -139,11 +139,17 @@ export class FormDatosPersonales extends Component {
                         <h1 className="titulo titulo-registro titulo-registro-secundario" style={{ fontSize: '21px' }}> DATOS PERSONALES </h1>
 
                         <div className="subtitulo">Asegúrese de que todos los datos introducidos sean correctos </div>
+                        
                         <Link to='/' className="link-cancelar">Cancelar registro de usuario</Link>
+                        
                         <br />
-
+                        
                         <Card className="card-nuevoUser">
+                        
                             <Form>
+                            {values.message != "" &&
+                            <label className="subtitulo" style={{color: '#A6250E', backgroundColor: '#F7A99C', fontSize:'15px', textAlign:'center', display:'block'}}>Los datos coinciden con el de un usuario registrado</label>
+                            }
                                 <Form.Row>
                                     <Form.Group as={Col} >
                                         <Form.Control

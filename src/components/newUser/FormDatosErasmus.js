@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import ReactPaginate from "react-paginate";
 import Spinner from 'react-bootstrap/Spinner';
+import Global from '../../Global';
 
 export class FormDatosErasmus extends Component {
 
@@ -20,6 +21,8 @@ export class FormDatosErasmus extends Component {
         this.props.prevStep();
 
     }
+
+    url= Global.url;
 
     state = {
         destinos: [],
@@ -36,6 +39,7 @@ export class FormDatosErasmus extends Component {
     constructor(props) {
         super(props);
         this.listarDestinos();
+        
     }
 
     listarDestinos =(e) => {
@@ -77,14 +81,14 @@ export class FormDatosErasmus extends Component {
             asunto: 'Nueva notificación Plataforma Erasmus+',
             texto: 'Se ha añadido un nuevo alumno'
                 + '  Puede obtener más información en el apartado de ALUMNOS. ',
-            emisor: { profesor: '5f7c4c32fceb54223c41cf44' },
+            emisor: { profesor: '5fbbfde011838fd11fac5944' },
             receptor: { profesor: profesor }
         }
         var mensaje2={
             asunto: 'Nueva notificación Plataforma Erasmus+',
             texto: 'Se ha añadido un nuevo alumno'
                 + '  Puede obtener más información en el apartado de ALUMNOS. ',
-            emisor: { profesor: '5f7c4c32fceb54223c41cf44' },
+            emisor: { profesor: '5fbbfde011838fd11fac5944' },
             receptor: { profesor: coordinador }
         }
 
@@ -106,7 +110,9 @@ export class FormDatosErasmus extends Component {
           
                     this.notificarProfesor(profesor);
                     this.notificarProfesor(coordinador);
-                    
+                   
+                    var elem = document.getElementById('btn-continuar');
+                    elem.style.display = 'block';
 
             })
 
@@ -120,7 +126,7 @@ export class FormDatosErasmus extends Component {
             asunto: 'Alta de un nuevo alumno',
             texto: 'Se ha añadido un nuevo alumno'
                 + '  Puede obtener más información en el apartado de ALUMNOS. ',
-            emisor: { profesor: '5f7c4c32fceb54223c41cf44' },
+            emisor: { profesor: '5fbbfde011838fd11fac5944' },
             receptor: { profesor: prof }
         }
 
@@ -151,6 +157,7 @@ export class FormDatosErasmus extends Component {
         
     }
 
+    
 
 
     render() {
@@ -231,13 +238,13 @@ export class FormDatosErasmus extends Component {
                     <h1 className="titulo titulo-registro "> ALTA DE ALUMNO/A</h1>
                     <h1 className="titulo titulo-registro titulo-registro-secundario"> DATOS ERASMUS </h1>
                     <div className="subtitulo">Es posible que otros usuarios puedan ver parte de la infomación al usar la plataforma. </div>
-                    <Link to='/' className="link-cancelar">Cancelar registro de usuario</Link><br />
+                    <Link to="/" className="link-cancelar">Cancelar registro de usuario</Link><br />
                     <div>
                         {this.state.status == 'sucess' &&
                             <div className="alert alert-success alert-sucess-middle">
 
                                 <strong>¡Destino guardado correctamente!</strong>
-                                <h5>Pulse <strong>SIGUIENTE</strong> para completar el alta de usuario</h5>
+                                <h5>Pulse <strong>CONTINUAR</strong> para completar el alta de usuario</h5>
                                 <button classsName="close" data-dismiss="alert"> <span>&times;</span></button>
                             </div>
 
@@ -245,7 +252,7 @@ export class FormDatosErasmus extends Component {
                         {this.state.status == 'failed' &&
                             <div className="alert alert-danger">
 
-                                <strong>¡Error!</strong> El correo no se pudo enviar correctamente
+                                <strong>¡Error!</strong> El destino no se pudo guardar correctamente
                             <button classsName="close" data-dismiss="alert"> <span>&times;</span></button>
                             </div>
                         }
@@ -271,9 +278,10 @@ export class FormDatosErasmus extends Component {
                     <button
                         label="continue"
                         className="btn-continue form-login"
-                        style={styles.button}
+                        style={styles.button, styles.desaparecer}
                         onClick={this.continue}
-                    > SIGUIENTE </button>
+                        id="btn-continuar"
+                    > CONTINUAR </button>
                     <button
                         label="volver"
                         className="btn-back form-login"
@@ -295,7 +303,8 @@ export class FormDatosErasmus extends Component {
 }
 
 const styles = {
-    button: { margin: 15 }
+    button: { margin: 15 },
+    desaparecer: {display: 'none'}
 }
 
 export default FormDatosErasmus;

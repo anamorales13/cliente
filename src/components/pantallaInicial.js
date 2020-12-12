@@ -61,7 +61,7 @@ class pantallaInicial extends Component {
 
             <div className="grid-inicio">
                 <div className="logo-titulo">
-                    <img src={imagenlogo} width="80px" height="80px"></img>
+                    <img src={imagenlogo} width="60px" height="60px"></img>
                     <div className="titulo-completo">
                         <h3>Universidad de Huelva</h3>
                         <h1> ERASMUS+ </h1>

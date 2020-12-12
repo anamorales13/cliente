@@ -10,7 +10,7 @@ import Card from 'react-bootstrap/Card';
 
 export class Sucess extends Component {
     render() {
-        const {tipo } = this.props;
+        const {tipo, values } = this.props;
 
         return (
             <div className="grid-inicio">
@@ -34,8 +34,12 @@ export class Sucess extends Component {
 
                     <Card className="card-nuevoUser card-mensajes-sucess card-bajas">
 
+                   
                         <div className="mensaje-sucess">
                             <h1 style={{ fontSize: '30px' }}>USUARIO GUARDADO CORRECTAMENTE</h1>
+                           
+                           
+
                             <br></br>
                             <h2 style={{ fontSize: '22px' }}>Pulse <strong> <Link
                                 label="continue"
@@ -46,10 +50,11 @@ export class Sucess extends Component {
                                     '/'
                                 }
 
-                            > SIGUIENTE </Link></strong> para ser redirigido a la pagina de Inicio de Sesion</h2>
-
+                            > CONTINUAR </Link></strong> para ser redirigido a la pagina de Inicio de Sesion</h2>
+                        
                         </div>
-
+                    
+                
 
 
 

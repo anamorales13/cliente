@@ -344,7 +344,7 @@ class Header extends Component {
                                         onMouseEnter={this.showDropdown}
                                         onMouseLeave={this.hideDropdown}>
                                         <Link to="/user/profile" className="drop-link">Perfil</Link>
-                                        <Link to="/user/edit" className="drop-link">Editar Perfil</Link>
+                                        <Link to="/user/edit" className="drop-link" >Editar Perfil</Link>
                                         <Link to="/profesor/erasmus" className="drop-link">Erasmus</Link>
                                         <Link to="/user/seguridad" className="drop-link">Constraseña</Link>
                                         <Link onClick={() => this.setState({ navigate: true })} className="drop-link">Cerrar Sesion</Link>

@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import Global from '../Global';
 import GlobalProfesor from '../GlobalProfesor';
 import axios from 'axios';
-import swal from 'sweetalert';
+
 import imagenlogo from '../assets/images/logoUni.png';
 import { Link, Redirect } from 'react-router-dom';
 
-import imagen from '../assets/images/InicialScreen.png';
+
 import imagenalumno from '../assets/images/boton-alumno.png';
 import imagenprof from '../assets/images/boton-profesor.png';
 import '../assets/css/InicialScreen.css';
 import Form from 'react-bootstrap/Form';
 import { NavLink } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
+import {withRouter} from 'react-router-dom';
+
 
 class InicioSesion extends Component {
 
@@ -22,6 +24,7 @@ class InicioSesion extends Component {
 
     url = Global.url;
     urlProfesor = GlobalProfesor.url;
+    navigate=false;
 
     state = {
         alumno: {},
@@ -56,22 +59,21 @@ class InicioSesion extends Component {
         axios.post(this.urlProfesor + 'login', this.state.nuevoAlumno)
             .then(res => {
 
-                this.setState({
+               this.setState({
                     // alumno: res.data.users,
                     sucess: 'sucess',
                     alumno: res.data.users,
                     token: res.data.token,
                     navigate: true
+               });
 
-                });
+            //   this.navigate=true;
 
                 //persistir los datos del usuario
-
-                localStorage.setItem('user', JSON.stringify(this.state.alumno));
-                //  localStorage.setItem('token', this.state.token);
-                //  window.location.assign('/inicio')
+                localStorage.setItem('user', JSON.stringify(res.data.users));
+               
                 elem.style.display = 'none'
-               return <Redirect to="/inicio" push={true} />
+                this.props.history.push('/inicio');
             })
             .catch(err => {
                 this.setState({
@@ -83,6 +85,11 @@ class InicioSesion extends Component {
             });
         this.forceUpdate();
     }
+    
+   
+        
+   
+  
 
     getAlumno = (e) => {
         e.preventDefault();
@@ -95,24 +102,20 @@ class InicioSesion extends Component {
             .then(res => {
 
                 this.setState({
-                    // alumno: res.data.users,
                     sucess: 'sucess',
                     alumno: res.data.users,
                     token: res.data.token,
-                    navigate: true
+                    navigate:true
 
                 });
-                //persistir los datos del usuario
-
+               
 
                 localStorage.setItem('user', JSON.stringify(this.state.alumno));
-                //  localStorage.setItem('token', this.state.token);
-                //  localStorage.setItem('tipo', 'alumno');
-                // window.location.assign('/inicio')
+               
                 elem.style.display = 'none'
+                this.props.history.push('/inicio');
+               // return <Redirect to="/inicio" push={true} />
                 
-              return <Redirect to="/inicio" push={true} />
-                //  this.get_token();
             })
             .catch(err => {
                 this.setState({
@@ -134,8 +137,9 @@ class InicioSesion extends Component {
 
     render() {
 
-        const { navigate } = this.state
-        if (navigate && JSON.parse(localStorage.getItem('user')) != null) {
+        
+        if (this.state.navigate && JSON.parse(localStorage.getItem('user')) != null) {
+            console.log("navigate");
             return <Redirect to="/inicio" push={true} />
         }
 
@@ -147,7 +151,7 @@ class InicioSesion extends Component {
                 {tipo === 'profesor' &&
                     <div className="grid-inicio">
                         <div className="logo-titulo">
-                            <img src={imagenlogo} width="80px" height="80px"></img>
+                            <img src={imagenlogo} width="60px" height="60px" alt="logo"></img>
                             <div className="titulo-completo">
                                 <h3>Universidad de Huelva</h3>
                                 <h1> ERASMUS+ </h1>
@@ -165,7 +169,7 @@ class InicioSesion extends Component {
                                         tipo: 'alumno'
                                     }
                                 }} replace>
-                                    <img src={imagenalumno} width="200px" height="280px"></img>
+                                    <img src={imagenalumno} width="200px" height="280px" alt="carta alumno"></img>
                                 </NavLink>
                             </div>
 
@@ -230,7 +234,7 @@ class InicioSesion extends Component {
                 {tipo === 'alumno' &&
                     <div className="grid-inicio">
                         <div className="logo-titulo">
-                            <img src={imagenlogo} width="100px" height="80px"></img>
+                            <img src={imagenlogo} width="60px" height="60px" alt="logo"></img>
                             <div className="titulo-completo">
                                 <h3>Universidad de Huelva</h3>
                                 <h1> ERASMUS+ </h1>
@@ -295,7 +299,7 @@ class InicioSesion extends Component {
                                         tipo: 'profesor'
                                     }
                                 }} replace>
-                                    <img src={imagenprof} width="200px" height="280px"></img>
+                                    <img src={imagenprof} width="200px" height="280px" alt="carta profesor"></img>
                                 </NavLink>
 
 

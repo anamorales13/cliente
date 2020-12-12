@@ -8,8 +8,7 @@ import swal from 'sweetalert';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
-import ButtonIcon from '@material-ui/core/Button';
-import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
+
 import Modal from 'react-bootstrap/Modal';
 import "../assets/css/dropbox.css";
 import SimpleReactValidator from 'simple-react-validator';
@@ -38,6 +37,7 @@ class NuevoDocumento extends Component {
             selectedFile: null,
             open: false,
             identity: JSON.parse(localStorage.getItem('user')),
+            message: "",
 
 
 
@@ -136,7 +136,6 @@ class NuevoDocumento extends Component {
         const formData = new FormData();
 
 
-
         var docId;
         if (this.validator.allValid()) {
             formData.append(
@@ -156,41 +155,37 @@ class NuevoDocumento extends Component {
 
 
                         docId = this.state.documento._id;
-                        console.log("id del documento" + docId);
+                        
+                        axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formData)
+                            .then(res => {
+                                
+
+                                if (res.data.image) {
+
+                                    axios.put(this.url + 'add-files/' + docId, res.data.image)
+                                        .then(res => {
+                                            this.setState({
+                                                status: 'sucess',
+                                            })
+
+                                            swal({
+                                                title: 'Archivo subido con éxito',
+                                                text: "El archivo ha sido subido correctamente",
+                                                icon: "sucess",
+                                                buttons: true,
+                                            })
+                                              .then((value) => {
+                                                    if (value) {
+                                                        window.location.reload(true);
+                                                    }
+                                                });
+
+                                        });
+                                }
+
+
+                            });
                     }
-
-
-                    axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formData)
-                        .then(res => {
-                            console.log("en proceso")
-
-                            if (res.data.image) {
-                                axios.put(this.url + 'add-files/' + docId, res.data.image)
-
-
-                                    .then(res => {
-                                        this.setState({
-
-                                            status: 'sucess',
-
-                                        })
-
-                                        swal({
-                                            title: 'Documento creado con exito',
-                                            text: "El documento ha sido creado correctamente",
-                                            icon: "sucess",
-                                            buttons: true,
-                                        })
-                                            .then((value) => {
-                                                if (value) {
-                                                    window.location.reload(true);
-                                                }
-                                            });
-
-                                    });
-
-                            }
-                        });
                 });
         } else {
             this.forceUpdate();
@@ -223,23 +218,16 @@ class NuevoDocumento extends Component {
 
                 axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formDatadoc)
                     .then(res => {
-                        console.log("en proceso")
-
-
                         axios.put(this.urldocoficial + 'add-files-oficial/' + this.state.identity._id + '/' + this.state.nombre, res.data.image)
-
-
-
                             .then(res => {
                                 this.setState({
                                     status: 'sucess',
-
+                                    message: "",
                                 })
 
-
                                 swal({
-                                    title: 'Documento creado con exito',
-                                    text: "El documento ha sido creado correctamente",
+                                    title: 'Documento subido con éxito',
+                                    text: "El documento ha sido subido correctamente",
                                     icon: "sucess",
                                     buttons: true,
                                 })
@@ -252,6 +240,11 @@ class NuevoDocumento extends Component {
                             });
 
 
+                    })
+                    .catch(err => {
+                        this.setState({
+                            message: 'Formato incorrecto'
+                        });
                     });
 
             } else {
@@ -273,19 +266,16 @@ class NuevoDocumento extends Component {
 
                 axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formDatadoc)
                     .then(res => {
-                        console.log("en proceso")
-
 
                         axios.put(this.urldocoficial + 'add-files-oficial/' + this.props.type + '/' + this.state.nombre, res.data.image)
                             .then(res => {
                                 this.setState({
                                     status: 'sucess',
-
+                                    message: ""
                                 })
-
                                 swal({
-                                    title: 'Documento creado con exito',
-                                    text: "El documento ha sido creado correctamente",
+                                    title: 'Documento subido con éxito',
+                                    text: "El documento ha sido subido correctamente",
                                     icon: "sucess",
                                     buttons: true,
                                 })
@@ -296,8 +286,11 @@ class NuevoDocumento extends Component {
                                     });
 
                             });
-
-
+                    })
+                    .catch(err => {
+                        this.setState({
+                            message: 'Formato incorrecto'
+                        });
                     });
 
             } else {
@@ -305,11 +298,7 @@ class NuevoDocumento extends Component {
                 this.validator.showMessages();
             }
 
-
-
         }
-
-
 
     }
 
@@ -319,7 +308,7 @@ class NuevoDocumento extends Component {
             asunto: 'Modificación del documento ' + this.state.nombre,
             texto: 'El documento ' + this.state.nombre + ' se ha subido por parte del alumno ' + this.state.identity.nombre + " " + this.state.identity.apellido1 + " " + this.state.identity.apellido2
                 + '  Puede obtener más información en el apartado de ALUMNOS. ',
-            emisor: { profesor: '5f7c4c32fceb54223c41cf44' },
+            emisor: { profesor: '5fbbfde011838fd11fac5944' },
             receptor: { profesor: this.state.identity.profesor }
         }
 
@@ -328,7 +317,7 @@ class NuevoDocumento extends Component {
             texto: 'El documento ' + this.state.nombre + ' se ha subido por parte del alumno ' + this.state.identity.nombre + " " + this.state.identity.apellido1 + " " + this.state.identity.apellido2
                 + 'Puede obtener más información en el apartado de ALUMNOS',
 
-            emisor: { profesor: '5f7c4c32fceb54223c41cf44' },
+            emisor: { profesor: '5fbbfde011838fd11fac5944' },
             receptor: { profesor: this.state.identity.coordinador }
         }
 
@@ -367,7 +356,7 @@ class NuevoDocumento extends Component {
             asunto: ' Modificación del documento ' + this.state.nombre,
             texto: 'El documento ' + this.state.nombre + ' se ha subido por parte del profesor ' + this.state.identity.nombre + " " + this.state.identity.apellido1 + " " + this.state.identity.apellido2
                 + '  Puede obtener más información en el apartado de DOCUMENTOS. ',
-            emisor: { profesor: '5f7c4c32fceb54223c41cf44' },
+            emisor: { profesor: '5fbbfde011838fd11fac5944' },
             receptor: { alumno: this.props.type }
         }
 
@@ -529,6 +518,9 @@ class NuevoDocumento extends Component {
                                 </div>
                                 <div id="div_file" className="form-subir">
                                     {/*} <label htmlFor="file0"> URL: </label>*/}
+                                    {this.state.message != "" &&
+                                        <label id="toast" style={{ display: 'none', color: 'red' }}>{this.state.message}</label>
+                                    }
                                     <input type="file" name="file0" onChange={this.fileChange} ref={this.fileRef} className="form-input-nuevo" />
                                     {this.validator.message('file0', this.state.selectedFile, 'required')}
                                 </div>

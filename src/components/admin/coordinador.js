@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 
-
+import Spinner from 'react-bootstrap/Spinner';
 
 
 class Coordinador extends Component {
@@ -52,6 +52,8 @@ class Coordinador extends Component {
             profesor: this.state.profesor,
             coordinador: this.state.coordinador._id
         }
+        var elem = document.getElementById('fp-container');
+        elem.style.display = 'block'
 
         axios.put( 'https://plataforma-erasmus.herokuapp.com/apiProfesor/updatecoordinador', body)
         .then(res => {
@@ -73,10 +75,12 @@ class Coordinador extends Component {
                     this.setState({
                         status:'sucess'
                     })
+                    elem.style.display = 'none'
+                    window.location.reload(true);
                 });    
-                this.forceUpdate();
+               // this.forceUpdate();
     });
-    this.forceUpdate();
+   // this.forceUpdate();
 }
 
 
@@ -131,7 +135,9 @@ class Coordinador extends Component {
                         <button onClick={this.cambiarcoordinador} className="btn-style" style={{ marginTop: '15px' }}> GUARDAR </button>
                     </div>
                 </Card>
-
+                <div className="fp-container" id="fp-container">
+                    <Spinner animation="border" role="status" className="fp-loader"></Spinner>
+                </div>
 
             </div>
 

@@ -13,7 +13,7 @@
 .grid-doc-oficial{
     margin-top: 30px;
     display:grid;
-    grid-template-columns: 1000px auto;
+    grid-template-columns: 1200px auto;
 }
 
 .grid-row-docgeneral{

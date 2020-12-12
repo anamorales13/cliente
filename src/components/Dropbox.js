@@ -211,9 +211,9 @@ class Dropbox extends Component {
 
 
                                     <td>
-                                        <spain>
+                                        <span>
                                             <Moment format="DD-MM-YYYY">{documentos.date}</Moment>
-                                        </spain>
+                                        </span>
 
                                     </td>
                                     <td className="th-pequeño">
@@ -336,7 +336,7 @@ class Dropbox extends Component {
                     
                     <Spinner animation="border" role="status" style={{ textAlign: 'center' }}>
                                     <span className="sr-only">Loading...</span>
-                                </Spinner>
+                    </Spinner>
                     </div>
 
                 </div>

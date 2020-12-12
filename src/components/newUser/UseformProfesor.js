@@ -37,6 +37,7 @@ export class Useform extends Component {
         tutoria:"",
         alumno: {},
         profesor: {},
+        message:"",
         
 
     }
@@ -101,10 +102,19 @@ export class Useform extends Component {
         axios.post(this.urlprofesor + 'save', body)
             .then(res => {
                 this.setState({
-                    profesor: res.data.profesor
+                    profesor: res.data.profesor,
+                    message: res.data.status,
                 })
-            })
+                if(res.data.status=== 'repetido'){
+                    this.setState({
+                        step:1
+                    })
+                }
+            }) 
+        
     }
+                
+            
 
 
 
@@ -112,8 +122,8 @@ export class Useform extends Component {
         const { step } = this.state;
 
 
-        const { nombre, apellido1, apellido2, usuario, password1,password2, email1,email2, telefono, destino, alumno, profesor, despacho, edificio,datos, tutoria  } = this.state;
-        const values = { nombre, apellido1, apellido2, usuario, password1,password2, email1,email2, telefono, destino, alumno, profesor, despacho, edificio,datos, tutoria }
+        const { nombre, apellido1, apellido2, usuario, password1,password2, email1,email2, telefono, destino, alumno, profesor, despacho, edificio,datos, tutoria, message  } = this.state;
+        const values = { nombre, apellido1, apellido2, usuario, password1,password2, email1,email2, telefono, destino, alumno, profesor, despacho, edificio,datos, tutoria, message }
         const { tipo } = this.props.location.state
 
         switch (step) {

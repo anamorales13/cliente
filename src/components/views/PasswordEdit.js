@@ -13,24 +13,24 @@ var bcrypt = require('bcrypt-nodejs');
 
 class PasswordEdit extends Component {
 
-  /*  passwordNuevaDos = React.createRef();
-    passwordNueva = React.createRef();
-    passwordActual = React.createRef();
-*/
+    /*  passwordNuevaDos = React.createRef();
+      passwordNueva = React.createRef();
+      passwordActual = React.createRef();
+  */
 
 
     url = Global.url;
-    urlprofesor=Global.urlprofesor;
+    urlprofesor = Global.urlprofesor;
 
     constructor(props) {
         super(props);
         this.state = {
             identity: null,
             alumno: {},
-            passwordNueva:"",
+            passwordNueva: "",
             passwordNuevaDos: "",
-            passwordActual:"",
-           /* passwordActual: {},*/
+            passwordActual: "",
+            /* passwordActual: {},*/
             errores: {
                 actual: null,
                 nueva: null,
@@ -51,8 +51,9 @@ class PasswordEdit extends Component {
         })
         this.validator = new SimpleReactValidator({
             messages: {
-                required: 'Este campo es requerido', //PERSONALIZAR MENSAJES DE ERROR
-                min: 'La contraseña debe contener como mínimo 8 caracteres'
+                required: 'Este campo es obligatorio', //PERSONALIZAR MENSAJES DE ERROR
+                min: 'La contraseña debe contener como mínimo 8 caracteres',
+                max: 'La contraseña debe de tener como máximo 12 caracteres'
 
             }
 
@@ -100,35 +101,44 @@ class PasswordEdit extends Component {
     updatePassword = (e) => {
         e.preventDefault();
 
-        var currentlypassword={
+        var currentlypassword = {
             password: this.state.passwordActual
         }
-
-        var nueva={
-            password: this.state.passwordNueva
+        var nueva = {
+            password: this.state.passwordNueva,
+            passwordDos: this.state.passwordNuevaDos
         }
+        
 
-        console.log(currentlypassword);
-        console.log(nueva);
-
-        if(this.state.identity==='Alumno'){
-        if (this.state.passwordActual != "" && this.state.passwordNuevaDos != "" && this.state.passwordNueva != "") {
-            if (this.validator.fieldValid('min')) {
-                /* if(this.validator.allValid()){*/
-                   
+        if (this.state.identity.tipo === 'Alumno') {
+            console.log();
+            if (this.validator.allValid()) {
                 axios.post(this.url + 'compararPassword/' + this.state.identity._id, currentlypassword)
                     .then(res => {
-                        if (res.data.status == 'sucess') {
-                            if (this.state.passwordNueva == this.state.passwordNuevaDos) {
-                                
+
+                        if (res.data.status === 'sucess') {
+
+                            if (nueva.password === nueva.passwordDos) {
+
                                 axios.put(this.url + 'update-password/' + this.state.identity._id, nueva)
                                     .then(res => {
-                                        if (res.data.alumno) {
+                                        if (res.data.status === 'sucess') {
                                             this.setState({
-                                                alumno: res.data.alumno,
+                                               // alumno: res.data.profesor,
                                                 status: 'sucess'
                                             });
 
+                                            swal({
+                                                title: '¡Contraseña actualizada!',
+                                                text: "La contraseña ha sido actualizada correctamente",
+                                                icon: "sucess",
+                                                buttons: true,
+                                            })
+                                            .then((value) => {
+                                                if (value) {
+                                                    window.location.reload(true);
+                                                }
+                                            });
                                         } else {
                                             this.setState({
                                                 status: 'failed'
@@ -141,45 +151,40 @@ class PasswordEdit extends Component {
                                         nueva: 'No coinciden las contraseñas',
                                         nuevarep: 'No coinciden las contraseñas'
                                     },
-                                    
+
                                 });
-                               /* this.cambiarError('input-error2');
-                                this.cambiarError('input-error3');*/
+
                             }
                         } else //no son iguales
                         {
                             this.setState({
                                 errores: {
-                                    actual: 'Contraseña incorrecta'
+                                    actual: 'Contraseña incorrecta. Inténtelo de nuevo'
                                 },
-                                
+
 
                             });
-                           /* this.cambiarError('input-error')*/
+                           
 
                             console.log("error");
                         }
                     });
-            } else {
-                this.validator.showMessages();
-                this.forceUpdate();
-            }
-        } else {
-            this.validator.showMessages();
+                
+                } else {
+                    console.log("error");
+                    this.validator.showMessages();
+    
+                }     
+        } else {  // **** VENTANA PROFESOR ****
 
-        }
-    }else{
-        console.log("profesor")
-        if (this.state.passwordActual != null && this.state.passwordNuevaDos != null && this.state.passwordNueva != null) {
-           // if (this.validator.fieldValid('min')) {
-                console.log("no estan vacias");
-                /* if(this.validator.allValid()){*/
+            if (this.validator.allValid()) {
                 axios.post(this.urlprofesor + 'compararPassword/' + this.state.identity._id, currentlypassword)
                     .then(res => {
-                        console.log("2");
-                        if (res.data.status == 'sucess') {
-                            if (this.state.passwordNueva == this.state.passwordNuevaDos) {
-                                console.log("son iguales");
+
+                        if (res.data.status === 'sucess') {
+
+                            if (nueva.password === nueva.passwordDos) {
+
                                 axios.put(this.urlprofesor + 'update-password/' + this.state.identity._id, nueva)
                                     .then(res => {
                                         if (res.data.profesor) {
@@ -189,11 +194,16 @@ class PasswordEdit extends Component {
                                             });
 
                                             swal({
-                                                title: 'Documento creado con exito',
-                                                text: "El documento ha sido creado correctamente",
+                                                title: 'Contraseña actualizada con éxito',
+                                                text: "La contraseña ha sido actualizada correctamente",
                                                 icon: "sucess",
                                                 buttons: true,
                                             })
+                                            .then((value) => {
+                                                if (value) {
+                                                    window.location.reload(true);
+                                                }
+                                            });
                                         } else {
                                             this.setState({
                                                 status: 'failed'
@@ -206,48 +216,44 @@ class PasswordEdit extends Component {
                                         nueva: 'No coinciden las contraseñas',
                                         nuevarep: 'No coinciden las contraseñas'
                                     },
-                                    
+
                                 });
-                               /* this.cambiarError('input-error2');
-                                this.cambiarError('input-error3');*/
+
                             }
                         } else //no son iguales
                         {
                             this.setState({
                                 errores: {
-                                    actual: 'Contraseña incorrecta'
+                                    actual: 'Contraseña incorrecta. Inténtelo de nuevo'
                                 },
-                                
+
 
                             });
-                           /* this.cambiarError('input-error')*/
+                           
 
                             console.log("error");
                         }
                     });
-           /* } else {
-                console.log("no");
+                
+            } else {
                 this.validator.showMessages();
-                this.forceUpdate();
-            }*/
-        } else {
-            console.log("no2")
-            this.validator.showMessages();
+
+            }     
 
         }
 
+      
     }
 
-        this.forceUpdate();
-        this.formularioEnBlanco();
 
-    }
 
-    formularioEnBlanco=()=>{
+
+
+    formularioEnBlanco = () => {
         this.setState({
-            passwordActual:"",
-            passwordNueva:"",
-            passwordNuevaDos:""
+            passwordActual: "",
+            passwordNueva: "",
+            passwordNuevaDos: ""
         })
     }
 
@@ -264,11 +270,11 @@ class PasswordEdit extends Component {
 
                         <form className="elemt-form-passw" onSubmit={this.updatePassword} noValidate>
                             <div className="form-edit">
-                            
+
                                 <label className="form-editpassw-value-title">Contraseña actual</label>
                                 <input id="input-error" className="form-editpassw-value" name="actual" value={this.state.passwordActual} onChange={this.handleChange('passwordActual')} type="password" ref={this.passwordActual} required></input>
                                 <div className="error" >
-                                    {this.validator.message('actual', this.state.passwordActual, 'required')}
+                                    {/*   {this.validator.message('actual', this.state.passwordActual, 'required')}*/}
                                 </div>
 
                                 {this.state.errores.actual != undefined &&
@@ -280,9 +286,9 @@ class PasswordEdit extends Component {
                             <label style={{ colore: 'grey', fontSize: '12px' }}>Las contraseñas deben de contener entre 8-12 caracteres. No incluir espacios, caracteres especiales o iconos</label>
                             <div className="form-edit">
                                 <label className="form-editpassw-value-title">Nueva contraseña</label>
-                                <input id="input-error2" className="form-editpassw-value" name="nueva" value={this.state.passwordNueva}  onChange={this.handleChange('passwordNueva')} type="password" ref={this.passwordNueva} required></input>
+                                <input id="input-error2" className="form-editpassw-value" name="nueva" value={this.state.passwordNueva} onChange={this.handleChange('passwordNueva')} type="password" ref={this.passwordNueva} required></input>
                                 <div className="error">
-                                    {this.validator.message('nueva', this.state.passwordNueva, 'required|min:8')}
+                                    {this.validator.message('nueva', this.state.passwordNueva, 'required|min:8|max:12')}
                                 </div>
                                 {this.state.errores.nueva != undefined &&
                                     <label className="error"> {this.state.errores.nueva.toString()}</label>
@@ -290,9 +296,9 @@ class PasswordEdit extends Component {
                             </div>
                             <div className="form-edit">
                                 <label className="form-editpassw-value-title">Vuelve a escribir la nueva contraseña</label>
-                                <input id="input-error3" className="form-editpassw-value" name="nuevarep" value={this.state.passwordNuevaDos}  onChange={this.handleChange('passwordNuevaDos')} type="password" ref={this.passwordNuevaDos} required></input>
+                                <input id="input-error3" className="form-editpassw-value" name="nuevarep" value={this.state.passwordNuevaDos} onChange={this.handleChange('passwordNuevaDos')} type="password" ref={this.passwordNuevaDos} required></input>
                                 <div className="error">
-                                    {this.validator.message('nuevarep', this.state.passwordNuevaDos, 'required|min:8')}
+                                    {this.validator.message('nuevarep', this.state.passwordNuevaDos, 'required|min:8|max:12')}
                                 </div>
                                 {this.state.errores.nuevarep != undefined &&
                                     <label className="error"> {this.state.errores.nuevarep.toString()}</label>

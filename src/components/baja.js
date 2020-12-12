@@ -39,8 +39,8 @@ class baja extends Component {
                     navigate: res.data.navigate
                 })
                 swal(
-                    'Realizado correctamente!',
-                    'Se ha realizado correctamente la baja del usuario',
+                    'Baja realizada con éxito',
+                    'La baja del usuario se ha realizado correctamente',
                     'sucess'
                 )
 
@@ -58,7 +58,7 @@ class baja extends Component {
         const { navigate } = this.state
         if (navigate) {
             localStorage.clear();
-            window.location.assign('/')
+            return window.location.href = 'https://anamorales13.github.io/cliente';
         }
 
         return (

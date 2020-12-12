@@ -18,15 +18,17 @@ class MenuPerfil extends Component {
                     <li>
                         <NavLink exact to="/user/seguridad" activeClassName="active"> <span className="glyphicon glyphicon-lock"></span> Cambiar Contraseña </NavLink >
                     </li>
-                    {JSON.parse(localStorage.getItem('user')).tipo==='Alumno' 
-                     ? ( <li>
+                    {JSON.parse(localStorage.getItem('user')).tipo==='Alumno' &&
+                      <li>
                         <NavLink exact to="/user/erasmus" activeClassName="active"> <span className="glyphicon glyphicon-globe"/> Erasmus</NavLink >
-                    </li> ): (
+                    </li> 
+                    }
+                    {JSON.parse(localStorage.getItem('user')).tipo==='profesor' &&
                         <li>
                         <NavLink exact to="/profesor/erasmus" activeClassName="active"> <span className="glyphicon glyphicon-globe"/> Erasmus</NavLink >
                     </li>
 
-                    ) }
+                     }
                    
 
                 </ul>

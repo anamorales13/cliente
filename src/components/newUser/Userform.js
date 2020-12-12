@@ -53,6 +53,9 @@ export class Useform extends Component {
 
         if (this.state.step == 2) {
             this.guardarAlumno();
+            this.setState({
+                message:"",
+            })
         }
 
     }
@@ -94,8 +97,17 @@ export class Useform extends Component {
             .then(res => {
                 
                 this.setState({
-                    alumno: res.data.alumno
+                    alumno: res.data.alumno,
+                   
                 })
+
+                if(res.data.status=== 'repetido'){
+                    this.setState({
+                        step:1,
+                        message:'repetido'
+                    })
+                }
+                
             })
             .catch(err => {
                 this.setState({
@@ -112,8 +124,8 @@ export class Useform extends Component {
         const { step } = this.state;
 
 
-        const { nombre, apellido1, apellido2, usuario, password1, password2, email1, email2, telefono, destino, alumno, profesor, despacho, message } = this.state;
-        const values = { nombre, apellido1, apellido2, usuario, password1, password2, email1, email2, telefono, destino, alumno, profesor, despacho , message}
+        const { nombre, apellido1, apellido2, usuario, password1, password2, email1, email2, telefono, destino, alumno, profesor, despacho, message, status } = this.state;
+        const values = { nombre, apellido1, apellido2, usuario, password1, password2, email1, email2, telefono, destino, alumno, profesor, despacho , message, status}
         const { tipo } = this.props.location.state
 
         switch (step) {
@@ -158,7 +170,10 @@ export class Useform extends Component {
             case 4:
                 return (
                     <div>
-                        <Sucess />
+                        <Sucess
+                        tipo={tipo}
+                        values={values}
+                         />
 
                     </div>
 

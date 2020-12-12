@@ -158,12 +158,14 @@ export class FormDatosUniversidad extends Component {
                                     style={styles.button}
                                     onClick={this.continue}
                                     formnovalidate
+                                   
                                 > CONTINUAR </button>
                                 <button
                                     label="volver"
                                     className="btn-back form-login"
                                     style={styles.button}
                                     onClick={this.back}
+                                   
                                 > VOLVER </button>
                             </Form>
                             <br></br>

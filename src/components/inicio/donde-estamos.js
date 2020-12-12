@@ -13,7 +13,7 @@ class donde extends Component {
         return (
             <div >
 
-                <h1 className="titulo-doc">Donde estamos</h1>
+                <h1 className="titulo-doc">¿Dónde estamos?</h1>
                 <div className="quienes-somos" >
                     <div style={{width:'1000px', margin:'auto'}}>
 

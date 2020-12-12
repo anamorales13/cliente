@@ -73,7 +73,7 @@ class Documentos extends Component {
                 })
             })
         swal(
-            'Documento eliminado con exito',
+            'Documento eliminado con éxito',
             'El documento ha sido eliminado correctamente',
             'success'
         )
@@ -108,9 +108,9 @@ class Documentos extends Component {
                                 </td>
 
                                 <td>
-                                    <spain>
+                                    <span>
                                         <Moment format="DD-MM-YYYY">{documentos.date}</Moment>
-                                    </spain>
+                                    </span>
 
 
                                 </td>

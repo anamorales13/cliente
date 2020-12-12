@@ -14,6 +14,7 @@ class erasmus extends Component {
         coordinador: {},
         destinos: [],
         status: null,
+        message:"",
     }
 
     constructor(props) {
@@ -41,18 +42,26 @@ class erasmus extends Component {
     getdestinos() {
         axios.get('https://plataforma-erasmus.herokuapp.com/apiDestino/destinoByProfesor/' + this.state.identity._id)
             .then(res => {
+             
                 this.setState({
                     destinos: res.data.destino,
 
+                });
+               
+            })
+            .catch(err => {
+                this.setState({
+                   message:'No tiene ningún destino a su cargo'
                 });
             });
     }
 
 
 
+
     render() {
 
-        if (this.state.destinos != undefined) {
+        if (this.state.destinos !== undefined) {
             var listardocumentos = this.state.destinos.map((destino, index) => {
                 return (
                     <div>

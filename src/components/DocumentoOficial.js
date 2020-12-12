@@ -10,7 +10,9 @@ import doc from '../assets/images/default-document.png';
 import Modal from 'react-bootstrap/Modal';
 import Moment from 'react-moment';
 import Card from 'react-bootstrap/Card';
-import {FaFileDownload} from 'react-icons/fa';
+import { FaFileDownload } from 'react-icons/fa';
+import Spinner from 'react-bootstrap/Spinner';
+import swal from 'sweetalert';
 
 class DocumentoOficial extends Component {
 
@@ -102,21 +104,36 @@ class DocumentoOficial extends Component {
     //SOLO PROFESOR
     modificarEstado = () => {
 
-        console.log(this.nombre);
         var body = {
             estado: this.state.estado
         }
 
+        console.log(this.nombre);
 
         axios.put(this.url + "cambioEstado/" + this.props.match.params.id + "/" + this.nombre, body)
             .then(res => {
                 this.setState({
                     status: 'sucess'
                 })
+                this.nombre="";
+                swal({
+                    title: 'Estado modificado con éxito',
+                    text: "El estado ha sido modificado correctamente",
+                    icon: "sucess", 
+                    buttons: true,
+                })
+                    .then((value) => {
+                        if (value) {
+                            window.location.reload(true);
+                        }
+                    });
+            })
+            .catch(err => {
+                this.setState({
+                    status: 'failed'
+                })
             })
         this.notificarAlumno();
-
-
 
     }
 
@@ -127,7 +144,7 @@ class DocumentoOficial extends Component {
             asunto: 'Modificación documento ' + this.nombre,
             texto: 'El estado del documento ' + this.nombre + ' ha sido modificado por el profesor ' + this.state.identity.nombre + " " + this.state.identity.apellido1 + " " + this.state.identity.apellido2
                 + '  Puede obtener más información en el apartado de DOCUMENTOS. ',
-            emisor: { profesor: '5f7c4c32fceb54223c41cf44' },
+            emisor: { profesor: '5fbbfde011838fd11fac5944' },
             receptor: { alumno: this.props.match.params.id }
         }
 
@@ -137,12 +154,14 @@ class DocumentoOficial extends Component {
                     nuevoMensaje: res.data.mensaje,
                     status: 'sucess',
                 });
+                window.location.reload(true);
             })
             .catch(err => {
                 this.setState({
                     status: 'failed'
                 });
             });
+
     }
 
     render() {
@@ -155,17 +174,17 @@ class DocumentoOficial extends Component {
                 <div className="grid-documentos-oficiales">
                     {/* FILA 1 */}
                     <div>
-                    {
-                        this.state.identity.tipo === "profesor" &&
-                        <div>
-                            <h1 className="titulo-secundario">DOCUMENTOS OFICIALES</h1>
-                            <h4 className="subtitulo-doc" style={{marginBottom: '25px'}}>{this.state.alumno[0].nombre + " " + this.state.alumno[0].apellido1 + "  " + this.state.alumno[0].apellido2}</h4>
-                        </div>
-                    }
-                    {
-                        this.state.identity.tipo === "Alumno" &&
-                        <h1 className="titulo-doc">DOCUMENTOS OFICIALES</h1>
-                    }
+                        {
+                            this.state.identity.tipo === "profesor" &&
+                            <div>
+                                <h1 className="titulo-secundario">DOCUMENTOS OFICIALES</h1>
+                                <h4 className="subtitulo-doc" style={{ marginBottom: '25px' }}>{this.state.alumno[0].nombre + " " + this.state.alumno[0].apellido1 + "  " + this.state.alumno[0].apellido2}</h4>
+                            </div>
+                        }
+                        {
+                            this.state.identity.tipo === "Alumno" &&
+                            <h1 className="titulo-doc">DOCUMENTOS OFICIALES</h1>
+                        }
                     </div>
                     {/* FILA 2 */}
                     <div className="grid-doc-oficial">
@@ -214,9 +233,9 @@ class DocumentoOficial extends Component {
                                             {this.state.alumno[0].documentos[0].estado != 'No Presentado' &&
                                                 <div>
                                                     <a id="link-doc" target="_blank" href={this.state.alumno[0].documentos[0].image}>
-                                                        <FaFileDownload/>
+                                                        <FaFileDownload />
                                                     </a>
-                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[1].fecha}</Moment></h5>
+                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[0].fecha}</Moment></h5>
                                                 </div>
                                             }
                                         </Card.Text>
@@ -240,14 +259,14 @@ class DocumentoOficial extends Component {
                                             {this.state.alumno[0].documentos[1].estado === 'En tramite' &&
 
                                                 <h5 id="estado-doc">Estado : <strong style={{ color: 'blue' }}>En trámite</strong>
-                                                    <button onClick={() => this.openModal('CPRA')} id="edit-style" style={this.props.match.params.id ? { color: 'blue' } : { display: 'none' }}><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <button onClick={() => this.openModal('Learning_Agreement')} id="edit-style" style={this.props.match.params.id ? { color: 'blue' } : { display: 'none' }}><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                                                     </svg> </button> </h5>
                                             }
                                             {this.state.alumno[0].documentos[1].estado === 'Aceptado' &&
 
                                                 <h5 id="estado-doc">Estado : <strong style={{ color: 'green' }}>Aceptado</strong>
-                                                    <button onClick={() => this.openModal('CPRA')} id="edit-style" style={this.props.match.params.id ? { color: 'green' } : { display: 'none' }}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <button onClick={() => this.openModal('Learning_Agreement')} id="edit-style" style={this.props.match.params.id ? { color: 'green' } : { display: 'none' }}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                                                     </svg></button></h5>
 
@@ -255,7 +274,7 @@ class DocumentoOficial extends Component {
                                             {this.state.alumno[0].documentos[1].estado === 'No Aceptado' &&
 
                                                 <h5 id="estado-doc">Estado : <strong style={{ color: 'red' }}>No Aceptado</strong>
-                                                    <button onClick={() => this.openModal('CPRA')} id="edit-style" style={this.props.match.params.id ? { color: 'red' } : { display: 'none' }}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <button onClick={() => this.openModal('Learning_Agreement')} id="edit-style" style={this.props.match.params.id ? { color: 'red' } : { display: 'none' }}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                                                     </svg></button></h5>
 
@@ -265,8 +284,8 @@ class DocumentoOficial extends Component {
                                             }
                                             {this.state.alumno[0].documentos[1].estado != 'No Presentado' &&
                                                 <div>
-                                                    <a id="link-doc" target="_blank" href={ this.state.alumno[0].documentos[1].image}>
-                                                    <FaFileDownload/>
+                                                    <a id="link-doc" target="_blank" href={this.state.alumno[0].documentos[1].image}>
+                                                        <FaFileDownload />
                                                     </a>
                                                     <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[1].fecha}</Moment></h5>
                                                 </div>
@@ -295,14 +314,14 @@ class DocumentoOficial extends Component {
                                             {this.state.alumno[0].documentos[2].estado === 'En tramite' &&
 
                                                 <h5 id="estado-doc">Estado : <strong style={{ color: 'blue' }}>En trámite</strong>
-                                                    <button onClick={() => this.openModal('CPRA')} id="edit-style" style={this.props.match.params.id ? { color: 'blue' } : { display: 'none' }}><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <button onClick={() => this.openModal('Modificacion_CPRA')} id="edit-style" style={this.props.match.params.id ? { color: 'blue' } : { display: 'none' }}><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                                                     </svg> </button> </h5>
                                             }
                                             {this.state.alumno[0].documentos[2].estado === 'Aceptado' &&
 
                                                 <h5 id="estado-doc">Estado : <strong style={{ color: 'green' }}>Aceptado</strong>
-                                                    <button onClick={() => this.openModal('CPRA')} id="edit-style" style={this.props.match.params.id ? { color: 'green' } : { display: 'none' }}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <button onClick={() => this.openModal('Modificacion_CPRA')} id="edit-style" style={this.props.match.params.id ? { color: 'green' } : { display: 'none' }}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                                                     </svg></button></h5>
 
@@ -310,7 +329,7 @@ class DocumentoOficial extends Component {
                                             {this.state.alumno[0].documentos[2].estado === 'No Aceptado' &&
 
                                                 <h5 id="estado-doc">Estado : <strong style={{ color: 'red' }}>No Aceptado</strong>
-                                                    <button onClick={() => this.openModal('CPRA')} id="edit-style" style={this.props.match.params.id ? { color: 'red' } : { display: 'none' }}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <button onClick={() => this.openModal('Modificacion_CPRA')} id="edit-style" style={this.props.match.params.id ? { color: 'red' } : { display: 'none' }}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                                                     </svg></button></h5>
 
@@ -321,9 +340,9 @@ class DocumentoOficial extends Component {
                                             {this.state.alumno[0].documentos[2].estado != 'No Presentado' &&
                                                 <div>
                                                     <a id="link-doc" target="_blank" href={this.state.alumno[0].documentos[2].image}>
-                                                    <FaFileDownload/>
+                                                        <FaFileDownload />
                                                     </a>
-                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[1].fecha}</Moment></h5>
+                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[2].fecha}</Moment></h5>
                                                 </div>
                                             }
                                         </Card.Text>
@@ -346,14 +365,14 @@ class DocumentoOficial extends Component {
                                             {this.state.alumno[0].documentos[3].estado === 'En tramite' &&
 
                                                 <h5 id="estado-doc">Estado : <strong style={{ color: 'blue' }}>En trámite</strong>
-                                                    <button onClick={() => this.openModal('CPRA')} id="edit-style" style={this.props.match.params.id ? { color: 'blue' } : { display: 'none' }}><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <button onClick={() => this.openModal('Modificacion_LA')} id="edit-style" style={this.props.match.params.id ? { color: 'blue' } : { display: 'none' }}><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                                                     </svg> </button> </h5>
                                             }
                                             {this.state.alumno[0].documentos[3].estado === 'Aceptado' &&
 
                                                 <h5 id="estado-doc">Estado : <strong style={{ color: 'green' }}>Aceptado</strong>
-                                                    <button onClick={() => this.openModal('CPRA')} id="edit-style" style={this.props.match.params.id ? { color: 'green' } : { display: 'none' }}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <button onClick={() => this.openModal('Modificacion_LA')} id="edit-style" style={this.props.match.params.id ? { color: 'green' } : { display: 'none' }}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                                                     </svg></button></h5>
 
@@ -361,7 +380,7 @@ class DocumentoOficial extends Component {
                                             {this.state.alumno[0].documentos[3].estado === 'No Aceptado' &&
 
                                                 <h5 id="estado-doc">Estado : <strong style={{ color: 'red' }}>No Aceptado</strong>
-                                                    <button onClick={() => this.openModal('CPRA')} id="edit-style" style={this.props.match.params.id ? { color: 'red' } : { display: 'none' }}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <button onClick={() => this.openModal('Modificacion_LA')} id="edit-style" style={this.props.match.params.id ? { color: 'red' } : { display: 'none' }}> <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                                                     </svg></button></h5>
 
@@ -371,10 +390,10 @@ class DocumentoOficial extends Component {
                                             }
                                             {this.state.alumno[0].documentos[3].estado != 'No Presentado' &&
                                                 <div>
-                                                    <a id="link-doc" target="_blank" href={ this.state.alumno[0].documentos[3].image}>
-                                                    <FaFileDownload/>
+                                                    <a id="link-doc" target="_blank" href={this.state.alumno[0].documentos[3].image}>
+                                                        <FaFileDownload />
                                                     </a>
-                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[1].fecha}</Moment></h5>
+                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[3].fecha}</Moment></h5>
                                                 </div>
                                             }
                                         </Card.Text>
@@ -411,31 +430,35 @@ class DocumentoOficial extends Component {
                                     <Modal.Footer>
                                         <button variant="secondary" onClick={this.onCloseModal} className="btn-cerrar">
                                             Close
-                            </button>
+                                        </button>
 
                                     </Modal.Footer>
                                 </Modal>
+
                             </div>
+
                         </div>
-                          {/* COLUMNA 2 */}
+                        {/* COLUMNA 2 */}
                         <div className="btn-docOficial" >
 
-                        {
-                            this.props.match.params.id != null
-                                ? <NuevoDocumento type={this.props.match.params.id} />
-                                : <NuevoDocumento type="nuevo" />
-                        }
+                            {
+                                this.props.match.params.id != null
+                                    ? <NuevoDocumento type={this.props.match.params.id} />
+                                    : <NuevoDocumento type="nuevo" />
+                            }
 
+                        </div>
                     </div>
-                    </div>
-                  
-                    
+
+
                 </div >
             );
         } else {
             return (
                 <div>
-                    <h3>No hay documentos</h3>
+                    <div className="fp-container" id="fp-container">
+                        <Spinner animation="border" role="status" className="fp-loader"></Spinner>
+                    </div>
                 </div>
             )
 

@@ -1,27 +1,21 @@
 import React, { Component } from 'react';
 import NuevoDocumento from './NuevoDocumento';
 
-import { Link } from 'react-router-dom';
 import GlobalDocumentos from '../GlobalDocumentos';
 import '../assets/css/dropbox.css';
-import Documentos from './Documentos';
 import Spinner from 'react-bootstrap/Spinner';
 import '../assets/css/dropbox.css';
 import axios from 'axios';
 import Moment from 'react-moment';
-import Global from '../Global';
 import ButtonIcon from "@material-ui/core/Button";
-import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ReactPaginate from "react-paginate";
 
-import swal from 'sweetalert';
 
 /*IMAGENES - BOTONES */
 
 import btn1 from '../assets/images/pdf.png';
 import btn2 from '../assets/images/zip.png';
-import btn3 from '../assets/images/default.png';
 
 import Card from 'react-bootstrap/Card';
 
@@ -109,14 +103,10 @@ class mydropbox extends Component {
                 this.setState({
                     status: 'sucess'
                 })
+                window.location.reload(true);
             })
 
-        window.location.reload(true);
-
-
-
-
-        this.forceUpdate();
+       this.forceUpdate();
     }
 
 
@@ -147,7 +137,7 @@ class mydropbox extends Component {
         }
 
 
-        if (this.state.documentos != undefined) {
+        if (this.state.documentos !== undefined) {
             var listardocumentos = this.state.documentos.map((documentos) => {
                 return (
                     <div className="documento-item">
@@ -160,7 +150,7 @@ class mydropbox extends Component {
                                         <div>
 
                                             {
-                                                documentos.formato == "pdf" ? (
+                                                documentos.formato === "pdf" ? (
                                                     <img src={btn1} alt="prueba" className="image-wrap" />
                                                 ) : documentos.formato === "zip" || documentos.formato === 'rar' ? (
                                                     <img src={btn2} alt="prueba" className="image-wrap" />
@@ -172,7 +162,7 @@ class mydropbox extends Component {
                                         </div>
                                         <div>
 
-                                            <a target="_blank" href={documentos.image} >{documentos.title}</a>
+                                            <a target="_blank" rel="noopener noreferrer" href={documentos.image} >{documentos.title}</a>
                                         </div>
 
                                     </td >
@@ -182,9 +172,9 @@ class mydropbox extends Component {
                                     </td>
 
                                     <td style={{ width: '30%' }}>
-                                        <spain>
+                                        <span>
                                             <Moment format="DD-MM-YYYY">{documentos.date}</Moment>
-                                        </spain>
+                                        </span>
 
 
                                     </td>
@@ -212,7 +202,7 @@ class mydropbox extends Component {
                         <Card className="card-bajas" style={{ border: 'none' }}>
                             <div className="bajas">
                                 <h3 style={{ fontSize: '24px', color: '#BB0909' }}>¡Recuerda!</h3>
-                                <h5 style={{ fontSize: '16px' }}> Sólo se pueden subir imagenes o archivos en formato .pdf .jpg ó .png    </h5>
+                                <h5 style={{ fontSize: '16px' }}> Solo se pueden subir imágenes o archivos en formato .pdf .jpg ó .png    </h5>
                                 <h5 style={{ fontSize: '16px' }}> El contenido de esta nube solo puede ser visto por usted.</h5>
 
                             </div>

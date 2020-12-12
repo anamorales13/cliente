@@ -111,9 +111,7 @@ export class FormDatosPlataforma extends Component {
                     <Link to='/' className="link-cancelar">Cancelar registro de usuario</Link><br />
                     <Card className="card-nuevoUser">
 
-                        {values.message !== "" &&
-                        <label>{values.message}</label>
-                        }
+                        
                         <Form>
                             <Form.Group >
                                 <Form.Control

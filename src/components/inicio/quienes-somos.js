@@ -12,7 +12,7 @@ class quienessomos extends Component {
     render() {
         return (
             <div>
-                <h1 className="titulo-doc">¿Quienes somos?</h1>
+                <h1 className="titulo-doc">¿Quiénes somos?</h1>
                 <div style={{ marginTop: '35px' }} className="quienes-somos">
                     <h3> <strong>Directora de Proyección Internacional y Movilidad </strong></h3>
                     <p>

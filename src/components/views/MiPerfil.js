@@ -92,11 +92,14 @@ class MiPerfil extends Component {
                                 </header>
                                 <div className="profesor-erasmus">
                                     <h5><strong>Nombre: </strong> {this.state.identity.nombre}</h5>
-                                    <h5><strong>Apellidos: </strong>{this.state.identity.apellido1 + " " + this.state.identity.apellido2}</h5>
+                                    {this.state.identity.tipo=='profesor' && 
+                                      <h5><strong>Apellidos: </strong>{this.state.identity.apellido1 + " " + this.state.identity.apellido2}</h5>
+                                    }
+                                    {this.state.identity.tipo==='Alumno' && 
+                                      <h5><strong>Apellidos: </strong>{this.state.identity.apellido1 + " " + this.state.identity.apellido2}</h5>
+                                      }
+                                  
                                     <h5><strong>Usuario: </strong> {this.state.identity.usuario}</h5>
-
-
-
 
                                 </div>
 
@@ -122,7 +125,7 @@ class MiPerfil extends Component {
                                             <h5><strong>Edificio: </strong>{this.state.identity.edificio}</h5>
                                             <h5>{this.state.identity.datos}</h5>
                                             <h5><strong>Nº Despacho: </strong>{this.state.identity.despacho}</h5>
-                                            <h5><strong>Tutoria</strong></h5>
+                                            <h5><strong>Tutorías</strong></h5>
                                             <h5>{this.state.identity.tutoria}</h5>
                                         </div>
                                     }

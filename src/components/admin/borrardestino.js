@@ -86,12 +86,13 @@ class borrar extends Component {
 
 
 
-        axios.put('https://plataforma-erasmus.herokuapp.com/apiDestino/delete/' + id)
+        axios.delete('https://plataforma-erasmus.herokuapp.com/apiDestino/delete/' + id)
             .then(res => {
                 this.setState({
                     status: 'sucess'
 
                 });
+                window.location.reload(true);
             });
         this.onCloseModal();
     }
@@ -173,7 +174,7 @@ class borrar extends Component {
                 <Menu></Menu>
                 <div>
                     <div>
-                        <h1 className="titulo-doc">    BORRAR DESTINOS </h1></div>
+                        <h1 className="titulo-doc">    ELIMINAR DESTINOS </h1></div>
 
                     <div >
 

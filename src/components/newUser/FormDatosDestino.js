@@ -147,6 +147,7 @@ export class FormDatosUniversidad extends Component {
                                     className="btn-back form-login"
                                     style={styles.button}
                                     onClick={this.back}
+                                   
                                 > VOLVER </button>
                             </Form>
                             <br></br>

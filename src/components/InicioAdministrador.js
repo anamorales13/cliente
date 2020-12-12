@@ -64,6 +64,7 @@ class InicioSesion extends Component {
                 localStorage.setItem('user', JSON.stringify(this.state.alumno));
                 localStorage.setItem('token', this.state.token);
                 elem.style.display = 'none'
+                this.props.history.push('/inicio');
                 //  this.get_token();
             })
             .catch(err => {
@@ -76,6 +77,7 @@ class InicioSesion extends Component {
                     'Nombre de usuario o contraseña incorrectos',
                     'error'
                 )
+                elem.style.display = 'none'
             });
         this.forceUpdate();
     }
