@@ -10,7 +10,7 @@ import Moment from 'react-moment';
 import ReactPaginate from "react-paginate";
 import { Link, Redirect } from 'react-router-dom';
 
-
+import {FaTelegramPlane, FaEnvelope, FaEnvelopeOpenText} from 'react-icons/fa';
 
 class recibidos extends Component {
 
@@ -244,8 +244,11 @@ class recibidos extends Component {
                     <Menu />
 
 
-
                     <div>
+                    <Link to="/mensajes/enviar" className="link-responsive" style={{backgroundColor:'#EEEEEE'}}><FaTelegramPlane/></Link>
+                       <Link to='/mensajes' className="link-responsive" style={{backgroundColor:'#CCD5CD'}}><FaEnvelope></FaEnvelope></Link>
+                       <Link to='/enviados' className="link-responsive" style={{backgroundColor:'#B3B9B3'}}><FaEnvelopeOpenText/></Link>
+
                         <h3 className="title-pantalla-mensaje">{this.state.title} </h3>
                         {listarmensajes}
                         {paginationElement}
@@ -264,8 +267,11 @@ class recibidos extends Component {
                     <Menu />
 
 
-
                     <div>
+                    <Link to="/mensajes/enviar" className="link-responsive" style={{backgroundColor:'#EEEEEE'}}><FaTelegramPlane/></Link>
+                       <Link to='/mensajes' className="link-responsive" style={{backgroundColor:'#CCD5CD'}}><FaEnvelope></FaEnvelope></Link>
+                       <Link to='/enviados' className="link-responsive" style={{backgroundColor:'#B3B9B3'}}><FaEnvelopeOpenText/></Link>
+
                         <h3>No hay mensajes </h3>
 
 

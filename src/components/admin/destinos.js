@@ -133,7 +133,7 @@ class destinos extends Component {
             this.validator.showMessages();
             // this.forceUpdate();
         }
-
+this.formularioEnBlanco();
     }
 
 
@@ -200,9 +200,9 @@ class destinos extends Component {
                                     {this.validator.message('profesor', this.state.profesor, 'required')}
                                 </Form.Group>
 
-                                <input type="submit" value="CREAR" className="  button-join " style={{ width: '60%' }}></input>
+                               
                             </Form>
-
+                            <button onClick={this.añadirDestino} className="form-destino btn-style" > GUARDAR </button>
                         </div>
 
                     </div>

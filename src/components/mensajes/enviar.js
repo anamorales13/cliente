@@ -3,11 +3,13 @@ import React, { Component } from 'react';
 import Menu from './menu-mensajes';
 import Global from '../../GlobalMensaje';
 import axios from 'axios';
-
+import { Link, Redirect } from 'react-router-dom';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import Spinner from 'react-bootstrap/Spinner';
 import SimpleReactValidator from 'simple-react-validator';
+
+import {FaTelegramPlane, FaEnvelope, FaEnvelopeOpenText} from 'react-icons/fa';
 
 class enviar extends Component {
 
@@ -207,8 +209,12 @@ class enviar extends Component {
                 <div className="grid-mensajeria-col">
 
                     <Menu />
-
+                    
                     <div>
+                    <Link to="/mensajes/enviar" className="link-responsive" style={{backgroundColor:'#EEEEEE'}}><FaTelegramPlane/></Link>
+                       <Link to='/mensajes' className="link-responsive" style={{backgroundColor:'#CCD5CD'}}><FaEnvelope></FaEnvelope></Link>
+                       <Link to='/enviados' className="link-responsive" style={{backgroundColor:'#B3B9B3'}}><FaEnvelopeOpenText/></Link>
+
                         {this.state.status == 'sucess' &&
                             <div className="alert alert-success">
 

@@ -9,7 +9,7 @@ import Card from 'react-bootstrap/Card';
 import ReactPaginate from "react-paginate";
 import { Link, Redirect } from 'react-router-dom';
 
-
+import {FaTelegramPlane, FaEnvelope, FaEnvelopeOpenText} from 'react-icons/fa';
 class enviados extends Component {
     url = Global.url;
     state = {
@@ -166,10 +166,12 @@ class enviados extends Component {
                     
                         <Menu />
 
-                  
 
                     <div>
-                       
+                    <Link to="/mensajes/enviar" className="link-responsive" style={{backgroundColor:'#EEEEEE'}}><FaTelegramPlane/></Link>
+                       <Link to='/mensajes' className="link-responsive" style={{backgroundColor:'#CCD5CD'}}><FaEnvelope></FaEnvelope></Link>
+                       <Link to='/enviados' className="link-responsive" style={{backgroundColor:'#B3B9B3'}}><FaEnvelopeOpenText/></Link>
+
                         <h3 className="title-pantalla-mensaje">{this.state.title} </h3>
                                         
                        
@@ -190,9 +192,12 @@ class enviados extends Component {
               
                     <Menu />
 
-                
-
+                   
                 <div>
+                <Link to="/mensajes/enviar" className="link-responsive" style={{backgroundColor:'#EEEEEE'}}><FaTelegramPlane/></Link>
+                       <Link to='/mensajes' className="link-responsive" style={{backgroundColor:'#CCD5CD'}}><FaEnvelope></FaEnvelope></Link>
+                       <Link to='/enviados' className="link-responsive" style={{backgroundColor:'#B3B9B3'}}><FaEnvelopeOpenText/></Link>
+
                     <h3 className="title-pantalla-mensaje">No hay mensajes </h3>
                     {listarmensajes}
 
