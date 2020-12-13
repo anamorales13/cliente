@@ -179,7 +179,7 @@ class mydropbox extends Component {
 
                                     </td>
                                     <td className="th-pequeño" >
-                                        <ButtonIcon onClick={() => { if (window.confirm('\n' + 'Estas seguro de eliminar el archivo ' + documentos.title + '?')) this.delete(documentos.title); }}
+                                        <ButtonIcon onClick={() => { if (window.confirm('\n' + '¿Estás seguro de eliminar el archivo -' + documentos.title + '-?')) this.delete(documentos.title); }}
                                             className="btn-delete" startIcon={<DeleteIcon />}></ButtonIcon>
                                     </td>
 
@@ -254,8 +254,8 @@ class mydropbox extends Component {
                         <div>
                             <div style={{ textAlign: 'center' }}>
 
-                                <h4 className="subheader">No hay documentos para mostrar</h4>
-                                <p>Todavia no hay contenido en esta sección</p>
+                                <h4 className="subheader">No hay archivos para mostrar</h4>
+                                <p>Todavía no hay contenido en esta sección</p>
 
 
                             </div>

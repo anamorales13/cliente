@@ -264,7 +264,8 @@ header nav{
         margin:0;
         position:fixed;
         left:-100%;
-        ;
+        background-color: lightgray;
+        transition: 1s;
     }
 
     

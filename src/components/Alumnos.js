@@ -43,19 +43,27 @@ class Alumnos extends Component {
     urlalumnos = Global.url;
 
     componentWillMount() {
-        if(this.state.identity.rol==='coordinador_de_destino'){
-            this.getalumno();
-        }else{
-            this.getalumnosCoordinador();
-        }
+        
        
        
     }
 
+    constructor(props){
+        super(props);
+        console.log(JSON.parse(localStorage.getItem('user')).rol);
+       // if(JSON.parse(localStorage.getItem('user')).rol==='coordinador_de_destino'){
+            this.getalumno();
+      /*  }else{
+            this.getalumnosCoordinador();
+        }*/
+    }
+
+
     getalumno = () => {
 
         var pages= this.state.currentPage+1;
-
+console.log(this.state.identity.rol);
+        if(this.state.identity.rol==='coordinador_de_destino'){
         axios.get(this.urlalumnos + 'get-alumnos-profesor/' + this.state.identity._id + '/'+ pages)
             .then(res => {
                 this.setState({
@@ -73,7 +81,24 @@ class Alumnos extends Component {
                 });
             });
 
+        }else{
+            axios.get(this.urlalumnos + 'coordinador/' + this.state.identity._id + '/' + pages)
+            .then(res => {
+                this.setState({
+                    alumnosCord: res.data.users,
+                    pages: res.data.pages,
+                    status: 'sucess',
 
+                });
+
+            })
+            .catch(err => {
+                this.setState({
+                    alumnosCord: {},
+                    status: 'failed'
+                });
+            });
+        }
     }
 
     getalumnosCoordinador = () => {
@@ -96,6 +121,7 @@ class Alumnos extends Component {
             });
 
     }
+
     handlePageClick = mensajes => {
       
 

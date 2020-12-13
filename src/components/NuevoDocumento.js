@@ -170,7 +170,7 @@ class NuevoDocumento extends Component {
 
                                             swal({
                                                 title: 'Archivo subido con éxito',
-                                                text: "El archivo ha sido subido correctamente",
+                                                text: "El archivo se ha subido correctamente",
                                                 icon: "sucess",
                                                 buttons: true,
                                             })
@@ -227,7 +227,7 @@ class NuevoDocumento extends Component {
 
                                 swal({
                                     title: 'Documento subido con éxito',
-                                    text: "El documento ha sido subido correctamente",
+                                    text: "El documento se ha subido correctamente",
                                     icon: "sucess",
                                     buttons: true,
                                 })
@@ -275,7 +275,7 @@ class NuevoDocumento extends Component {
                                 })
                                 swal({
                                     title: 'Documento subido con éxito',
-                                    text: "El documento ha sido subido correctamente",
+                                    text: "El documento se ha subido correctamente",
                                     icon: "sucess",
                                     buttons: true,
                                 })
@@ -410,7 +410,7 @@ class NuevoDocumento extends Component {
                             <Modal.Title>SUBIR ARCHIVO</Modal.Title>
                         </Modal.Header>
                         <strong style={{ textAlign: 'center', fontSize: '16px' }}>¡Recuerda!</strong>
-                        <h5 style={{ textAlign: 'center', fontSize: '16px' }}>Solo se pueden subir imagenes o archivos con formato .pdf .jpg ó .png</h5>
+                        <h5 style={{ textAlign: 'center', fontSize: '16px' }}>Solo se pueden subir imágenes o archivos con formato .pdf .jpg ó .png</h5>
                         <Modal.Body>
 
                             <form onSubmit={this.saveDocument} className="nuevo-doc" enctype="multipart/form-data">
@@ -434,7 +434,7 @@ class NuevoDocumento extends Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <button variant="secondary" onClick={this.onCloseModal} className="btn-cerrar">
-                                Close
+                                Cerrar
                              </button>
 
                         </Modal.Footer>
@@ -456,7 +456,7 @@ class NuevoDocumento extends Component {
 
                         </Modal.Header>
                         <strong style={{ textAlign: 'center', fontSize: '16px' }}>¡Recuerda!</strong>
-                        <h5 style={{ textAlign: 'center', fontSize: '16px' }}>Solo se pueden subir imagenes o archivos con formato .pdf .jpg ó .png</h5>
+                        <h5 style={{ textAlign: 'center', fontSize: '16px' }}>Solo se pueden subir imágenes o archivos con formato .pdf .jpg ó .png</h5>
                         <Modal.Body>
                             <form onSubmit={this.saveDocument} className="nuevo-doc" encType="multipart/form-data">
                                 <div >
@@ -479,7 +479,7 @@ class NuevoDocumento extends Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <button variant="secondary" onClick={this.onCloseModal} className="btn-cerrar">
-                                Close
+                                Cerrar
                          </button>
 
                         </Modal.Footer>
@@ -529,7 +529,7 @@ class NuevoDocumento extends Component {
                         </Modal.Body>
                         <Modal.Footer>
                             <button variant="secondary" onClick={this.onCloseModal} className="btn-cerrar">
-                                Close
+                                Cerrar
                              </button>
 
                         </Modal.Footer>

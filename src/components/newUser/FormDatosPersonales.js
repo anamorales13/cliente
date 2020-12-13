@@ -137,7 +137,7 @@ export class FormDatosPersonales extends Component {
                             <h1 className="titulo titulo-registro " > ALTA DE PROFESOR/A</h1>
                         }
                         <h1 className="titulo titulo-registro titulo-registro-secundario" style={{ fontSize: '21px' }}> DATOS PERSONALES </h1>
-
+                        <div className="subtitulo">Es posible que otros usuarios puedan ver parte de la infomación al usar la plataforma. </div>
                         <div className="subtitulo">Asegúrese de que todos los datos introducidos sean correctos </div>
                         
                         <Link to='/' className="link-cancelar">Cancelar registro de usuario</Link>

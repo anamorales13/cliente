@@ -176,7 +176,7 @@ class InicioSesion extends Component {
                             <article className="formulario-inicioSesion">
                                 <div className="cabecera-login">
                                     <h3 className="title-login" style={{ fontSize: '25px' }}>INICIAR SESIÓN </h3>
-                                    <h1 className="title-login" style={{ fontSize: '18px' }}><strong>PROFESOR</strong>   </h1>
+                                    <h1 className="title-login" style={{ fontSize: '18px' }}><strong>PROFESORES</strong>   </h1>
                                     {this.state.message !== "" &&
 
                                         <label style={{ color: '#A6250E', backgroundColor: '#F7A99C', width: '60%', textAlign: 'center', margin: 'auto', display: 'block', fontWeight: 'bold', marginTop: '20px' }}>
@@ -292,7 +292,7 @@ class InicioSesion extends Component {
 
                             <div className="inicio-logo-profesor">
 
-                                <h3 id="header-boton-prof"> PROFESOR </h3>
+                                <h3 id="header-boton-prof"> PROFESORES </h3>
                                 <NavLink exact to={{
                                     pathname: '/inicioSesion',
                                     state: {

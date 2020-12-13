@@ -86,7 +86,7 @@ class pantallaInicial extends Component {
 
                         </div>
                         <div className='boton-profesor' >
-                            <h3 id="header-boton-prof"> PROFESOR </h3>
+                            <h3 id="header-boton-prof"> PROFESORES </h3>
                             <Link to={{
                                 pathname: '/inicioSesion',
                                 state: {

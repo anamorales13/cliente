@@ -67,6 +67,7 @@ class Dropbox extends Component {
 
         var id = this.props.match.params.id;
         var pages = this.state.currentPage + 1;
+        console.log("id del alumno" + id);
         if (this.state.identity.tipo === 'Alumno') { //view: alumno
 
             /*axios.get(this.url + "documentosAlumnos/" + this.state.identity._id + '/' + this.state.identity.profesor)
@@ -217,7 +218,7 @@ class Dropbox extends Component {
 
                                     </td>
                                     <td className="th-pequeño">
-                                        <ButtonIcon onClick={() => { if (window.confirm('\n' + 'Estas seguro de eliminar el archivo ' + documentos.title + '?')) this.delete(documentos.title); }}
+                                        <ButtonIcon onClick={() => { if (window.confirm('\n' + '¿Estás seguro de eliminar el archivo:  - ' + documentos.title + ' - ?')) this.delete(documentos.title); }}
                                             className="btn-delete" startIcon={<DeleteIcon />}></ButtonIcon>
                                     </td>
 
@@ -252,7 +253,7 @@ class Dropbox extends Component {
                                 <Card className="card-bajas" style={{ border: 'none', background:'transparent'}}>
                                     <div className="bajas">
                                         <h3 style={{ fontSize: '24px', color: '#BB0909' }}>¡Recuerda!</h3>
-                                        <h5 style={{ fontSize: '16px' }}> Sólo se pueden subir imagenes o archivos en formato .pdf .jpg ó .png </h5>
+                                        <h5 style={{ fontSize: '16px' }}> Solo se pueden subir imágenes o archivos en formato .pdf .jpg ó .png </h5>
                                         <h5 style={{ fontSize: '16px' }}> Otros usuarios pueden ver el contenido de esta nube.</h5>
 
                                
@@ -301,8 +302,8 @@ class Dropbox extends Component {
                         <div>
                             <div style={{ textAlign: 'center' }}>
                             
-                                 <h4 className="subheader">No hay documentos para mostrar</h4>
-                                 <p>Todavia no hay contenido en esta sección</p>
+                                 <h4 className="subheader">No hay archivos para mostrar</h4>
+                                 <p>Todavía no hay contenido en esta sección</p>
                     
 
                             </div>

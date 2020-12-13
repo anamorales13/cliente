@@ -13,12 +13,18 @@ import Card from 'react-bootstrap/Card';
 import { FaFileDownload } from 'react-icons/fa';
 import Spinner from 'react-bootstrap/Spinner';
 import swal from 'sweetalert';
+import { Image, Transformation } from 'cloudinary-react';
+
 
 class DocumentoOficial extends Component {
 
     url = Global.url;
     nombre = "";
     estadoRef = React.createRef();
+    documento1 = "";
+    documento2 = "";
+    document03 = "";
+    documento4 = "";
 
     constructor(props) {
         super(props);
@@ -67,6 +73,10 @@ class DocumentoOficial extends Component {
                         });
 
                         console.log(this.state.alumno.length)
+                        this.documento1 = this.state.alumno[0].documentos[0].cloud_url;
+                        this.documento2 = this.state.alumno[0].documentos[1].cloud_url;
+                        this.documento3 = this.state.alumno[0].documentos[2].cloud_url;
+                        this.documento4 = this.state.alumno[0].documentos[3].cloud_url;
 
                     }
 
@@ -115,11 +125,11 @@ class DocumentoOficial extends Component {
                 this.setState({
                     status: 'sucess'
                 })
-                this.nombre="";
+                this.nombre = "";
                 swal({
                     title: 'Estado modificado con éxito',
-                    text: "El estado ha sido modificado correctamente",
-                    icon: "sucess", 
+                    text: "El estado se ha modificado correctamente",
+                    icon: "sucess",
                     buttons: true,
                 })
                     .then((value) => {
@@ -143,7 +153,7 @@ class DocumentoOficial extends Component {
         var mensaje = {
             asunto: 'Modificación documento ' + this.nombre,
             texto: 'El estado del documento ' + this.nombre + ' ha sido modificado por el profesor ' + this.state.identity.nombre + " " + this.state.identity.apellido1 + " " + this.state.identity.apellido2
-                + '  Puede obtener más información en el apartado de DOCUMENTOS. ',
+                + '.  Puede obtener más información en el apartado de DOCUMENTOS. ',
             emisor: { profesor: '5fbbfde011838fd11fac5944' },
             receptor: { alumno: this.props.match.params.id }
         }
@@ -196,10 +206,11 @@ class DocumentoOficial extends Component {
 
 
                                 <Card style={{ marginRight: '30px' }} className="card-doc-ofi">
+                                    <Card.Img variant="left" src={doc} className="doc-default">
+                                        
+                                    </Card.Img>
 
-                                    <Card.Img variant="left" src={doc} className="doc-default" />
-
-                                    <Card.Body id="cardbody">
+                                       <Card.Body id="cardbody">
 
                                         <Card.Text >
                                             <h4>CPRA</h4>
@@ -235,7 +246,7 @@ class DocumentoOficial extends Component {
                                                     <a id="link-doc" target="_blank" href={this.state.alumno[0].documentos[0].image}>
                                                         <FaFileDownload />
                                                     </a>
-                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[0].fecha}</Moment></h5>
+                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Última modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[0].fecha}</Moment></h5>
                                                 </div>
                                             }
                                         </Card.Text>
@@ -287,7 +298,7 @@ class DocumentoOficial extends Component {
                                                     <a id="link-doc" target="_blank" href={this.state.alumno[0].documentos[1].image}>
                                                         <FaFileDownload />
                                                     </a>
-                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[1].fecha}</Moment></h5>
+                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Última modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[1].fecha}</Moment></h5>
                                                 </div>
                                             }
                                         </Card.Text>
@@ -342,7 +353,7 @@ class DocumentoOficial extends Component {
                                                     <a id="link-doc" target="_blank" href={this.state.alumno[0].documentos[2].image}>
                                                         <FaFileDownload />
                                                     </a>
-                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[2].fecha}</Moment></h5>
+                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Última modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[2].fecha}</Moment></h5>
                                                 </div>
                                             }
                                         </Card.Text>
@@ -393,7 +404,7 @@ class DocumentoOficial extends Component {
                                                     <a id="link-doc" target="_blank" href={this.state.alumno[0].documentos[3].image}>
                                                         <FaFileDownload />
                                                     </a>
-                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Ultima modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[3].fecha}</Moment></h5>
+                                                    <h5 id="estado-doc" style={{ fontSize: '16px' }}>Última modificación:  <Moment format="DD-MM-YYYY">{this.state.alumno[0].documentos[3].fecha}</Moment></h5>
                                                 </div>
                                             }
                                         </Card.Text>
@@ -429,7 +440,7 @@ class DocumentoOficial extends Component {
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <button variant="secondary" onClick={this.onCloseModal} className="btn-cerrar">
-                                            Close
+                                            cerrar
                                         </button>
 
                                     </Modal.Footer>
