@@ -149,7 +149,7 @@ class borrar extends Component {
                                     {destino.coordinador.nombre + " " + destino.coordinador.apellido1 + " " + destino.coordinador.apellido2}
                                 </td>
                                 <td>
-                                    <button variant="primary" onClick={() => { if (window.confirm('\n' + 'Estas seguro de eliminar el destino ' + destino.ciudad + "(" + destino.pais + ") ?")) this.delete(destino._id); }}
+                                    <button variant="primary" onClick={() => { if (window.confirm('\n' + '¿Estás seguro de eliminar el destino ' + destino.ciudad + "(" + destino.pais + ") ?")) this.delete(destino._id); }}
                                         style={{ border: 'none', backgroundColor: 'transparent', marginLeft: '3px' }}>
                                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
