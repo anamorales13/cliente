@@ -111,7 +111,7 @@ class PasswordEdit extends Component {
         
 
         if (this.state.identity.tipo === 'Alumno') {
-            console.log();
+          
             if (this.validator.allValid()) {
                 axios.post(this.url + 'compararPassword/' + this.state.identity._id, currentlypassword)
                     .then(res => {
@@ -166,12 +166,12 @@ class PasswordEdit extends Component {
                             });
                            
 
-                            console.log("error");
+                         
                         }
                     });
                 
                 } else {
-                    console.log("error");
+                   
                     this.validator.showMessages();
     
                 }     
@@ -231,7 +231,7 @@ class PasswordEdit extends Component {
                             });
                            
 
-                            console.log("error");
+                       
                         }
                     });
                 

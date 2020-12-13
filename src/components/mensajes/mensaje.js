@@ -34,7 +34,7 @@ class mensaje extends Component {
     getMessage = (e) => {
 
         var id = this.props.match.params.id;
-        console.log("id " + id);
+      
 
         axios.put(this.url + 'marcar-leido/' + id)
             .then(res => {

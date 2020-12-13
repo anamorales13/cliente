@@ -103,10 +103,10 @@ export class FormDatosErasmus extends Component {
                             alumno: res.data.alumno,
                             status: 'sucess'
                         })
-                        console.log("Done")
+                      
 
                     })
-                    console.log("mensaje");
+                   ;
           
                     this.notificarProfesor(profesor);
                     this.notificarProfesor(coordinador);

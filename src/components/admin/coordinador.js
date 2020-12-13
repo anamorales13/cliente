@@ -46,7 +46,7 @@ class Coordinador extends Component {
 
     cambiarcoordinador=()=>{
 
-        console.log(this.state.coordinador._id);
+      
 
         var body={
             profesor: this.state.profesor,

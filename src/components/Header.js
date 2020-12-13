@@ -76,9 +76,9 @@ class Header extends Component {
     }
 
     botonmenu = () => {
-        console.log(this.state.contador);
+    
         if (this.state.contador == 1) {
-            console.log("entro");
+         
 
             var elem = document.getElementById('menuvar-responsive');
             elem.style.left = '0';
@@ -88,7 +88,7 @@ class Header extends Component {
 
         }
         if (this.state.contador === 0) {
-            console.log("entro2");
+          
             this.setState({
                 contador: 1
             })
@@ -137,7 +137,7 @@ class Header extends Component {
     }
 
     cerrarSesion() {
-        console.log("modificar sesion");
+       
         this.setState({ navigate: true })
     }
 

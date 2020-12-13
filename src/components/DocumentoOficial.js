@@ -72,7 +72,7 @@ class DocumentoOficial extends Component {
                             status: 'sucess'
                         });
 
-                        console.log(this.state.alumno.length)
+                       
                         this.documento1 = this.state.alumno[0].documentos[0].cloud_url;
                         this.documento2 = this.state.alumno[0].documentos[1].cloud_url;
                         this.documento3 = this.state.alumno[0].documentos[2].cloud_url;
@@ -92,7 +92,7 @@ class DocumentoOficial extends Component {
                             status: 'sucess'
                         });
 
-                        console.log(this.state.alumno.length)
+                       
 
                     }
 
@@ -118,7 +118,7 @@ class DocumentoOficial extends Component {
             estado: this.state.estado
         }
 
-        console.log(this.nombre);
+     
 
         axios.put(this.url + "cambioEstado/" + this.props.match.params.id + "/" + this.nombre, body)
             .then(res => {

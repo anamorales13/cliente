@@ -64,7 +64,7 @@ class enviar extends Component {
                 });
             });
 
-        console.log(this.state.usuarios.length)
+      
 
     }
 
@@ -88,8 +88,7 @@ class enviar extends Component {
 
     addMessage = (e) => {
         e.preventDefault();
-        console.log(this.state.tags.tipo);
-        console.log(this.state.identity.tipo)
+      
 
         if (this.state.identity.tipo == 'Alumno' && this.state.tags.tipo == 'Alumno') {
             var mensaje = {
@@ -198,7 +197,7 @@ class enviar extends Component {
 
         if (this.props.location.state != null) {
             const { mensajeId, emisor, texto } = this.props.location.state;
-            console.log(this.texto)
+           
         }
 
 

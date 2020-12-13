@@ -53,9 +53,9 @@ class destinos extends Component {
 
     handleChangeProf(e) {
 
-        console.log("hola");
+      
         this.setState({ profesor: e.target.value });
-        console.log("h" + this.state.profesor);
+      
     }
 
     formularioEnBlanco = () => {
@@ -81,14 +81,13 @@ class destinos extends Component {
     }
 
     getcoordinador() {
-        console.log("getcoordinador");
+      
         axios.get('https://plataforma-erasmus.herokuapp.com/apiProfesor/get-coordinador-centro')
             .then(res => {
                 this.setState({
                     coordinador: res.data.profesor
                 })
-                console.log("h" + this.state.coordinador.nombre);
-                console.log("h" + this.state.coordinador._id);
+                
 
             });
 
@@ -106,11 +105,11 @@ class destinos extends Component {
             coordinador: this.state.coordinador._id
         };
 
-        console.log("hola añadiendo");
+      
         if (this.validator.allValid()) {
             axios.post('https://plataforma-erasmus.herokuapp.com/apiDestino/' + 'save', body)
                 .then(res => {
-                    console.log("añadido")
+                  
                     this.setState({
                         destino: res.data.destino,
                         status: 'sucess',
@@ -129,8 +128,7 @@ class destinos extends Component {
                 });
         }
         else {
-            console.log("no son validos");
-            this.validator.showMessages();
+              this.validator.showMessages();
             // this.forceUpdate();
         }
 this.formularioEnBlanco();

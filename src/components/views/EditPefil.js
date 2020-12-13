@@ -140,17 +140,17 @@ class EditPerfil extends Component {
         e.preventDefault();
 
         this.changeState();
-        console.log("HOLA");
+      
         if (this.validator.allValid()) {
             axios.put(this.url + 'update-user/' + this.state.identity._id, this.state.alumno)
                 .then(res => {
-                    console.log("HOLA2");
+                
                     this.setState({
                         alumno: res.data.user,
                         status: 'sucess',
 
                     });
-                    console.log("prueba alumno:" + this.state.alumno.telefono);
+                 
                     localStorage.setItem('user', JSON.stringify(this.state.alumno));
 
                     swal(
@@ -182,13 +182,13 @@ class EditPerfil extends Component {
         if (this.validator.allValid()) {
             axios.put('https://plataforma-erasmus.herokuapp.com/apiProfesor/update-user/' + this.state.identity._id, this.state.profesor)
                 .then(res => {
-                    console.log("HOLA2");
+                  
                     this.setState({
                         profesor: res.data.user,
                         status: 'sucess',
 
                     });
-                    console.log("prueba alumno:" + this.state.profesor.edificio);
+                   
                     localStorage.setItem('user', JSON.stringify(this.state.profesor));
 
                     swal(
@@ -215,7 +215,7 @@ class EditPerfil extends Component {
         e.preventDefault();
 
 
-        console.log(this.state.selectedFile.name);
+       
        
         const formData = new FormData();
         formData.append(  //le vamos a vincular un fichero
@@ -227,13 +227,13 @@ class EditPerfil extends Component {
 
       /*  axios.delete(this.url + 'delete-image/' + this.state.identity._id)
             .then(res => {
-                console.log("sucess");
+             
 
             });
 
         axios.post(this.url + 'upload-image-user/' + this.state.identity._id, formData)
             .then(res => {
-                console.log("actualizacion realizada")
+             
                 this.setState({
                     alumnoNuevo: res.data.alumno,
                     status: 'sucess',
@@ -245,7 +245,7 @@ class EditPerfil extends Component {
 
         axios.post('https://plataforma-erasmus.herokuapp.com/apiImages/images-add', formData)
             .then(res=>{
-               console.log("en proceso")
+             
 
            
             axios.put(this.url+ 'add-files/' + this.state.identity._id, res.data.image)  
@@ -263,7 +263,7 @@ class EditPerfil extends Component {
     updateImageProfesor = (e) => {
         e.preventDefault();
 
-        console.log(this.state.selectedFile.name);
+     
         const formData = new FormData();
         formData.append(  //le vamos a vincular un fichero
             'file0',
@@ -272,16 +272,16 @@ class EditPerfil extends Component {
         );
 
         //1º eliminamos la imagen anterior
-        console.log("eliminar");
+      
         axios.delete('https://plataforma-erasmus.herokuapp.com/apiProfesor/delete-image/' + this.state.identity._id)
             .then(res => {
-                console.log("sucess");
+              
 
             });
 
         axios.post('https://plataforma-erasmus.herokuapp.com/apiProfesor/upload-image-user/' + this.state.identity._id, formData)
             .then(res => {
-                console.log("actualizacion realizada")
+               
                 this.setState({
                     profesorNuevo: res.data.profesor,
                     status: 'sucess',

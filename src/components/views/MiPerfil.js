@@ -24,27 +24,27 @@ class MiPerfil extends Component {
     componentWillMount() {
         var id = this.props.match.params.id;
         if (id == null) {
-            console.log("hola")
+          
             this.setState({
                 identity: JSON.parse(localStorage.getItem('user')),
 
             });
         } else {
-            console.log("hola2")
+           
             this.getalumno();
         }
     }
 
     getalumno = () => {
 
-        console.log("dentro");
+       
         var id = this.props.match.params.id;
         axios.get(this.url + 'user/' + id)
             .then(res => {
                 this.setState({
                     identity: res.data.user
                 })
-                console.log(this.state.identity.nombre);
+              
             })
     }
 

@@ -139,7 +139,7 @@ class InicioSesion extends Component {
 
         
         if (this.state.navigate && JSON.parse(localStorage.getItem('user')) != null) {
-            console.log("navigate");
+          
             return <Redirect to="/inicio" push={true} />
         }
 

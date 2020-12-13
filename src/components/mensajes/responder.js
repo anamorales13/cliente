@@ -78,7 +78,7 @@ class responder extends Component {
             }
         }
 
-        console.log(mensaje);
+       
 
 
         axios.post(this.url + 'mensaje', mensaje)

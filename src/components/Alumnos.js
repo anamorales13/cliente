@@ -50,7 +50,7 @@ class Alumnos extends Component {
 
     constructor(props){
         super(props);
-        console.log(JSON.parse(localStorage.getItem('user')).rol);
+      
        // if(JSON.parse(localStorage.getItem('user')).rol==='coordinador_de_destino'){
             this.getalumno();
       /*  }else{
@@ -62,7 +62,7 @@ class Alumnos extends Component {
     getalumno = () => {
 
         var pages= this.state.currentPage+1;
-console.log(this.state.identity.rol);
+
         if(this.state.identity.rol==='coordinador_de_destino'){
         axios.get(this.urlalumnos + 'get-alumnos-profesor/' + this.state.identity._id + '/'+ pages)
             .then(res => {

@@ -60,7 +60,7 @@ class InicioSesion extends Component {
                 });
             
                 //persistir los datos del usuario
-                console.log(JSON.stringify(this.state.alumno));
+              
                 localStorage.setItem('user', JSON.stringify(this.state.alumno));
                 localStorage.setItem('token', this.state.token);
                 elem.style.display = 'none'

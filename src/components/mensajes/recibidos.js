@@ -46,7 +46,7 @@ class recibidos extends Component {
     getMessage = () => {
 
         var pages = this.state.currentPage + 1;
-        console.log(pages);
+       
 
         axios.get(this.url + 'myMessages/' + this.state.identity._id + '/' + pages)
             .then(res => {
@@ -77,7 +77,7 @@ class recibidos extends Component {
      }*/
 
     handlePageClick = mensajes => {
-        console.log("hola");
+     
         const selectedPage = mensajes.selected;
         const offset = selectedPage * this.state.mensajesPerPage;
         this.setState({

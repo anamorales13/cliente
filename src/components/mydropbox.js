@@ -96,8 +96,7 @@ class mydropbox extends Component {
 
     delete(title) {
 
-        console.log("delete");
-        console.log("titulo" + title);
+      
         axios.delete(this.url + "delete/" + title)
             .then(res => {
                 this.setState({

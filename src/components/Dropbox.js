@@ -67,7 +67,7 @@ class Dropbox extends Component {
 
         var id = this.props.match.params.id;
         var pages = this.state.currentPage + 1;
-        console.log("id del alumno" + id);
+       
         if (this.state.identity.tipo === 'Alumno') { //view: alumno
 
             /*axios.get(this.url + "documentosAlumnos/" + this.state.identity._id + '/' + this.state.identity.profesor)

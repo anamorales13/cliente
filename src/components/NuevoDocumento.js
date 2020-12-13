@@ -71,8 +71,7 @@ class NuevoDocumento extends Component {
         else {
             if (this.state.identity.tipo === "profesor") {
                 var alumnoid = { alumno: this.props.alumno }
-                console.log("change - profesor" + alumnoid.alumno)
-                console.log("message:" + this.props.message);
+            
                 this.setState({
                     documento: {
                         title: this.titleRef.current.value,
@@ -202,7 +201,7 @@ class NuevoDocumento extends Component {
         const formDatadoc = new FormData();
 
 
-        console.log(this.state.selectedFile);
+     
 
 
         // VENTANA ALUMNO

@@ -25,12 +25,11 @@ const Chat=({location}) =>{
 
         setName(name);
         setRoom(room);
-        
-        console.log("dos veces?")
+      
        socket.emit('join', {name, room}, ()=>{
         
        }); 
-       console.log(location.search);
+     
        return () =>{
            socket.emit('disco');
            socket.off();
@@ -41,7 +40,7 @@ const Chat=({location}) =>{
 
 
     useEffect(()=>{
-        console.log("mensajes");
+     
         socket.on('message', (message)=>{
             setMessages([...messages, message]);
         });
@@ -58,7 +57,7 @@ const Chat=({location}) =>{
         }
     }
 
-    //console.log(message, messages);
+  
     
         return (
             <div className="outerContainer">

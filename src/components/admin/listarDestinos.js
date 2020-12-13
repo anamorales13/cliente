@@ -40,7 +40,7 @@ class editdestinos extends Component {
    
 
     openModal = (id) => {
-        console.log("id:" + id)
+      
         this.setState({ open: true, destino:id });
         
     }

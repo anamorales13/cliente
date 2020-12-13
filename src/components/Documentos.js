@@ -42,9 +42,9 @@ class Documentos extends Component {
     getDocumentos() {
 
         var id = this.props.alumno;
-        console.log(id);
+       
         if (id == null) {
-            console.log("hola");
+           
             axios.get(this.url + "documentos" + "/" + this.state.identity.usuario)
                 .then(res => {
                     this.setState({
@@ -54,7 +54,7 @@ class Documentos extends Component {
                 });
         }
         else {
-            console.log("hola2");
+           
             axios.get(this.url + "documentos" + "/" + id)
                 .then(res => {
                     this.setState({

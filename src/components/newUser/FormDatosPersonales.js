@@ -36,7 +36,7 @@ export class FormDatosPersonales extends Component {
             errors.nombre = "Campo obligatorio";
         } else {
             if (!regex.test(this.props.values.nombre)) {
-                console.log(regex.test(this.props.values.nombre));
+               
                 errors.nombre = "No puede contener caracteres numéricos";
             }
         }
@@ -95,14 +95,14 @@ export class FormDatosPersonales extends Component {
 
     continue = e => {
         e.preventDefault();
-        console.log("hey");
+     
         const { errors, ...sinErrors } = this.state;
         const result = this.validate(sinErrors);
 
-        console.log(result);
+     
         this.setState({ errors: result })
         if (!Object.keys(result).length) {
-            console.log("hey2");
+           
             this.props.nextStep();
         }
     }

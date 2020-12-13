@@ -42,7 +42,7 @@ class editdestinos extends Component {
 
 
     openModal = (id) => {
-        console.log("id:" + id)
+      
         this.setState({ open: true, destino: id });
 
     }
@@ -97,8 +97,7 @@ class editdestinos extends Component {
         var body = {
             profesor: this.state.profesor
         }
-        console.log("updatedestino:" + this.state.destino);
-        console.log(this.state.profesor);
+     
 
         axios.put('https://plataforma-erasmus.herokuapp.com/apiDestino/updateProfesor/' + this.state.destino, body)
             .then(res => {
