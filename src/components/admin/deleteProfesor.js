@@ -47,29 +47,17 @@ class DeleteProfesor extends Component {
     }
 
     bajaProfesor(e) {
-       
-        axios.get('https://plataforma-erasmus.herokuapp.com/comprobarprofesor/' + this.state.profesor)
+
+
+
+        axios.delete(this.urlprofesor + 'dardebaja/' + this.state.profesor)
             .then(res => {
                 this.setState({
-                    message: res.data.message
-                });
+                    status: 'sucess'
+                })
 
-                if (res.data.message === 'no existe') {
-                    axios.delete(this.urlprofesor + 'dardebaja/' + this.state.profesor)
-                        .then(res => {
-                            this.setState({
-                                status: 'sucess'
-                            })
-
-                        });
-                }else{
-                    this.setState({
-                        status:'no'
-                    })
-                    var elem = document.getElementById('toast');
-                    elem.style.display = 'block';
-                }
             });
+
 
 
     }
@@ -128,11 +116,11 @@ class DeleteProfesor extends Component {
 
                                     </Form.Control>
                                 </Form.Group>
-                            
-                                 <label id="toast" style={{display:'none', color:'red'}}> No se puede dar de baja al usuario. Revisa las condiciones descritas arribas </label>
-                               
-                                
-                               
+
+                                <label id="toast" style={{ display: 'none', color: 'red' }}> No se puede dar de baja al usuario. Revisa las condiciones descritas arribas </label>
+
+
+
                             </Form>
                             <button onClick={() => { if (window.confirm('\n' + '¿Esta usted seguro? El profesor será eliminado del sistema ')) this.bajaProfesor(); }} className="btn-style"> DAR DE BAJA </button>
                         </div>

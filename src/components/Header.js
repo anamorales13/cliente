@@ -420,7 +420,7 @@ class Header extends Component {
                                 <button class="dropbtn">GESTIÓN PROFESORES</button>
                                 <div class="dropdown-content">
                                     <Link to="/dar_de_baja" className="drop-link">Baja profesor</Link>
-                                    <Link to="/cambiar-coordinador" className="drop-link"> Cambiar coordinador de centro</Link>
+                                    <Link to="/cambiar-coordinador" className="drop-link"> Modificar coordinador de centro</Link>
 
                                 </div>
                             </div>
@@ -487,7 +487,7 @@ class Header extends Component {
                                         <button class="dropbtn">GESTIÓN PROFESORES</button>
                                         <div class="dropdown-content">
                                             <Link to="/dar_de_baja" className="drop-link" onClick={this.botonmenu}>Baja profesor</Link>
-                                            <Link to="/cambiar-coordinador" className="drop-link" onClick={this.botonmenu}> Cambiar coordinador de centro</Link>
+                                            <Link to="/cambiar-coordinador" className="drop-link" onClick={this.botonmenu}> Modificar coordinador de centro</Link>
 
                                         </div>
                                     </div>
