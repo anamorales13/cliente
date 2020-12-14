@@ -106,10 +106,10 @@ class DeleteProfesor extends Component {
                         <h5 style={{ fontSize: '18px' }}><strong>Antes de dar de baja a un profesor debes de tener en cuenta:</strong></h5>
                         <h5 style={{ fontSize: '16px' }}><strong>1.</strong> El profesor no puede ser coordinador de centro. </h5>
                         <h5 style={{ fontSize: '16px' }}><strong>2.</strong> El profesor no puede tener ningún destino a su cargo, es decir, no puede ser coordinador de algún destino </h5>
-                        <h5 style={{ fontSize: '16px' }}>Si alguna de las anteriores condiciones se incumple, deberá ir a gestión de destino y modificar los datos necesarios. </h5>
+                        <h5 style={{ fontSize: '16px' }}>Si alguna de las anteriores condiciones se cumple, deberá ir a gestión de destino y modificar los datos necesarios. </h5>
                         <h5 style={{ fontSize: '20px' }}> <strong>Recuerda</strong></h5>
                         <h5 style={{ fontSize: '16px' }}>Al efectuar la baja del perfil todos sus datos desaparecerán de nuestro servidor,
-                        por lo que para poder acceder a la web el usuario deberá registrarse de nuevo.
+                        por lo que para volver a acceder a la web el usuario deberá registrarse de nuevo.
                 </h5>
                         <label>¿Quiere seguir con la solicitud de la baja? <button onClick={this.mostrarFormulario}> SI </button></label>
                         <div id="form-baja-profesor" style={{ display: 'none' }}>
