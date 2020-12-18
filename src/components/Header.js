@@ -264,6 +264,9 @@ class Header extends Component {
                                     <NavLink to="/nube" activeClassName="active" onClick={this.botonmenu}>  NUBE COMPARTIDA </NavLink >
                                 </li>
                                 <li>
+                                    <NavLink to="/mi_nube" activeClassName="active" onClick={this.botonmenu}>  MI NUBE </NavLink >
+                                </li>
+                                <li>
                                     <div className="dropdown">
                                         <button className="dropbtn">PERFIL</button>
                                         <div class="dropdown-content">

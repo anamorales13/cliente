@@ -101,6 +101,9 @@ class DeleteProfesor extends Component {
                 </h5>
                         <label>¿Quiere seguir con la solicitud de la baja? <button onClick={this.mostrarFormulario}> SI </button></label>
                         <div id="form-baja-profesor" style={{ display: 'none' }}>
+                            {this.state.status === 'sucess' && 
+                             <label id="toast" style={{ display: 'none', color: 'green' }}> El profesor ha sido dado de baja </label>
+                             }
                             <Form className="form-borrar-profesor" >
                                 <Form.Group>
                                     <Form.Label style={{ fontSize: '16px' }}> Elige al profesor que desea dar de baja</Form.Label>

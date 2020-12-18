@@ -199,7 +199,7 @@ class DocumentoOficial extends Component {
                     {/* FILA 2 */}
                     <div className="grid-doc-oficial">
                         {/* COLUMNA 1 */}
-                        <div style={{ marginLeft: '100px' }}>
+                        <div className="left">
                             <h1 className="titulo-seccion-doc"> · Antes del Erasmus </h1>
 
                             <div className="bloque-uno-docOfi">

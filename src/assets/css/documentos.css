@@ -26,6 +26,10 @@
     grid-template-rows: 50px auto;
 }
 
+.left{
+    margin-left: 100px;
+}
+
 .titulo-seccion-doc{
   margin-top: 0.8em;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -177,7 +181,18 @@
 
 @media(max-width:769px){
     .grid-doc-oficial{
-        grid-template-columns: 600px auto;
+        grid-template-columns: 260px auto;
+    }
+
+    .left{
+        margin-left:0;
+    }
+
+    .doc-default{
+        display:none;
+    }
+    .card-doc-ofi{
+        width:355px;
     }
 
     .titulo-seccion-doc{
