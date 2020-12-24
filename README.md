@@ -10,7 +10,7 @@ Tecnologías que se han usado en el proyecto:
 -MongoDB
 
 Instalación:
-$ git clone https://github.com/anamorales13/backend.git
+$ git clone https://github.com/anamorales13/cliente.git
 $ cd ../path/to/the/file
 $ npm install
 $ npm start
